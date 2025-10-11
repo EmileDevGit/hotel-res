@@ -12,7 +12,7 @@ La proposition doit être approuvée par l'enseignant. Par contre, les détails 
   3 : Émile Girard
   4 : Joël Bertrand
   
-- Horaire de rencontre hebdomadaire (1h) : 
+- Horaire de rencontre hebdomadaire (1h) : Lundi 13h à 14h
 
 ** Projet
 
@@ -26,10 +26,10 @@ La proposition doit être approuvée par l'enseignant. Par contre, les détails 
 ** Fonctionnalités minimales :
 
 *** Sauvegarde locale d'informations utilisateurs
-Quelles données comptez-vous stoquer localement sur l'appareil? : Un PDF qui confirme la réservation. Il comprend l'emplacement de l'hôtel, les informations du client, la date et le numéro de chambre reservée.
+Quelles données comptez-vous stoquer localement sur l'appareil? : Un PDF qui confirme la réservation, qui comprend l'emplacement de l'hôtel, les informations du client, la date et le numéro de chambre reservée. Et un autre PDF qui contient l'historique des reservations effectués deja par l'utilisateur.
 
 *** Échange de données avec un service extérieur
-Quelles données comptez-vous échanger avec un service extérieur? : 
+Quelles données comptez-vous échanger avec un service extérieur? : Informations sur les chambres, les reservations et l'utilisateur (Nom, Courriel, Téléphone)
 
 
 L'API existe-t-il déjà? :
