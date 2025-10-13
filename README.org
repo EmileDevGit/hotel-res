@@ -1,10 +1,58 @@
-Ce projet est une base pour le projet de développement d'application du cours 420-G55-RO.
+* HotelRes
 
-Vous devez :
- - Créer une divergence par équipe
- - Ajouter tous les membres de votre équipe comme «Chargé de maintenance»
- - Remplir le [[évaluation/proposition.org][formulaire de proposition]]
- - Remplacer ce fichier README par une «page d'accueil» de votre projet
- - Facultativement, ajouter un fichier de licence
+** Description
 
-   [[./licence.png]]
+HotelRes est une application intuitive et efficace, permettant à vos clients de réserver leur séjour sans tracas.
+L'objectif est simple, une solution mobile assurant le suivi des réservation pour l'entreprise d'hotellerie et la clientèle.
+
+**** Fonctionnalitées
+
+- Sélection de chambres libres
+  - L'information est mise à jour en temps réel
+  - Réservation journalière ou par période 
+
+
+- Confirmation de réservation.
+  - Enregistrement local au format PDF
+  - Sauvegarde sur le serveur distant
+  - Historique des réservations
+
+
+- Synchronisation du calendrier.
+  - Intégration au préférences client
+  - Organisation efficace
+
+
+- Authentification.
+  - Sécuritaire
+  - Conservation de l'historique de réservation
+  - Confidentialité des réservations
+  - Potentiel d'offres avantageuses ciblées
+
+** Prérequis
+
+À venir!
+
+** Installation
+
+À venir!
+
+** Documentation
+
+[ Insérer lien vers répertoire de documentaiton ICI ]
+
+** Contribution
+
+- Leen Al Harash
+- Mariyam Hanfaoui
+- Joël Bertrand Tsafack
+- Émile Girard
+
+** État du projet et plans futurs
+
+=> Développement de la maquette figma et production de la documentation d'analyse
+
+...
+
+** Licence
+[ Lien vers la licence dans le répertoire de documentation ICI ]
