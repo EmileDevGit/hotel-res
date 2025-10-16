@@ -55,4 +55,4 @@ L'objectif est simple, une solution mobile assurant le suivi des réservation po
 ...
 
 ** Licence
-[ Lien vers la licence dans le répertoire de documentation ICI ]
+Aucune licence accordée à ce projet
