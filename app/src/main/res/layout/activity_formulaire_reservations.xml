@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Formulaire_Reservations">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="#F08E6D"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:text="Formulaire de réservation"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tvNbPersonnes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="65dp"
+        android:text="Nombre de personnes :"
+        android:textColor="@color/black"
+        android:textColorLink="#0F0F0F"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnConfirmerReservation"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editNbPersonnes"
+        android:layout_width="144dp"
+        android:layout_height="57dp"
+        android:layout_marginBottom="55dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="2"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/btnConfirmerReservation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvNbPersonnes" />
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="434dp"
+        android:layout_height="423dp"
+        android:layout_marginTop="24dp"
+        android:weekSeparatorLineColor="@android:color/transparent"
+        android:selectedWeekBackgroundColor="@color/date_selectionner"
+        android:focusedMonthDateColor="@android:color/white"
+        android:unfocusedMonthDateColor="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <LinearLayout
+        android:id="@+id/bottom_banner"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="#F08E6D"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/home_icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="Home"
+            android:padding="8dp"
+            android:src="@drawable/home_icon" />
+
+        <ImageView
+            android:id="@+id/search_icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="Search"
+            android:padding="8dp"
+            android:src="@drawable/search_icon" />
+
+        <ImageView
+            android:id="@+id/save_icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="Save"
+            android:padding="8dp"
+            android:src="@drawable/bookmark_icon" />
+
+        <ImageView
+            android:id="@+id/profile_icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="Profile"
+            android:padding="8dp"
+            android:src="@drawable/profile_icon" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnConfirmerReservation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="35dp"
+        android:backgroundTint="#F08E6D"
+        android:text="Confirmer la réservation"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_banner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
