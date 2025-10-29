@@ -241,15 +241,6 @@
             android:padding="8dp"/>
 
         <ImageView
-            android:id="@+id/search_icon"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@drawable/search_icon"
-            android:contentDescription="Search"
-            android:padding="8dp"/>
-
-        <ImageView
             android:id="@+id/save_icon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
