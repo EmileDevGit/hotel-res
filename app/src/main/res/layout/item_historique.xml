@@ -10,34 +10,38 @@
     android:gravity="start">
 
     <TextView
+        android:id="@+id/tvTitre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Chambre pour 2 personnes"
+        android:textColor="#000"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="#000" />
+        android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/tvDates"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="14 oct. 2025 - 17 oct. 2025"
-        android:textSize="16sp"
         android:textColor="#333"
-        android:layout_marginTop="4dp" />
+        android:textSize="16sp" />
 
     <TextView
+        android:id="@+id/tvDateReservation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:text="Date de réservation: 10 oct. 2025"
-        android:textSize="16sp"
         android:textColor="#333"
-        android:layout_marginTop="2dp" />
+        android:textSize="16sp" />
 
     <TextView
+        android:id="@+id/tvPrix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="Prix: 130$/par nuit"
-        android:textSize="16sp"
         android:textColor="#333"
-        android:layout_marginTop="4dp" />
+        android:textSize="16sp" />
 </LinearLayout>
