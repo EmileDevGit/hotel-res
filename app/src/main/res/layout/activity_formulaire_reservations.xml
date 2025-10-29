@@ -85,15 +85,6 @@
             android:src="@drawable/home_icon" />
 
         <ImageView
-            android:id="@+id/search_icon"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:contentDescription="Search"
-            android:padding="8dp"
-            android:src="@drawable/search_icon" />
-
-        <ImageView
             android:id="@+id/save_icon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
