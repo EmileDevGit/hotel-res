@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailChambreFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -54,14 +53,14 @@
             tools:text="Chambre pour X personne(s)" />
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewDetailsChambre"
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerCarouselPhoto"
+            android:name="com.leen.hotelres_app.child_fragment_carousel_photos"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
-            android:padding="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNbPersonneDetailsChambre" />
@@ -74,7 +73,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewDetailsChambre"
+            app:layout_constraintTop_toBottomOf="@+id/fragmentContainerCarouselPhoto"
             tools:text="Une chambre parfaite pour la famille avec de l'espace et un canapé réversible pour les invités" />
 
         <TextView
@@ -83,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/recyclerViewDetailsChambre"
+            app:layout_constraintStart_toStartOf="@+id/fragmentContainerCarouselPhoto"
             app:layout_constraintTop_toBottomOf="@+id/tvDescriptionDetailsChambre"
             tools:text="Nombres de lits: X" />
 
