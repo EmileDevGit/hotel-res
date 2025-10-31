@@ -21,6 +21,7 @@ class DetailsChambreAdapter(private val listeUrlPhotos: List<String>) :
 
         Glide.with( holder.photoHolder.context )
             .load( photoUrl )
+            // à implémenter plus tard?
             //.placeholder(R.drawable.placeholder)
             //.error(R.drawable.error_image)
             .into( holder.photoHolder )
