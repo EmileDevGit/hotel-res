@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class DetailsChambreAdapter(private val listeUrlPhotos: List<String>) :
+
     RecyclerView.Adapter<DetailsChambreAdapter.PhotoChambreViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoChambreViewHolder {
