@@ -7,9 +7,9 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class DetailsChambreAdapter(private val listeUrlPhotos: List<String>) :
+class CarouselPhotosChambreAdapter(private val listeUrlPhotos: List<String>) :
 
-    RecyclerView.Adapter<DetailsChambreAdapter.PhotoChambreViewHolder>() {
+    RecyclerView.Adapter<CarouselPhotosChambreAdapter.PhotoChambreViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoChambreViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.photo_detail_chambre, parent, false)
