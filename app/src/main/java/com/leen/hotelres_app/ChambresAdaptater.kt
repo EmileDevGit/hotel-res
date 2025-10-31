@@ -19,7 +19,7 @@ class ChambresAdaptater(private var chambres: ArrayList<String>) : RecyclerView.
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val createdView:View = LayoutInflater.from(parent.context).inflate(R.layout.viewholder_chambre, parent, false)
+        val createdView:View = LayoutInflater.from(parent.context).inflate(R.layout.item_chambre, parent, false)
         return ViewHolder(createdView)
     }
 

@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class HistoriqueReservationAdapter(
+class HistoriqueReservationsAdapter(
     private val reservations: List<Reservation>
-) : RecyclerView.Adapter<HistoriqueReservationAdapter.ReservationViewHolder>() {
+) : RecyclerView.Adapter<HistoriqueReservationsAdapter.ReservationViewHolder>() {
 
     class ReservationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvTitre: TextView = itemView.findViewById(R.id.tvTitre)

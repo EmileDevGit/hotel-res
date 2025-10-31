@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class Historique_Reservations : Fragment() {
+class HistoriqueReservationsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_historique_reservation, container, false)
+        return inflater.inflate(R.layout.fragment_historique_reservations, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -29,6 +29,6 @@ class Historique_Reservations : Fragment() {
             Reservation("Chambre pour 3 personnes", "10 juin 2025 - 13 juin 2025", "6 juin 2025", "165$/par nuit")
         )
 
-        recyclerView.adapter = HistoriqueReservationAdapter(reservations)
+        recyclerView.adapter = HistoriqueReservationsAdapter(reservations)
     }
 }
