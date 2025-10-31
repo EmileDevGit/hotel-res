@@ -1,10 +1,12 @@
-package com.leen.hotelres_app
+package com.leen.hotelres_app.Vue
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.leen.hotelres_app.R
+import com.leen.hotelres_app.Entities.Reservation
 
 class HistoriqueReservationsAdapter(
     private val reservations: List<Reservation>

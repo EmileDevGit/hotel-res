@@ -1,4 +1,4 @@
-package com.leen.hotelres_app
+package com.leen.hotelres_app.Vue
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.leen.hotelres_app.R
 
 class ChambresAdaptater(private var chambres: ArrayList<String>) : RecyclerView.Adapter<ChambresAdaptater.ViewHolder>() {
 
@@ -19,7 +20,7 @@ class ChambresAdaptater(private var chambres: ArrayList<String>) : RecyclerView.
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val createdView:View = LayoutInflater.from(parent.context).inflate(R.layout.item_chambre, parent, false)
+        val createdView: View = LayoutInflater.from(parent.context).inflate(R.layout.item_chambre, parent, false)
         return ViewHolder(createdView)
     }
 

@@ -1,10 +1,11 @@
-package com.leen.hotelres_app
+package com.leen.hotelres_app.Vue
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.leen.hotelres_app.R
 
 class FormulaireReservationsFragment : Fragment() {
 
