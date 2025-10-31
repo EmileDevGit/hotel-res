@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/ecran_liste_chambres"
-        android:name="com.leen.hotelres_app.ChambresFragment"
+        android:name="com.leen.hotelres_app.Vue.ChambresFragment"
         tools:layout="@layout/fragment_chambres"
         />
     <fragment
@@ -17,12 +17,12 @@
         tools:layout="@layout/fragment_details_chambre" />
     <fragment
         android:id="@+id/ecran_reservation_chambre"
-        android:name="com.leen.hotelres_app.FormulaireReservationsFragment"
+        android:name="com.leen.hotelres_app.Vue.FormulaireReservationsFragment"
         android:label="fragment_formulaire_reservations"
         tools:layout="@layout/fragment_formulaire_reservation" />
     <fragment
         android:id="@+id/ecran_historique_reservations"
-        android:name="com.leen.hotelres_app.HistoriqueReservationsFragment"
+        android:name="com.leen.hotelres_app.Vue.HistoriqueReservationsFragment"
         android:label="fragment_historique_reservation"
         tools:layout="@layout/fragment_historique_reservations" />
 </navigation>
