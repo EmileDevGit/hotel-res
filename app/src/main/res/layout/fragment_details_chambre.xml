@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailChambreFragment">
+    tools:context=".Vue.DetailChambreFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
@@ -55,7 +55,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerCarouselPhoto"
-            android:name="com.leen.hotelres_app.child_fragment_carousel_photos"
+            android:name="com.leen.hotelres_app.Vue.CarouselPhotosChambreFragment"
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:layout_marginStart="32dp"

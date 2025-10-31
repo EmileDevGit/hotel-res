@@ -1,16 +1,17 @@
-package com.leen.hotelres_app
+package com.leen.hotelres_app.Vue
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.carousel.CarouselSnapHelper
 import com.google.android.material.carousel.FullScreenCarouselStrategy
+import com.leen.hotelres_app.R
 
-class child_fragment_carousel_photos : Fragment() {
+class CarouselPhotosChambreFragment : Fragment() {
     private lateinit var urlsPhotosChambre : List<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,16 +30,17 @@ class child_fragment_carousel_photos : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_child_carousel_photos, container, false)
+        return inflater.inflate(R.layout.fragment_child_carousel_photos_chambre, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val carouselPhotosRecyclerView = activity?.findViewById<RecyclerView>( R.id.carouselPhotosRecyclerView )
-        carouselPhotosRecyclerView?.layoutManager = CarouselLayoutManager(FullScreenCarouselStrategy())
+        carouselPhotosRecyclerView?.layoutManager =
+            CarouselLayoutManager(FullScreenCarouselStrategy())
         CarouselSnapHelper().attachToRecyclerView( carouselPhotosRecyclerView )
-        carouselPhotosRecyclerView?.adapter = CarouselPhotosChambreAdapter( urlsPhotosChambre )
+        carouselPhotosRecyclerView?.adapter = CarouselPhotosChambreAdapter(urlsPhotosChambre)
 
     }
 }
