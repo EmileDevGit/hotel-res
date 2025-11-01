@@ -24,7 +24,6 @@ class ChambresFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_chambres, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         chambres = arrayListOf("premier leitn", "premier leitn", "premier leitn", "premier leitn", "premier leitn", "premier leitn", "premier leitn")
@@ -32,10 +31,7 @@ class ChambresFragment : Fragment() {
         val chambresRecyclerView = activity?.findViewById<RecyclerView>(R.id.rv_chambres)
 
         chambresRecyclerView?.layoutManager = LinearLayoutManager(context)
-
         chambresAdaptater = ChambresAdaptater(chambres)
-
         chambresRecyclerView?.adapter = chambresAdaptater
     }
-
 }
