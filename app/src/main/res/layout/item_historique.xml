@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp"
-    android:layout_marginBottom="12dp"
+    android:layout_marginBottom="20dp"
     android:background="@drawable/square_border"
     android:gravity="start">
 
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="14 oct. 2025 - 17 oct. 2025"
+        android:text="Dates: 14 oct. 2025 - 17 oct. 2025"
         android:textColor="#333"
         android:textSize="16sp" />
 
@@ -36,12 +36,28 @@
         android:textColor="#333"
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/tvPrix"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginTop="4dp"
-        android:text="Prix: 130$/par nuit"
-        android:textColor="#333"
-        android:textSize="16sp" />
+        android:gravity="start">
+
+        <TextView
+            android:id="@+id/tvPrix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prix: 130$/par nuit"
+            android:textColor="#333"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvNbrPersonnes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre de personnes: 3"
+            android:textColor="#333"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp" />
+    </LinearLayout>
 </LinearLayout>
