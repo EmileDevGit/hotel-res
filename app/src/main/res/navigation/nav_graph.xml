@@ -9,20 +9,48 @@
         android:id="@+id/ecran_liste_chambres"
         android:name="com.leen.hotelres_app.Vue.ChambresFragment"
         tools:layout="@layout/fragment_chambres"
-        />
+        >
+        <action
+            android:id="@+id/action_ecran_liste_chambres_to_ecran_details_chambre"
+            app:destination="@id/ecran_details_chambre" />
+        <action
+            android:id="@+id/action_ecran_liste_chambres_to_ecran_historique_reservations"
+            app:destination="@id/ecran_historique_reservations" />
+    </fragment>
     <fragment
         android:id="@+id/ecran_details_chambre"
         android:name="com.leen.hotelres_app.Vue.DetailChambreFragment"
         android:label="fragment_detail_chambre"
-        tools:layout="@layout/fragment_details_chambre" />
+        tools:layout="@layout/fragment_details_chambre" >
+        <action
+            android:id="@+id/action_ecran_details_chambre_to_ecran_reservation_chambre"
+            app:destination="@id/ecran_reservation_chambre" />
+        <action
+            android:id="@+id/action_ecran_details_chambre_to_ecran_liste_chambres"
+            app:destination="@id/ecran_liste_chambres" />
+        <action
+            android:id="@+id/action_ecran_details_chambre_to_ecran_historique_reservations"
+            app:destination="@id/ecran_historique_reservations" />
+    </fragment>
     <fragment
         android:id="@+id/ecran_reservation_chambre"
         android:name="com.leen.hotelres_app.Vue.FormulaireReservationsFragment"
         android:label="fragment_formulaire_reservations"
-        tools:layout="@layout/fragment_formulaire_reservation" />
+        tools:layout="@layout/fragment_formulaire_reservation" >
+        <action
+            android:id="@+id/action_ecran_reservation_chambre_to_ecran_liste_chambres"
+            app:destination="@id/ecran_liste_chambres" />
+        <action
+            android:id="@+id/action_ecran_reservation_chambre_to_ecran_historique_reservations"
+            app:destination="@id/ecran_historique_reservations" />
+    </fragment>
     <fragment
         android:id="@+id/ecran_historique_reservations"
         android:name="com.leen.hotelres_app.Vue.HistoriqueReservationsFragment"
         android:label="fragment_historique_reservation"
-        tools:layout="@layout/fragment_historique_reservations" />
+        tools:layout="@layout/fragment_historique_reservations" >
+        <action
+            android:id="@+id/action_ecran_historique_reservations_to_ecran_liste_chambres"
+            app:destination="@id/ecran_liste_chambres" />
+    </fragment>
 </navigation>
