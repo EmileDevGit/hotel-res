@@ -1,12 +1,13 @@
-package com.leen.hotelres_app
+package com.leen.hotelres_app.Vue
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.leen.hotelres_app.R
 
 class ChambresFragment : Fragment() {
     private lateinit var chambres: ArrayList<String>

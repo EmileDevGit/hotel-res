@@ -1,4 +1,4 @@
-package com.leen.hotelres_app
+package com.leen.hotelres_app.Vue
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,12 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.leen.hotelres_app.R
 
-class DetailsChambreAdapter(private val listeUrlPhotos: List<String>) :
-    RecyclerView.Adapter<DetailsChambreAdapter.PhotoChambreViewHolder>() {
+class CarouselPhotosChambreAdapter(private val listeUrlPhotos: List<String>) :
+
+    RecyclerView.Adapter<CarouselPhotosChambreAdapter.PhotoChambreViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoChambreViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.photo_detail_chambre, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_photo_chambre, parent, false)
         return PhotoChambreViewHolder(view)
     }
 
@@ -21,6 +23,7 @@ class DetailsChambreAdapter(private val listeUrlPhotos: List<String>) :
 
         Glide.with( holder.photoHolder.context )
             .load( photoUrl )
+            // à implémenter plus tard?
             //.placeholder(R.drawable.placeholder)
             //.error(R.drawable.error_image)
             .into( holder.photoHolder )
@@ -29,10 +32,8 @@ class DetailsChambreAdapter(private val listeUrlPhotos: List<String>) :
     override fun getItemCount(): Int {
         return listeUrlPhotos.size
     }
-    inner class PhotoChambreViewHolder( itemView: View ) : RecyclerView.ViewHolder( itemView ) {
+    inner class PhotoChambreViewHolder( itemView: View) : RecyclerView.ViewHolder( itemView ) {
         val photoHolder: ImageView = itemView.findViewById( R.id.carouselImage )
 
     }
 }
-
-
