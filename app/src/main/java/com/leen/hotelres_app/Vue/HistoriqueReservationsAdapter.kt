@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.leen.hotelres_app.R
-import com.leen.hotelres_app.Entities.Reservation
+import com.leen.hotelres_app.Model.Reservation
 
 class HistoriqueReservationsAdapter(
     private val reservations: List<Reservation>
