@@ -34,6 +34,11 @@ class ChambresAdaptater(private var chambres: ArrayList<Chambre>, private val pr
             presentateurChambre.traiterNaviguerVersDetails(position)
         }
     }
+    fun updateData(newData: ArrayList<Chambre>) {
+        chambres = newData
+        notifyDataSetChanged()
+    }
+
 
     override fun getItemCount(): Int {
         return chambres.size

@@ -1,7 +1,7 @@
 package com.leen.hotelres_app.Presentateur
 
 import com.leen.hotelres_app.Entities.Chambre
-import java.util.Date
+import com.leen.hotelres_app.Model.ChambreFiltre
 
 interface ContratVuePresentateurChambres {
     interface IVueChambres {
@@ -19,6 +19,6 @@ interface ContratVuePresentateurChambres {
 
         fun traiterRéinitialiserFiltres()
 
-        fun traiterFiltrer(prix:Float?, dateDebut: Date?, dateFin: Date)
+        fun traiterFiltrer(filtre : ChambreFiltre)
     }
 }

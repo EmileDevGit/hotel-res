@@ -1,11 +1,15 @@
 package com.leen.hotelres_app.Vue
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -14,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.leen.hotelres_app.Presentateur.ContratVuePresentateurChambres
 import com.leen.hotelres_app.Entities.Chambre
+import com.leen.hotelres_app.Model.ChambreFiltre
 import com.leen.hotelres_app.Presentateur.PresentateurChambres
 import com.leen.hotelres_app.R
 
@@ -21,9 +26,9 @@ class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres
     private lateinit var chambresAdaptater: ChambresAdaptater
     private lateinit var chambresRecyclerView: RecyclerView
 
-    private lateinit var filtrePrixTextView: TextView
-    private lateinit var filtreDateDebutTextView: TextView
-    private lateinit var filtreDateFinTextView: TextView
+    private lateinit var filtrePrixEditText: EditText
+    private lateinit var filtreDateDebutTextView: EditText
+    private lateinit var filtreDateFinTextView: EditText
     private lateinit var presentateurChambres: PresentateurChambres
     private lateinit var navController: NavController
 
@@ -42,27 +47,62 @@ class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         chambresRecyclerView = requireActivity().findViewById<RecyclerView>(R.id.rv_chambres)
-        filtrePrixTextView = requireActivity().findViewById<EditText>(R.id.et_filtre_prix)
+        filtrePrixEditText = requireActivity().findViewById<EditText>(R.id.et_filtre_prix)
         filtreDateDebutTextView = requireActivity().findViewById<EditText>(R.id.et_filtre_date_debut)
         filtreDateFinTextView = requireActivity().findViewById<EditText>(R.id.et_filtre_date_fin)
 
         chambresRecyclerView.layoutManager = LinearLayoutManager(context)
         presentateurChambres = PresentateurChambres(this)
 
+        chambresAdaptater = ChambresAdaptater(ArrayList<Chambre>(), presentateurChambres)
+        chambresRecyclerView.adapter = chambresAdaptater
+
         presentateurChambres.traiterRéinitialiserFiltres()
         navController = Navigation.findNavController(view)
 
+        attacherEvenements()
     }
 
+    // attache les évènements à tous les composants qui en ont besoin
+    private fun attacherEvenements(){
+//        filtrePrixEditText.addTextChangedListener( object : TextWatcher {
+//            override fun beforeTextChanged(
+//                p0: CharSequence?,
+//                p1: Int,
+//                p2: Int,
+//                p3: Int
+//            ) {
+//
+//            }
+//
+//            override fun onTextChanged(
+//                p0: CharSequence?,
+//                p1: Int,
+//                p2: Int,
+//                p3: Int
+//            ) {
+//
+//            }
+//
+//            override fun afterTextChanged(data: Editable?) {
+//                val prix = (data?.toString() ?: "").toFloatOrNull()
+//                presentateurChambres.traiterFiltrer(ChambreFiltre(prix = prix)
+//                )
+//            }
+//        })
+    }
+
+
     override fun afficherChambres(chambres: ArrayList<Chambre>) {
-        chambresAdaptater = ChambresAdaptater(chambres, presentateurChambres)
-        chambresRecyclerView.adapter = chambresAdaptater
+    // adaptateur.update ici
+
+        chambresAdaptater.updateData(chambres)
     }
 
     override fun réinitialiserFiltres() {
-        filtrePrixTextView.text = ""
-        filtreDateDebutTextView.text = ""
-        filtreDateFinTextView.text = ""
+        filtrePrixEditText.setText("")
+        filtreDateDebutTextView.setText("")
+        filtreDateFinTextView.setText("")
     }
 
     override fun traiterNaviguerVersDetails(id: Int) {
