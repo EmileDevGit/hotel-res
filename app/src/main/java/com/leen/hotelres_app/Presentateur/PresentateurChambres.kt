@@ -1,6 +1,5 @@
 package com.leen.hotelres_app.Presentateur
 
-import com.leen.hotelres_app.ContratVuePresentateurChambres
 import com.leen.hotelres_app.Entities.Chambre
 import java.util.Date
 
