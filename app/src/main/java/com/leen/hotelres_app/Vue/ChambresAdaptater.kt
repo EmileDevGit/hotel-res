@@ -3,19 +3,22 @@ package com.leen.hotelres_app.Vue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.leen.hotelres_app.Presentateur.ContratVuePresentateurChambres
+import com.leen.hotelres_app.Entities.Chambre
 import com.leen.hotelres_app.R
 
-class ChambresAdaptater(private var chambres: ArrayList<String>) : RecyclerView.Adapter<ChambresAdaptater.ViewHolder>() {
+class ChambresAdaptater(private var chambres: ArrayList<Chambre>, private val presentateurChambre: ContratVuePresentateurChambres.IPresentateurChambres) : RecyclerView.Adapter<ChambresAdaptater.ViewHolder>() {
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val carousselContainer : LinearLayout
         val tvTitre : TextView
+        val btnDetails: Button
         init{
-            carousselContainer = view.findViewById<LinearLayout>(R.id.ll_caroussel_container) // à changer
-            tvTitre = view.findViewById<TextView>(R.id.tv_chambre_description) // à changer
+            tvTitre = view.findViewById<TextView>(R.id.tv_chambre_description)
+            btnDetails = view.findViewById<Button>(R.id.btn_details)
         }
     }
 
@@ -26,6 +29,10 @@ class ChambresAdaptater(private var chambres: ArrayList<String>) : RecyclerView.
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvTitre.text = "Chambre de 2 personnes"
+
+        holder.btnDetails.setOnClickListener {
+            presentateurChambre.traiterNaviguerVersDetails(position)
+        }
     }
 
     override fun getItemCount(): Int {
