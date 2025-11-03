@@ -2,9 +2,9 @@ package com.leen.hotelres_app.Model
 
 data class Reservation(
     val titre: String,
-    val dateDébut: Long,
-    val dateFin: Long,
+    var dateDébut: Long,
+    var dateFin: Long,
     val dateReservation: String,
     val prix: String,
-    val nbPersonnes: Int?
+    val nbPersonnes : Int?
 )
