@@ -1,19 +1,11 @@
 package com.leen.hotelres_app.Vue
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.SpannableStringBuilder
-import android.text.TextWatcher
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.core.widget.doAfterTextChanged
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -24,6 +16,9 @@ import com.leen.hotelres_app.Entities.Chambre
 import com.leen.hotelres_app.Model.ChambreFiltre
 import com.leen.hotelres_app.Presentateur.PresentateurChambres
 import com.leen.hotelres_app.R
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres {
     private lateinit var chambresAdaptater: ChambresAdaptater
@@ -70,10 +65,11 @@ class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres
 
     // attache les évènements à tous les composants qui en ont besoin
     private fun attacherEvenements(){
-        filtrePrixEditText.doAfterTextChanged { text ->
-            filtre.prix = text.toString().trim().toFloatOrNull()
-
-            presentateurChambres.traiterFiltrer(filtre)
+        filtrePrixEditText.setOnFocusChangeListener { view, focus ->
+            if(!focus){
+                filtre.prix = filtrePrixEditText.text.toString().trim().toFloatOrNull()
+                presentateurChambres.traiterFiltrer(filtre)
+            }
         }
 
 
@@ -84,6 +80,12 @@ class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres
                 }
             }
         }
+        filtreDateDebutTextView.setOnFocusChangeListener { view, focus ->
+            if(!focus){
+                filtre.dateDebut = formaterChaineEnDate(filtreDateDebutTextView.text.toString())
+                presentateurChambres.traiterFiltrer(filtre)
+            }
+        }
 
         filtreDateFinTextView.doAfterTextChanged { editable ->
             editable?.let {
@@ -92,16 +94,26 @@ class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres
                 }
             }
         }
+        filtreDateFinTextView.setOnFocusChangeListener { view, focus ->
+            if(!focus){
+                filtre.dateFin = formaterChaineEnDate(filtreDateFinTextView.text.toString())
+                presentateurChambres.traiterFiltrer(filtre)
+            }
+        }
+
     }
 
-    private fun formatterChaineEnDate(input:String): String{
-        return input.filter { it != '/' }
+    private fun formaterChaineEnDate(input:String): Date?{
+        return try {
+            val format = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            format.parse(input)
+        } catch (e: Exception) {
+            null
+        }
     }
 
 
     override fun afficherChambres(chambres: ArrayList<Chambre>) {
-    // adaptateur.update ici
-
         chambresAdaptater.updateData(chambres)
     }
 
