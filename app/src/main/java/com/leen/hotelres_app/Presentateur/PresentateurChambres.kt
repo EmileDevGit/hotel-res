@@ -28,11 +28,13 @@ class PresentateurChambres(private val vue: ContratVuePresentateurChambres.IVueC
     }
 
     override fun traiterFiltrer(filtre: ChambreFiltre) {
-        val listeChambresFiltrés = arrayListOf(
-            Chambre(),
-            Chambre()
-        )
-
+        var listeChambresFiltrés = listeChambres
+        if(filtre.prix != null){
+            listeChambresFiltrés = arrayListOf(
+                Chambre(),
+                Chambre()
+            )
+        }
         vue.afficherChambres(listeChambresFiltrés)
     }
 }
