@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
 import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.carousel.CarouselSnapHelper
@@ -25,6 +26,7 @@ class ChambresAdaptater(private var chambres: ArrayList<Chambre>, private val pr
         val tvTitre : TextView
         val btnDetails: Button
         val carouselPhotosRecyclerView: RecyclerView
+        var snapHelper: SnapHelper? = null
         init{
             tvTitre = view.findViewById<TextView>(R.id.tv_chambre_description)
             btnDetails = view.findViewById<Button>(R.id.btn_details)
@@ -42,10 +44,13 @@ class ChambresAdaptater(private var chambres: ArrayList<Chambre>, private val pr
         val chambre = chambres[position]
         holder.tvTitre.text = "Chambre de ${chambre.nombreLits} lits"
 
-        holder.carouselPhotosRecyclerView.layoutManager =
-            CarouselLayoutManager(FullScreenCarouselStrategy())
-        CarouselSnapHelper().attachToRecyclerView( holder.carouselPhotosRecyclerView )
-        holder.carouselPhotosRecyclerView?.adapter = CarouselPhotosChambreAdapter(chambre.images)
+        holder.carouselPhotosRecyclerView.apply {
+            layoutManager = CarouselLayoutManager(FullScreenCarouselStrategy())
+            holder.snapHelper?.attachToRecyclerView(null)
+            holder.snapHelper = CarouselSnapHelper()
+            holder.snapHelper?.attachToRecyclerView(this)
+            adapter = CarouselPhotosChambreAdapter(chambre.images)
+        }
 
         holder.btnDetails.setOnClickListener {
             presentateurChambre.traiterNaviguerVersDetails(position)

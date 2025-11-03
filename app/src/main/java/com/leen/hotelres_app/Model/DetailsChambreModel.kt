@@ -1,8 +1,10 @@
 package com.leen.hotelres_app.Model
 
+import com.leen.hotelres_app.Entities.ChambreDetails
+
 class DetailsChambreModel {
-    fun getChambreSelectionne() : Chambre{
-        return Chambre(
+    fun getChambreSelectionne() : ChambreDetails{
+        return ChambreDetails(
             "B260",
             2,
             125f,

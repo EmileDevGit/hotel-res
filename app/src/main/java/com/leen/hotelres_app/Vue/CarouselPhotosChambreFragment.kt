@@ -31,7 +31,10 @@ class CarouselPhotosChambreFragment : Fragment(), IFragmentPhotosChambre {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val vue =  inflater.inflate(R.layout.fragment_child_carousel_photos_chambre, container, false)
+        val vue = inflater.inflate(
+            R.layout.fragment_child_carousel_photos_chambre,
+            container,
+            false)
         return vue
     }
 
@@ -45,14 +48,16 @@ class CarouselPhotosChambreFragment : Fragment(), IFragmentPhotosChambre {
         view?.let{ initRecyclerView(it) }
     }
 
-    private fun initRecyclerView(vue : View){
-        val carouselPhotosRecyclerView = vue.findViewById<RecyclerView>( R.id.carouselPhotosRecyclerView )
+    private fun initRecyclerView(vue : View) {
+        val carouselPhotosRecyclerView =
+            vue.findViewById<RecyclerView>(R.id.carouselPhotosRecyclerView)
 
-        // Ajout du layout Carousel avec SnapHelper au recycler view
-        carouselPhotosRecyclerView?.layoutManager = CarouselLayoutManager(FullScreenCarouselStrategy())
-        CarouselSnapHelper().attachToRecyclerView( carouselPhotosRecyclerView )
-
-        // Attache l'adapter des photos
-        carouselPhotosRecyclerView?.adapter = CarouselPhotosChambreAdapter(urlsPhotosChambre)
+        carouselPhotosRecyclerView?.apply {
+            layoutManager = CarouselLayoutManager(FullScreenCarouselStrategy())
+            if (onFlingListener == null) {
+                CarouselSnapHelper().attachToRecyclerView(this)
+            }
+            adapter = CarouselPhotosChambreAdapter(urlsPhotosChambre)
+        }
     }
 }
