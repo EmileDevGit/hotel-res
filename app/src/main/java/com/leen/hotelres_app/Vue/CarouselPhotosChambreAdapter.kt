@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide
 import com.leen.hotelres_app.R
 
 class CarouselPhotosChambreAdapter(private val listeUrlPhotos: List<String>) :
-
     RecyclerView.Adapter<CarouselPhotosChambreAdapter.PhotoChambreViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoChambreViewHolder {

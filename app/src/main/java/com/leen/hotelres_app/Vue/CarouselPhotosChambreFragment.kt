@@ -36,11 +36,18 @@ class CarouselPhotosChambreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val carouselPhotosRecyclerView = activity?.findViewById<RecyclerView>( R.id.carouselPhotosRecyclerView )
-        carouselPhotosRecyclerView?.layoutManager =
-            CarouselLayoutManager(FullScreenCarouselStrategy())
-        CarouselSnapHelper().attachToRecyclerView( carouselPhotosRecyclerView )
-        carouselPhotosRecyclerView?.adapter = CarouselPhotosChambreAdapter(urlsPhotosChambre)
+        val carouselPhotosRecyclerView = view.findViewById<RecyclerView>(R.id.carouselPhotosRecyclerView)
+
+        carouselPhotosRecyclerView?.apply {
+            layoutManager = CarouselLayoutManager(FullScreenCarouselStrategy())
+
+            // Vérifier si un SnapHelper n'est pas déjà attaché
+            if (onFlingListener == null) {
+                CarouselSnapHelper().attachToRecyclerView(this)
+            }
+
+            adapter = CarouselPhotosChambreAdapter(urlsPhotosChambre)
+        }
 
     }
 }
