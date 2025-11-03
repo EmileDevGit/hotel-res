@@ -16,3 +16,12 @@ class Chambre(
 ) {
 
 }
+
+class ChambreDetails (
+    var numero : String,
+    var nbrePersonnes : Int,
+    var prixParNuit : Float,
+    var nbreLits : Int,
+    var description : String,
+    var inclusions : String
+    )
