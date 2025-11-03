@@ -2,6 +2,7 @@ package com.leen.hotelres_app.Vue
 
 import android.os.Bundle
 import android.text.Editable
+import android.text.SpannableStringBuilder
 import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -11,6 +12,8 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -31,6 +34,8 @@ class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres
     private lateinit var filtreDateFinTextView: EditText
     private lateinit var presentateurChambres: PresentateurChambres
     private lateinit var navController: NavController
+
+    private val filtre: ChambreFiltre = ChambreFiltre()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,31 +70,32 @@ class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres
 
     // attache les évènements à tous les composants qui en ont besoin
     private fun attacherEvenements(){
-//        filtrePrixEditText.addTextChangedListener( object : TextWatcher {
-//            override fun beforeTextChanged(
-//                p0: CharSequence?,
-//                p1: Int,
-//                p2: Int,
-//                p3: Int
-//            ) {
-//
-//            }
-//
-//            override fun onTextChanged(
-//                p0: CharSequence?,
-//                p1: Int,
-//                p2: Int,
-//                p3: Int
-//            ) {
-//
-//            }
-//
-//            override fun afterTextChanged(data: Editable?) {
-//                val prix = (data?.toString() ?: "").toFloatOrNull()
-//                presentateurChambres.traiterFiltrer(ChambreFiltre(prix = prix)
-//                )
-//            }
-//        })
+        filtrePrixEditText.doAfterTextChanged { text ->
+            filtre.prix = text.toString().trim().toFloatOrNull()
+
+            presentateurChambres.traiterFiltrer(filtre)
+        }
+
+
+        filtreDateDebutTextView.doAfterTextChanged { editable ->
+            editable?.let {
+                if (it.isNotEmpty() && !it.endsWith("/") && (it.length == 2 || it.length == 5)) {
+                    it.append("/")
+                }
+            }
+        }
+
+        filtreDateFinTextView.doAfterTextChanged { editable ->
+            editable?.let {
+                if (it.isNotEmpty() && !it.endsWith("/") && (it.length == 2 || it.length == 5)) {
+                    it.append("/")
+                }
+            }
+        }
+    }
+
+    private fun formatterChaineEnDate(input:String): String{
+        return input.filter { it != '/' }
     }
 
 

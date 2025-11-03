@@ -1,5 +1,6 @@
 package com.leen.hotelres_app.Vue
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,12 +29,13 @@ class ChambresAdaptater(private var chambres: ArrayList<Chambre>, private val pr
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvTitre.text = "Chambre de 2 personnes"
+        holder.tvTitre.text = "Chambre de ${chambres[position].nombreLits} lits"
 
         holder.btnDetails.setOnClickListener {
             presentateurChambre.traiterNaviguerVersDetails(position)
         }
     }
+    @SuppressLint("NotifyDataSetChanged")
     fun updateData(newData: ArrayList<Chambre>) {
         chambres = newData
         notifyDataSetChanged()

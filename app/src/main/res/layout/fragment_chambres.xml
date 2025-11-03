@@ -37,8 +37,9 @@
                     android:layout_height="wrap_content"
                     android:paddingVertical="8dp"
                     android:paddingHorizontal="16dp"
-                    android:hint="Date début"
-                    android:inputType="datetime"
+                    android:hint="dd/mm/yyyy Date début"
+                    android:inputType="date"
+                    android:maxLength="10"
                     />
                 <Space
                     android:layout_width="wrap_content"
@@ -52,7 +53,9 @@
                     android:paddingVertical="8dp"
                     android:paddingHorizontal="16dp"
                     android:hint="Date fin"
-                    android:inputType="datetime" />
+                    android:maxLength="10"
+                    android:inputType="date"
+                    />
                 <Space
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -61,6 +64,7 @@
                 <EditText
                     android:id="@+id/et_filtre_prix"
                     android:background="@drawable/border_roundborder"
+                    android:inputType="numberDecimal"
                     android:layout_width="wrap_content"
 
                     android:paddingHorizontal="16dp"
