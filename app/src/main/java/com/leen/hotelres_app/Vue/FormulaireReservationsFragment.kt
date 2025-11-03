@@ -1,5 +1,6 @@
 package com.leen.hotelres_app.Vue
 
+import android.graphics.drawable.Icon
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,8 +8,10 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.constraintlayout.utils.widget.ImageFilterView
 import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -35,10 +38,22 @@ class FormulaireReservationsFragment : Fragment() {
 
         var presentateur = FormulaireReservationsPresentateur()
         val btnEcranAccueil = view.findViewById<Button>(R.id.btnConfirmerReservation)
+        val IconeAccueil: ImageView = view.findViewById(R.id.home_icon)
+        val IconeHistorique: ImageView = view.findViewById(R.id.save_icon)
         val btnModifierDatesChoisi = view.findViewById<Button>(R.id.btnModifierDates)
         val tvDatesChoisi = view.findViewById<TextView>(R.id.tvDatesChoisis)
 
         val reservation = presentateur.getReservation()
+
+        IconeAccueil.setOnClickListener {
+            val navController = Navigation.findNavController(view)
+            navController.navigate(R.id.action_ecran_reservation_chambre_to_ecran_liste_chambres)
+        }
+
+        IconeHistorique.setOnClickListener {
+            val navController = Navigation.findNavController(view)
+            navController.navigate(R.id.action_ecran_reservation_chambre_to_ecran_historique_reservations)
+        }
 
         btnEcranAccueil?.setOnClickListener {
             val navController = Navigation.findNavController(view)
