@@ -1,0 +1,22 @@
+package com.leen.hotelres_app.Presentateur
+
+interface ContratFragmentPresentateurDetailsChambre {
+    interface IFragmentDetailsChambre{
+        fun chargerInfosChambre(
+            numero : String,
+            nbreLits : Int,
+            description : String,
+            inclusions : String,
+            nbrePersonnes : Int,
+            prixParNuit : Float
+        )
+    }
+
+    interface IPresentateurDetailsChambre{
+        fun initialiserVue()
+        fun naviguerVersReservation()
+        fun naviguerVersAccueil()
+        fun naviguerVersHistorique()
+        //fun naviguerVersProfil()
+    }
+}

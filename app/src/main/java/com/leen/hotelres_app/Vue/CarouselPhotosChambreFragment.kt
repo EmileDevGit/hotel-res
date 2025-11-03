@@ -1,6 +1,7 @@
 package com.leen.hotelres_app.Vue
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,38 +10,49 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.carousel.CarouselSnapHelper
 import com.google.android.material.carousel.FullScreenCarouselStrategy
+import com.leen.hotelres_app.Model.CarouselPhotosChambreModel
+import com.leen.hotelres_app.Presentateur.ContratFragmentPresentateurPhotosChambre.IPresentateurPhotosChambre
+import com.leen.hotelres_app.Presentateur.ContratFragmentPresentateurPhotosChambre.IFragmentPhotosChambre
+import com.leen.hotelres_app.Presentateur.PresentateurPhotosChambre
 import com.leen.hotelres_app.R
 
-class CarouselPhotosChambreFragment : Fragment() {
-    private lateinit var urlsPhotosChambre : List<String>
+class CarouselPhotosChambreFragment : Fragment(), IFragmentPhotosChambre {
+    private lateinit var urlsPhotosChambre : Array<String>
+    private lateinit var presentateur : IPresentateurPhotosChambre
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        urlsPhotosChambre = listOf(
-            "https://picsum.photos/800/400?image=10",
-            "https://picsum.photos/800/400?image=20",
-            "https://picsum.photos/800/400?image=30",
-            "https://picsum.photos/800/400?image=40",
-            "https://picsum.photos/800/400?image=50"
-        )
+        presentateur = PresentateurPhotosChambre(
+            this,
+            CarouselPhotosChambreModel())
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_child_carousel_photos_chambre, container, false)
+        val vue =  inflater.inflate(R.layout.fragment_child_carousel_photos_chambre, container, false)
+        return vue
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presentateur.initialiserVue()
+    }
 
-        val carouselPhotosRecyclerView = activity?.findViewById<RecyclerView>( R.id.carouselPhotosRecyclerView )
-        carouselPhotosRecyclerView?.layoutManager =
-            CarouselLayoutManager(FullScreenCarouselStrategy())
+    override fun chargerPhotos(urls: Array<String>) {
+        urlsPhotosChambre = urls
+        view?.let{ initRecyclerView(it) }
+    }
+
+    private fun initRecyclerView(vue : View){
+        val carouselPhotosRecyclerView = vue.findViewById<RecyclerView>( R.id.carouselPhotosRecyclerView )
+
+        // Ajout du layout Carousel avec SnapHelper au recycler view
+        carouselPhotosRecyclerView?.layoutManager = CarouselLayoutManager(FullScreenCarouselStrategy())
         CarouselSnapHelper().attachToRecyclerView( carouselPhotosRecyclerView )
-        carouselPhotosRecyclerView?.adapter = CarouselPhotosChambreAdapter(urlsPhotosChambre)
 
+        // Attache l'adapter des photos
+        carouselPhotosRecyclerView?.adapter = CarouselPhotosChambreAdapter(urlsPhotosChambre)
     }
 }
