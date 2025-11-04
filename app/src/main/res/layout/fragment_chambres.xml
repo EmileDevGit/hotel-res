@@ -11,71 +11,96 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <LinearLayout
             android:id="@+id/ll_header_recherche"
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
-
+            <TextView
+                android:id="@+id/titreDetailsChambre"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:background="@color/primary"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:text="trouvez votre pépite !"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:paddingVertical="8dp"
-                android:orientation="horizontal">
-
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-                <EditText
-                    android:background="@drawable/border_roundborder"
-                    android:id="@+id/et_filtre_date_debut"
+                android:paddingHorizontal="10dp"
+                >
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="8dp"
-                    android:paddingHorizontal="16dp"
-                    android:hint="dd/mm/yyyy Date début"
-                    android:inputType="date"
-                    android:maxLength="10"
+                    android:text="Réserver de:"
                     />
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-                <EditText
-                    android:background="@drawable/border_roundborder"
-                    android:id="@+id/et_filtre_date_fin"
+                <Button
+                    android:id="@+id/btn_date_debut"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="8dp"
-                    android:paddingHorizontal="16dp"
-                    android:hint="Date fin"
-                    android:maxLength="10"
-                    android:inputType="date"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:layout_weight="1"
+                    android:hint="Cliquez ici"
+                    style="?android:spinnerStyle"
+                    android:backgroundTint="@color/primary"
                     />
-                <Space
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <EditText
-                    android:id="@+id/et_filtre_prix"
-                    android:background="@drawable/border_roundborder"
-                    android:inputType="numberDecimal"
-                    android:layout_width="wrap_content"
-
-                    android:paddingHorizontal="16dp"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="8dp"
-                    android:hint="Prix" />
-
-                <Space
+                    android:text=" À: "
+                    />
+                <Button
+                    android:id="@+id/btn_date_fin"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    android:layout_weight="1"
+                    android:hint="Date de fin"
+                    style="?android:spinnerStyle" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prix allant de:"
+                    />
+                <EditText
+                    android:id="@+id/et_prix_minimum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:inputType="numberSigned"
+                    android:hint="Minimum" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" À: "
+                    />
+                <EditText
+                    android:id="@+id/et_prix_maximum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:inputType="numberSigned"
+                    android:hint="Maximum" />
             </LinearLayout>
         </LinearLayout>
 
@@ -83,12 +108,11 @@
             android:layout_weight="1"
             android:id="@+id/rv_chambres"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ll_header_recherche"
             app:layout_constraintBottom_toTopOf="@+id/bottom_banner"
-            android:layout_marginBottom="8dp"
             />
 
         <LinearLayout
@@ -108,17 +132,19 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/home_icon"
+                app:tint="@color/white"
                 android:contentDescription="Home"
                 android:padding="8dp"/>
 
             <ImageView
-                android:id="@+id/save_icon"
+                android:id="@+id/vers_historique_reservation"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/bookmark_icon"
                 android:contentDescription="Save"
                 android:padding="8dp"/>
+
 
             <ImageView
                 android:id="@+id/profile_icon"

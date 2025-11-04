@@ -24,7 +24,20 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Chambre pour de 2 personnes" />
+            android:text="Chambre" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tv_chambre_prix"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/primary"
+            android:gravity="center"
+            android:text="$" />
 
         <Space
             android:layout_width="wrap_content"
