@@ -95,6 +95,6 @@ class DetailChambreFragment : Fragment(), IFragmentDetailsChambre {
         tvDescriptionDetailsChambre.setText("Description: ${description}")
         tvNbLitsDetailsChambre.setText("Nombre de lits: ${nbreLits}")
         tvInclusDetailsChambre.setText("Inclus: ${inclusions}")
-        btnReserverChambre.setText("${prixParNuit}$ / nuit")
+        btnReserverChambre.setText("Réserver - ${prixParNuit}$ / nuit")
     }
 }

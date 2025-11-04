@@ -19,6 +19,7 @@
             android:layout_marginBottom="35dp"
             android:backgroundTint="@color/primary"
             android:text="Réserver prix/nuit"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/bottom_banner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -46,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titreDetailsChambre"
@@ -70,7 +71,7 @@
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:textSize="16sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragmentContainerCarouselPhoto"
@@ -81,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textSize="16sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/fragmentContainerCarouselPhoto"
             app:layout_constraintTop_toBottomOf="@+id/tvDescriptionDetailsChambre"
             tools:text="Nombres de lits: X" />
@@ -91,7 +92,7 @@
             android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:textSize="16sp"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/tvNbLitsDetailsChambre"
             app:layout_constraintTop_toBottomOf="@+id/tvNbLitsDetailsChambre"
             tools:text="Inclus: Micro-onde, mini-réfrigérateur, accès wifi, bain et douche." />
