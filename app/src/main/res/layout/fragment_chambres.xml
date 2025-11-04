@@ -77,6 +77,38 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1" />
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Réserver de:"
+                    />
+                <Button
+                    android:id="@+id/btn_date_debut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:hint="Cliquez ici"
+                    style="?android:spinnerStyle" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" À: "
+                    />
+                <Button
+                    android:id="@+id/btn_date_fin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:hint="Date de fin"
+                    style="?android:spinnerStyle" />
+            </LinearLayout>
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
