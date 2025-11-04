@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.leen.hotelres_app.R
-import com.leen.hotelres_app.Entities.Reservation
+import com.leen.hotelres_app.Model.Reservation
 
 class HistoriqueReservationsFragment : Fragment() {
 

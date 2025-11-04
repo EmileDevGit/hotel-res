@@ -8,8 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.leen.hotelres_app.R
 
-class CarouselPhotosChambreAdapter(private val listeUrlPhotos: List<String>) :
-
+class CarouselPhotosChambreAdapter(private val listeUrlPhotos: Array<String>) :
     RecyclerView.Adapter<CarouselPhotosChambreAdapter.PhotoChambreViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoChambreViewHolder {
@@ -19,7 +18,6 @@ class CarouselPhotosChambreAdapter(private val listeUrlPhotos: List<String>) :
 
     override fun onBindViewHolder(holder: PhotoChambreViewHolder, position: Int) {
         val photoUrl = listeUrlPhotos[position]
-        //Log.d("Adapter", "Item ${position}: ${photoUrl}")
 
         Glide.with( holder.photoHolder.context )
             .load( photoUrl )
@@ -34,6 +32,5 @@ class CarouselPhotosChambreAdapter(private val listeUrlPhotos: List<String>) :
     }
     inner class PhotoChambreViewHolder( itemView: View) : RecyclerView.ViewHolder( itemView ) {
         val photoHolder: ImageView = itemView.findViewById( R.id.carouselImage )
-
     }
 }

@@ -1,21 +1,36 @@
 package com.leen.hotelres_app.Vue
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
+import com.bumptech.glide.Glide
+import com.google.android.material.carousel.CarouselLayoutManager
+import com.google.android.material.carousel.CarouselSnapHelper
+import com.google.android.material.carousel.FullScreenCarouselStrategy
+import com.leen.hotelres_app.Presentateur.ContratVuePresentateurChambres
+import com.leen.hotelres_app.Entities.Chambre
 import com.leen.hotelres_app.R
 
-class ChambresAdaptater(private var chambres: ArrayList<String>) : RecyclerView.Adapter<ChambresAdaptater.ViewHolder>() {
+class ChambresAdaptater(private var chambres: ArrayList<Chambre>, private val presentateurChambre: ContratVuePresentateurChambres.IPresentateurChambres) : RecyclerView.Adapter<ChambresAdaptater.ViewHolder>() {
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val carousselContainer : LinearLayout
         val tvTitre : TextView
+        val btnDetails: Button
+        val carouselPhotosRecyclerView: RecyclerView
+        var snapHelper: SnapHelper? = null
         init{
-            carousselContainer = view.findViewById<LinearLayout>(R.id.ll_caroussel_container) // à changer
-            tvTitre = view.findViewById<TextView>(R.id.tv_chambre_description) // à changer
+            tvTitre = view.findViewById<TextView>(R.id.tv_chambre_description)
+            btnDetails = view.findViewById<Button>(R.id.btn_details)
+            carouselPhotosRecyclerView = view.findViewById<RecyclerView>(R.id.carouselPhotosRecyclerView)
         }
     }
 
@@ -25,8 +40,29 @@ class ChambresAdaptater(private var chambres: ArrayList<String>) : RecyclerView.
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvTitre.text = "Chambre de 2 personnes"
+
+        val chambre = chambres[position]
+        holder.tvTitre.text = "Chambre de ${chambre.nombreLits} lits"
+
+        holder.carouselPhotosRecyclerView.apply {
+            layoutManager = CarouselLayoutManager(FullScreenCarouselStrategy())
+            holder.snapHelper?.attachToRecyclerView(null)
+            holder.snapHelper = CarouselSnapHelper()
+            holder.snapHelper?.attachToRecyclerView(this)
+            adapter = CarouselPhotosChambreAdapter(chambre.images)
+        }
+
+        holder.btnDetails.setOnClickListener {
+            presentateurChambre.traiterNaviguerVersDetails(position)
+        }
+
     }
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateData(newData: ArrayList<Chambre>) {
+        chambres = newData
+        notifyDataSetChanged()
+    }
+
 
     override fun getItemCount(): Int {
         return chambres.size
