@@ -17,6 +17,7 @@ class HistoriqueReservationsAdapter(
         val tvDates: TextView = itemView.findViewById(R.id.tvDates)
         val tvDateReservation: TextView = itemView.findViewById(R.id.tvDateReservation)
         val tvPrix: TextView = itemView.findViewById(R.id.tvPrix)
+        val tvNbrPersonnes: TextView = itemView.findViewById(R.id.tvNbrPersonnes)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReservationViewHolder {
@@ -29,9 +30,14 @@ class HistoriqueReservationsAdapter(
 
     override fun onBindViewHolder(holder: ReservationViewHolder, position: Int) {
         val reservation = reservations[position]
+
+        val sdfDisplay = java.text.SimpleDateFormat("dd MMM yyyy", java.util.Locale.FRANCE)
+        val dateRange = "${sdfDisplay.format(reservation.dateDébut)} - ${sdfDisplay.format(reservation.dateFin)}"
+
         holder.tvTitre.text = reservation.titre
-        holder.tvDates.text = reservation.dates
-        holder.tvDateReservation.text = reservation.dateReservation
-        holder.tvPrix.text = reservation.prix
+        holder.tvDates.text = dateRange
+        holder.tvNbrPersonnes.text = "Nombre de personnes: ${reservation.nbPersonnes}"
+        holder.tvDateReservation.text = "Date de réservation: ${reservation.dateReservation}"
+        holder.tvPrix.text = "Prix: ${reservation.prix}"
     }
 }
