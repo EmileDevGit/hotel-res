@@ -19,9 +19,6 @@ class CarouselPhotosChambreAdapter(private val listeUrlPhotos: Array<String>) :
     override fun onBindViewHolder(holder: PhotoChambreViewHolder, position: Int) {
         val photoUrl = listeUrlPhotos[position]
 
-        // DEBUG
-        //Log.d("Adapter", "Item ${position}: ${photoUrl}")
-
         Glide.with( holder.photoHolder.context )
             .load( photoUrl )
             // à implémenter plus tard?
@@ -35,6 +32,5 @@ class CarouselPhotosChambreAdapter(private val listeUrlPhotos: Array<String>) :
     }
     inner class PhotoChambreViewHolder( itemView: View) : RecyclerView.ViewHolder( itemView ) {
         val photoHolder: ImageView = itemView.findViewById( R.id.carouselImage )
-
     }
 }
