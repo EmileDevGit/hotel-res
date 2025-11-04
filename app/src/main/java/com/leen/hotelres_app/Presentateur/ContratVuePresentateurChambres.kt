@@ -12,6 +12,9 @@ interface ContratVuePresentateurChambres {
 
         fun traiterNaviguerVersDetails(id: Int)
         fun naviguerVersHistoriqueReservations()
+
+        // faire une notification
+        fun notifier(texte: String)
     }
 
     interface IPresentateurChambres{
