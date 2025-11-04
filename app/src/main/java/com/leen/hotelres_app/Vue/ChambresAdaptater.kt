@@ -25,11 +25,13 @@ class ChambresAdaptater(private var chambres: ArrayList<Chambre>, private val pr
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val tvTitre : TextView
         val btnDetails: Button
+        val tvPrix: TextView
         val carouselPhotosRecyclerView: RecyclerView
         var snapHelper: SnapHelper? = null
         init{
             tvTitre = view.findViewById<TextView>(R.id.tv_chambre_description)
             btnDetails = view.findViewById<Button>(R.id.btn_details)
+            tvPrix = view.findViewById<TextView>(R.id.tv_chambre_prix)
             carouselPhotosRecyclerView = view.findViewById<RecyclerView>(R.id.carouselPhotosRecyclerView)
         }
     }
@@ -43,6 +45,8 @@ class ChambresAdaptater(private var chambres: ArrayList<Chambre>, private val pr
 
         val chambre = chambres[position]
         holder.tvTitre.text = "Chambre de ${chambre.nombreLits} lits"
+
+        holder.tvPrix.text = "$ ${chambre.prix}"
 
         holder.carouselPhotosRecyclerView.apply {
             layoutManager = CarouselLayoutManager(FullScreenCarouselStrategy())

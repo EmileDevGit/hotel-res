@@ -27,7 +27,7 @@
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:text="Recherchez votre chambre"
+                android:text="trouvez votre pépite !"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
