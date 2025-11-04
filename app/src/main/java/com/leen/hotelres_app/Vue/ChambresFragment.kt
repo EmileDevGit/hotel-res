@@ -16,22 +16,22 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.leen.hotelres_app.Presentateur.ContratVuePresentateurChambres
+import com.leen.hotelres_app.Presentateur.ContratFragmentPresentateurChambres
 import com.leen.hotelres_app.Entities.Chambre
 import com.leen.hotelres_app.Model.ChambreFiltre
 import com.leen.hotelres_app.Presentateur.PresentateurChambres
 import com.leen.hotelres_app.R
 import java.util.Calendar
 
-class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres {
+class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueChambres {
     private lateinit var chambresAdaptater: ChambresAdaptater
     private lateinit var chambresRecyclerView: RecyclerView
     private lateinit var presentateurChambres: PresentateurChambres
     private lateinit var navController: NavController
     private lateinit var btnDateDebut: Button
     private lateinit var btnDateFin: Button
-    private lateinit var montantMinimumEditText: EditText
-    private lateinit var montantMaximumEditText: EditText
+    private lateinit var etMontantMinimum: EditText
+    private lateinit var etMontantMaximum: EditText
     private lateinit var btnVersHistoriqueDeReservation: ImageView
 
     private val formatDate = "%02d/%02d/%d"
@@ -59,8 +59,8 @@ class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres
         chambresRecyclerView = requireActivity().findViewById<RecyclerView>(R.id.rv_chambres)
         btnDateFin = requireActivity().findViewById<Button>(R.id.btn_date_debut)
         btnDateDebut = requireActivity().findViewById<Button>(R.id.btn_date_fin)
-        montantMinimumEditText = requireActivity().findViewById<EditText>(R.id.et_prix_minimum)
-        montantMaximumEditText = requireActivity().findViewById<EditText>(R.id.et_prix_maximum)
+        etMontantMinimum = requireActivity().findViewById<EditText>(R.id.et_prix_minimum)
+        etMontantMaximum = requireActivity().findViewById<EditText>(R.id.et_prix_maximum)
 
 
         btnVersHistoriqueDeReservation = requireActivity().findViewById<ImageView>(R.id.vers_historique_reservation)
@@ -131,16 +131,16 @@ class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres
             datePickerDialog.show()
         }
 
-        montantMaximumEditText.setOnFocusChangeListener { view, focus ->
+        etMontantMaximum.setOnFocusChangeListener { view, focus ->
             if(!focus){
-                filtre.prixMaximal = montantMaximumEditText.text.toString().toFloatOrNull()
+                filtre.prixMaximal = etMontantMaximum.text.toString().toFloatOrNull()
                 presentateurChambres.traiterFiltrer(filtre)
             }
         }
 
-        montantMinimumEditText.setOnFocusChangeListener { view, focus ->
+        etMontantMinimum.setOnFocusChangeListener { view, focus ->
             if(!focus){
-                filtre.prixMinimum = montantMinimumEditText.text.toString().toFloatOrNull()
+                filtre.prixMinimum = etMontantMinimum.text.toString().toFloatOrNull()
                 presentateurChambres.traiterFiltrer(filtre)
             }
         }
@@ -155,7 +155,7 @@ class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres
         // reinitialiser tous les champs à 0 ou récupérràer de a bd
     }
 
-    override fun traiterNaviguerVersDetails(id: Int) {
+    override fun naviguerVersDetails(id: Int) {
         navController.navigate(R.id.action_ecran_liste_chambres_to_ecran_details_chambre)
     }
 

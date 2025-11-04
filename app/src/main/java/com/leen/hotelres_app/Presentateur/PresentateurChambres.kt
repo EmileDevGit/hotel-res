@@ -6,7 +6,7 @@ import com.leen.hotelres_app.Entities.Chambre
 import com.leen.hotelres_app.Model.ChambreFiltre
 import java.util.Date
 
-class PresentateurChambres(private val vue: ContratVuePresentateurChambres.IVueChambres) : ContratVuePresentateurChambres.IPresentateurChambres {
+class PresentateurChambres(private val vue: ContratFragmentPresentateurChambres.IVueChambres) : ContratFragmentPresentateurChambres.IPresentateurChambres {
 
     private var listeChambres: ArrayList<Chambre>
 
@@ -95,7 +95,7 @@ class PresentateurChambres(private val vue: ContratVuePresentateurChambres.IVueC
 
 
     override fun traiterNaviguerVersDetails(id: Int) {
-        vue.traiterNaviguerVersDetails(id)
+        vue.naviguerVersDetails(id)
     }
 
     override fun traiterRéinitialiserFiltres() {
@@ -133,7 +133,7 @@ class PresentateurChambres(private val vue: ContratVuePresentateurChambres.IVueC
             }
         }
 
-        if(filtre.prixMaximal == null && filtre.prixMinimum == null){
+        if(filtre.prixMaximal != null && filtre.prixMinimum != null){
             listeChambresFiltres = arrayListOf(
                 Chambre()
             )
