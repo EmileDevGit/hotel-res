@@ -11,7 +11,7 @@ interface ContratVuePresentateurChambres {
         fun afficherChambres(chambres: ArrayList<Chambre>)
 
         fun traiterNaviguerVersDetails(id: Int)
-
+        fun naviguerVersHistoriqueReservations()
     }
 
     interface IPresentateurChambres{
@@ -20,5 +20,7 @@ interface ContratVuePresentateurChambres {
         fun traiterRéinitialiserFiltres()
 
         fun traiterFiltrer(filtre : ChambreFiltre)
+
+        fun traiterNaviguerVersHistoriqueReservations()
     }
 }

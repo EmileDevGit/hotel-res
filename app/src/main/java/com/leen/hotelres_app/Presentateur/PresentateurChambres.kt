@@ -37,4 +37,8 @@ class PresentateurChambres(private val vue: ContratVuePresentateurChambres.IVueC
         }
         vue.afficherChambres(listeChambresFiltrés)
     }
+
+    override fun traiterNaviguerVersHistoriqueReservations() {
+        vue.naviguerVersHistoriqueReservations()
+    }
 }

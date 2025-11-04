@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -29,9 +30,9 @@ class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres
     private lateinit var chambresRecyclerView: RecyclerView
     private lateinit var presentateurChambres: PresentateurChambres
     private lateinit var navController: NavController
-
     private lateinit var btnDateDebut: Button
     private lateinit var btnDateFin: Button
+    private lateinit var btnVersHistoriqueDeReservation: ImageView
 
     private val formatDate = "%02d/%02d/%d"
     private val calendrier = Calendar.getInstance()
@@ -87,6 +88,7 @@ class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres
             datePickerDialog.show()
         }
 
+        btnVersHistoriqueDeReservation = requireActivity().findViewById<ImageView>(R.id.vers_historique_reservation)
         chambresRecyclerView.layoutManager = LinearLayoutManager(context)
         presentateurChambres = PresentateurChambres(this)
 
@@ -101,15 +103,8 @@ class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres
 
     // attache les évènements à tous les composants qui en ont besoin
     private fun attacherEvenements(){
-
-    }
-
-    private fun formaterChaineEnDate(input:String): Date?{
-        return try {
-            val format = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-            format.parse(input)
-        } catch (e: Exception) {
-            null
+        btnVersHistoriqueDeReservation.setOnClickListener {
+            presentateurChambres.traiterNaviguerVersHistoriqueReservations()
         }
     }
 
@@ -124,5 +119,9 @@ class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres
 
     override fun traiterNaviguerVersDetails(id: Int) {
         navController.navigate(R.id.action_ecran_liste_chambres_to_ecran_details_chambre)
+    }
+
+    override fun naviguerVersHistoriqueReservations() {
+        navController.navigate(R.id.action_ecran_liste_chambres_to_ecran_historique_reservations)
     }
 }
