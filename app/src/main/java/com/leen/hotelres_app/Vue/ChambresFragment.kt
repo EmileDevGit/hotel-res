@@ -98,7 +98,7 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
                     }
 
                     filtre.dateDebut = calendar.time
-                    Toast.makeText(context, "Mise à jour de la date dans le filtre", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(context, "Mise à jour de la date dans le filtre", Toast.LENGTH_SHORT).show()
                 },
                 calendrier.get(Calendar.YEAR),
                 calendrier.get(Calendar.MONTH),
@@ -122,7 +122,7 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
 
                     filtre.dateFin = calendar.time
 
-                    Toast.makeText(context, "Mise à jour de la date dans le filtre", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(context, "Mise à jour de la date dans le filtre", Toast.LENGTH_SHORT).show()
                 },
                 calendrier.get(Calendar.YEAR),
                 calendrier.get(Calendar.MONTH),
