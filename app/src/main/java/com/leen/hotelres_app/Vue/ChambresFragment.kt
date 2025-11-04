@@ -27,10 +27,6 @@ import java.util.Locale
 class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres {
     private lateinit var chambresAdaptater: ChambresAdaptater
     private lateinit var chambresRecyclerView: RecyclerView
-
-    private lateinit var filtrePrixEditText: EditText
-    private lateinit var filtreDateDebutTextView: EditText
-    private lateinit var filtreDateFinTextView: EditText
     private lateinit var presentateurChambres: PresentateurChambres
     private lateinit var navController: NavController
 
@@ -59,9 +55,6 @@ class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         chambresRecyclerView = requireActivity().findViewById<RecyclerView>(R.id.rv_chambres)
-        filtrePrixEditText = requireActivity().findViewById<EditText>(R.id.et_filtre_prix)
-        filtreDateDebutTextView = requireActivity().findViewById<EditText>(R.id.et_filtre_date_debut)
-        filtreDateFinTextView = requireActivity().findViewById<EditText>(R.id.et_filtre_date_fin)
         btnDateFin = requireActivity().findViewById<Button>(R.id.btn_date_debut)
         btnDateDebut = requireActivity().findViewById<Button>(R.id.btn_date_fin)
         
@@ -108,44 +101,6 @@ class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres
 
     // attache les évènements à tous les composants qui en ont besoin
     private fun attacherEvenements(){
-        filtrePrixEditText.setOnFocusChangeListener { view, focus ->
-            if(!focus){
-                filtre.prix = filtrePrixEditText.text.toString().trim().toFloatOrNull()
-                presentateurChambres.traiterFiltrer(filtre)
-            }
-        }
-
-
-        filtreDateDebutTextView.doAfterTextChanged { editable ->
-            editable?.let {
-                if (it.isNotEmpty() && !it.endsWith("/") && (it.length == 2 || it.length == 5)) {
-                    it.append("/")
-                }
-            }
-        }
-        filtreDateDebutTextView.setOnFocusChangeListener { view, focus ->
-            if(!focus){
-                filtre.dateDebut = formaterChaineEnDate(filtreDateDebutTextView.text.toString())
-                presentateurChambres.traiterFiltrer(filtre)
-            }
-        }
-
-        filtreDateFinTextView.doAfterTextChanged { editable ->
-            editable?.let {
-                if (it.isNotEmpty() && !it.endsWith("/") && (it.length == 2 || it.length == 5)) {
-                    it.append("/")
-                }
-            }
-        }
-        filtreDateFinTextView.setOnFocusChangeListener { view, focus ->
-            if(!focus){
-                filtre.dateFin = formaterChaineEnDate(filtreDateFinTextView.text.toString())
-                presentateurChambres.traiterFiltrer(filtre)
-            }
-        }
-
-
-
 
     }
 
@@ -164,9 +119,7 @@ class ChambresFragment : Fragment(), ContratVuePresentateurChambres.IVueChambres
     }
 
     override fun réinitialiserFiltres() {
-        filtrePrixEditText.setText("")
-        filtreDateDebutTextView.setText("")
-        filtreDateFinTextView.setText("")
+        // reinitialiser tous les champs à 0
     }
 
     override fun traiterNaviguerVersDetails(id: Int) {

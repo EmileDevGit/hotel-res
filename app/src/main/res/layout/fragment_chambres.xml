@@ -21,65 +21,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:paddingVertical="8dp"
-                android:orientation="horizontal">
-
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-                <EditText
-                    android:background="@drawable/border_roundborder"
-                    android:id="@+id/et_filtre_date_debut"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="8dp"
-                    android:paddingHorizontal="16dp"
-                    android:hint="dd/mm/yyyy Date début"
-                    android:inputType="date"
-                    android:maxLength="10"
-                    />
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-                <EditText
-                    android:background="@drawable/border_roundborder"
-                    android:id="@+id/et_filtre_date_fin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="8dp"
-                    android:paddingHorizontal="16dp"
-                    android:hint="Date fin"
-                    android:maxLength="10"
-                    android:inputType="date"
-                    />
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <EditText
-                    android:id="@+id/et_filtre_prix"
-                    android:background="@drawable/border_roundborder"
-                    android:inputType="numberDecimal"
-                    android:layout_width="wrap_content"
-
-                    android:paddingHorizontal="16dp"
-                    android:layout_height="wrap_content"
-                    android:paddingVertical="8dp"
-                    android:hint="Prix" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:paddingHorizontal="10dp"
                 >
                 <TextView
@@ -92,9 +33,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
+                    android:textAlignment="center"
                     android:layout_weight="1"
                     android:hint="Cliquez ici"
-                    style="?android:spinnerStyle" />
+                    style="?android:spinnerStyle"
+                    android:backgroundTint="@color/primary"
+                    />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -105,9 +49,42 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
+                    android:textAlignment="center"
                     android:layout_weight="1"
                     android:hint="Date de fin"
                     style="?android:spinnerStyle" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prix allant de:"
+                    />
+                <EditText
+                    android:id="@+id/btn_prix_minimum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:inputType="numberSigned"
+                    android:hint="Minimum" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" À: "
+                    />
+                <EditText
+                    android:id="@+id/btn_prix_maximum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:inputType="numberSigned"
+                    android:hint="Maximum" />
             </LinearLayout>
         </LinearLayout>
 
@@ -115,7 +92,7 @@
             android:layout_weight="1"
             android:id="@+id/rv_chambres"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ll_header_recherche"
