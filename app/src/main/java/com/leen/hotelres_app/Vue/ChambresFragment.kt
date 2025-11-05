@@ -33,7 +33,7 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
     private lateinit var navController: NavController
     private lateinit var btnDateDebut: Button
     private lateinit var btnDateFin: Button
-    private lateinit var btnRefresh: ImageButton
+    private lateinit var btnRefresh: ImageView
     //private lateinit var etMontantMinimum: EditText
     private lateinit var etMontantMaximum: EditText
     private lateinit var btnVersHistoriqueDeReservation: ImageView
@@ -61,7 +61,7 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
         chambresRecyclerView = requireActivity().findViewById<RecyclerView>(R.id.rv_chambres)
         btnDateFin = requireActivity().findViewById<Button>(R.id.btn_date_debut)
         btnDateDebut = requireActivity().findViewById<Button>(R.id.btn_date_fin)
-        btnRefresh = requireActivity().findViewById<ImageButton>(R.id.btn_refresh_prix)
+        btnRefresh = requireActivity().findViewById<ImageView>(R.id.btn_refresh_prix)
         //etMontantMinimum = requireActivity().findViewById<EditText>(R.id.et_prix_minimum)
         etMontantMaximum = requireActivity().findViewById<EditText>(R.id.et_prix_maximum)
 
