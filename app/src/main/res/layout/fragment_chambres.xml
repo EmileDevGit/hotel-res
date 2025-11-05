@@ -39,11 +39,12 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="10dp"
                 >
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Réserver de:"
-                    />
+                    android:textStyle="bold" />
                 <Button
                     android:id="@+id/btn_date_debut"
                     android:layout_width="wrap_content"
@@ -55,11 +56,12 @@
                     style="?android:spinnerStyle"
                     android:backgroundTint="@color/primary"
                     />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" À: "
-                    />
+                    android:textStyle="bold" />
                 <Button
                     android:id="@+id/btn_date_fin"
                     android:layout_width="wrap_content"
@@ -73,34 +75,32 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:paddingHorizontal="10dp"
-                >
+                android:gravity="center_vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Prix allant de:"
-                    />
-                <EditText
-                    android:id="@+id/et_prix_minimum"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    android:inputType="numberSigned"
-                    android:hint="Minimum" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" À: "
-                    />
+                    android:text="Prix maximum:"
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/et_prix_maximum"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textAlignment="center"
+                    android:layout_marginStart="10dp"
+                    android:hint="Maximum"
                     android:inputType="numberSigned"
-                    android:hint="Maximum" />
+                    android:textAlignment="center" />
+
+                <ImageButton
+                    android:id="@+id/btn_refresh_prix"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:src="@android:drawable/ic_menu_rotate" />
             </LinearLayout>
         </LinearLayout>
 
