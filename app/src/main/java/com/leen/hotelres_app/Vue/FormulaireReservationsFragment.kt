@@ -1,6 +1,6 @@
 package com.leen.hotelres_app.Vue
 
-import android.graphics.drawable.Icon
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +11,10 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
-import androidx.constraintlayout.utils.widget.ImageFilterView
 import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.leen.hotelres_app.Model.Reservation
 import com.leen.hotelres_app.Presentateur.FormulaireReservationsPresentateur
 import com.leen.hotelres_app.R
 import java.text.SimpleDateFormat
@@ -37,11 +35,12 @@ class FormulaireReservationsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         var presentateur = FormulaireReservationsPresentateur()
-        val btnEcranAccueil = view.findViewById<Button>(R.id.btnConfirmerReservation)
+        val btnConfirmation = view.findViewById<Button>(R.id.btnConfirmerReservation)
         val IconeAccueil: ImageView = view.findViewById(R.id.home_icon)
         val IconeHistorique: ImageView = view.findViewById(R.id.save_icon)
         val btnModifierDatesChoisi = view.findViewById<Button>(R.id.btnModifierDates)
         val tvDatesChoisi = view.findViewById<TextView>(R.id.tvDatesChoisis)
+        val btnRetour = view.findViewById<Button>(R.id.btnRetour)
 
         val reservation = presentateur.getReservation()
 
@@ -55,9 +54,20 @@ class FormulaireReservationsFragment : Fragment() {
             navController.navigate(R.id.action_ecran_reservation_chambre_to_ecran_historique_reservations)
         }
 
-        btnEcranAccueil?.setOnClickListener {
+        btnConfirmation.setOnClickListener {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Confirmation")
+                .setMessage("Réservation confirmée !")
+                .setPositiveButton("OK") { _, _ ->
+                    val navController = Navigation.findNavController(view)
+                    navController.navigate(R.id.action_ecran_reservation_chambre_to_ecran_liste_chambres)
+                }
+                .show()
+        }
+
+        btnRetour.setOnClickListener {
             val navController = Navigation.findNavController(view)
-            navController.navigate(R.id.action_ecran_reservation_chambre_to_ecran_liste_chambres)
+            navController.navigate(R.id.action_ecran_reservation_chambre_to_ecran_details_chambre)
         }
 
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.FRENCH)

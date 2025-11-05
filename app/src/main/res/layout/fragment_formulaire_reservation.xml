@@ -23,6 +23,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btnRetour"
+        android:layout_width="75dp"
+        android:layout_height="55dp"
+        android:background="@android:color/transparent"
+        android:text="⬅️"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/tvNbPersonnes"
@@ -93,19 +106,21 @@
         android:id="@+id/tvDatesChoisis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="TextView"
         android:textColor="@color/black"
-        android:gravity="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/btnConfirmerReservation"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.474" />
 
     <Spinner
         android:id="@+id/spinnerNbPersonnes"
-        android:layout_width="149dp"
-        android:layout_height="25dp"
+        android:layout_width="104dp"
+        android:layout_height="23dp"
         app:layout_constraintBottom_toBottomOf="@+id/tvNbPersonnes"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvNbPersonnes"
@@ -121,7 +136,8 @@
         app:layout_constraintBottom_toTopOf="@+id/tvDatesChoisis"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.666" />
 
     <TextView
         android:id="@+id/tvPrixParPersonnes"

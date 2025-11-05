@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_ecran_reservation_chambre_to_ecran_historique_reservations"
             app:destination="@id/ecran_historique_reservations" />
+        <action
+            android:id="@+id/action_ecran_reservation_chambre_to_ecran_details_chambre"
+            app:destination="@id/ecran_details_chambre" />
     </fragment>
     <fragment
         android:id="@+id/ecran_historique_reservations"
