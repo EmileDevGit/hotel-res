@@ -1,6 +1,7 @@
 package com.leen.hotelres_app.Vue
 
 import android.app.DatePickerDialog
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -85,7 +87,7 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
 
         btnDateDebut.setOnClickListener {
             val datePickerDialog =  DatePickerDialog(
-                requireContext(),
+                requireContext(), R.style.DatePickerTheme,
                 {_, selectedYear, selectedMonth, selectedDay ->
 
                     val formattedDate = String.format(formatDate, selectedDay, selectedMonth + 1, selectedYear)
@@ -105,10 +107,14 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
                 calendrier.get(Calendar.DAY_OF_MONTH)
             )
             datePickerDialog.show()
+
+            datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(context, R.color.primary))
+            datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(context, R.color.primary))
+
         }
         btnDateFin.setOnClickListener {
             val datePickerDialog =  DatePickerDialog(
-                requireContext(),
+                requireContext(), R.style.DatePickerTheme,
                 {_, selectedYear, selectedMonth, selectedDay ->
 
                     val formattedDate = String.format(formatDate, selectedDay, selectedMonth + 1, selectedYear)
@@ -129,6 +135,9 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
                 calendrier.get(Calendar.DAY_OF_MONTH)
             )
             datePickerDialog.show()
+
+            datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(context, R.color.primary))
+            datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(context, R.color.primary))
         }
 
         etMontantMaximum.setOnFocusChangeListener { view, focus ->

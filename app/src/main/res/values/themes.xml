@@ -8,7 +8,22 @@
     <style name="Theme.HotelRes_App" parent="Base.Theme.HotelRes_App" />
 
     <style name="MaterialCalendarTheme" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="android:textColor">@android:color/black</item>
         <item name="android:windowFullscreen">false</item>
+        <item name="elevationOverlayEnabled">false</item>
     </style>
 
+    <style name="CalendarDayStyle" parent="Widget.MaterialComponents.MaterialCalendar.Day">
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="DatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/primary</item>
+        <item name="android:textColor"> @android:color/black</item>
+        <item name="colorControlNormal">@color/primary</item>
+        <item name="android:textColorSecondary">@color/primary</item>
+        <item name="android:windowFullscreen">false</item>
+    </style>
 </resources>
