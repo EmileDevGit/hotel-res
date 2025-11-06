@@ -108,15 +108,17 @@ class PresentateurChambres(private val vue: ContratFragmentPresentateurChambres.
         val aujourdhuiDate = Date()
         var listeChambresFiltres = listeChambres
 
-//        if(filtre.dateDebut?.before(aujourdhuiDate) == true){
-//            vue.notifier("On ne peut pas réserver pour une date passée.")
-//            return
+//        if(filtre.dateDebut != null ){
+//            if(filtre.dateDebut!!.before(aujourdhuiDate)){
+//                vue.notifier("On ne peut pas réserver pour une date passée.")
+//                return
+//            }
+//
+//            if( filtre.dateFin != null && filtre.dateFin?.before(filtre.dateDebut) == true){
+//                vue.notifier("Les date de début et de de fin d'occupations doivent etre cohérentes")
+//                return
+//            }
 //        }
-
-        //if(filtre.dateFin?.before(filtre.dateDebut) == true){
-        //    vue.notifier("Les date de début et de de fin d'occupations doivent etre cohérentes")
-        //    return
-        //}
 
         filtre.prixMinimum?.let {
             if(it < 0 ){

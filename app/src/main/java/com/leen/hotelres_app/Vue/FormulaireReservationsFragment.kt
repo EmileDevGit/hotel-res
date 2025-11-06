@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
@@ -40,7 +41,7 @@ class FormulaireReservationsFragment : Fragment() {
         val IconeHistorique: ImageView = view.findViewById(R.id.save_icon)
         val btnModifierDatesChoisi = view.findViewById<Button>(R.id.btnModifierDates)
         val tvDatesChoisi = view.findViewById<TextView>(R.id.tvDatesChoisis)
-        val btnRetour = view.findViewById<Button>(R.id.btnRetour)
+        val btnRetour = view.findViewById<ImageButton>(R.id.btnRetour)
 
         val reservation = presentateur.getReservation()
 

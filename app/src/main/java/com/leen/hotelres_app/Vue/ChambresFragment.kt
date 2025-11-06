@@ -101,17 +101,13 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
                     }
 
                     filtre.dateDebut = calendar.time
-                    //Toast.makeText(context, "Mise à jour de la date dans le filtre", Toast.LENGTH_SHORT).show()
+                    presentateurChambres.traiterFiltrer(filtre)
                 },
                 calendrier.get(Calendar.YEAR),
                 calendrier.get(Calendar.MONTH),
                 calendrier.get(Calendar.DAY_OF_MONTH)
             )
             datePickerDialog.show()
-
-            datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(context, R.color.primary))
-            datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(context, R.color.primary))
-
         }
         btnDateFin.setOnClickListener {
             val datePickerDialog =  DatePickerDialog(
@@ -128,17 +124,13 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
                     }
 
                     filtre.dateFin = calendar.time
-
-                    //Toast.makeText(context, "Mise à jour de la date dans le filtre", Toast.LENGTH_SHORT).show()
+                    presentateurChambres.traiterFiltrer(filtre)
                 },
                 calendrier.get(Calendar.YEAR),
                 calendrier.get(Calendar.MONTH),
                 calendrier.get(Calendar.DAY_OF_MONTH)
             )
             datePickerDialog.show()
-
-            datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE)?.setTextColor(ContextCompat.getColor(context, R.color.primary))
-            datePickerDialog.getButton(DatePickerDialog.BUTTON_NEGATIVE)?.setTextColor(ContextCompat.getColor(context, R.color.primary))
         }
 
         etMontantMaximum.setOnFocusChangeListener { view, focus ->
@@ -150,15 +142,9 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
 
         btnRefresh.setOnClickListener {
             etMontantMaximum.text.clear()
+            filtre.prixMaximal = null
+            presentateurChambres.traiterFiltrer(filtre)
         }
-
-
-//        etMontantMinimum.setOnFocusChangeListener { view, focus ->
-//            if(!focus){
-//                filtre.prixMinimum = etMontantMinimum.text.toString().toFloatOrNull()
-//                presentateurChambres.traiterFiltrer(filtre)
-//            }
-//        }
     }
 
 

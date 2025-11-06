@@ -7,36 +7,35 @@
     android:layout_height="match_parent"
     tools:context=".Vue.FormulaireReservationsFragment">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
+    <LinearLayout
+        android:id="@+id/header_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/primary"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:text="Formulaire de réservation"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnRetour"
-        android:layout_width="75dp"
-        android:layout_height="55dp"
-        android:background="@android:color/transparent"
-        android:text="⬅️"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
-        tools:ignore="HardcodedText" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/btnRetour"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/previous_icon"
+            app:tint="@color/white"
+            android:backgroundTint="@color/primary" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:background="@color/primary"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:text="Formulaire de réservation"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_weight="1"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
     <TextView
         android:id="@+id/tvNbPersonnes"
         android:layout_width="wrap_content"
@@ -114,7 +113,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/header_section"
         app:layout_constraintVertical_bias="0.474" />
 
     <Spinner
@@ -136,7 +135,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tvDatesChoisis"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/header_section"
         app:layout_constraintVertical_bias="0.666" />
 
     <TextView
