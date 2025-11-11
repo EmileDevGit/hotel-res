@@ -1,9 +1,12 @@
 package com.leen.hotelres_app.Presentateur
 
+import com.leen.hotelres_app.Entities.Chambre
+import com.leen.hotelres_app.Entities.ChambreDetails
 import com.leen.hotelres_app.Model.DetailsChambreModel
 import com.leen.hotelres_app.Presentateur.ContratFragmentPresentateurDetailsChambre.IPresentateurDetailsChambre
 import com.leen.hotelres_app.Presentateur.ContratFragmentPresentateurDetailsChambre.IFragmentDetailsChambre
 import com.leen.hotelres_app.Vue.DetailChambreFragment
+import kotlinx.coroutines.*
 
 
 class PresentateurDetailsChambre (
@@ -12,16 +15,20 @@ class PresentateurDetailsChambre (
 ): IPresentateurDetailsChambre{
 
     override fun initialiserVue() {
-        val chambre = modele.getChambreSelectionne()
-        vue.chargerInfosChambre(
-            chambre.numero,
-            chambre.nbreLits,
-            chambre.description,
-            chambre.inclusions,
-            chambre.nbrePersonnes,
-            chambre.prixParNuit,
-            chambre.urlsPhotos
-        )
+        CoroutineScope(Dispatchers.IO).launch{
+            val chambre = modele.getChambreSelectionne()
+            CoroutineScope(Dispatchers.Main).launch {
+                vue.chargerInfosChambre(
+                    chambre.numero,
+                    chambre.nbreLits,
+                    chambre.description,
+                    chambre.inclusions,
+                    chambre.nbrePersonnes,
+                    chambre.prixParNuit,
+                    chambre.urlsPhotos
+                )
+            }
+        }
     }
 
     override fun naviguerVersReservation() {
