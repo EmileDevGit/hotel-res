@@ -30,10 +30,10 @@
             android:layout_height="60dp"
             android:layout_weight="1"
             android:background="@color/primary"
-            android:textColor="@color/white"
             android:gravity="center"
             android:orientation="horizontal"
             android:text="Détails de la chambre"
+            android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -54,15 +54,15 @@
             tools:text="Chambre pour X personne(s)" />
 
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerCarouselPhoto"
-            android:name="com.leen.hotelres_app.Vue.CarouselPhotosChambreFragment"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/carouselPhotosRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="200dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNbPersonneDetailsChambre" />
 
@@ -73,8 +73,9 @@
             android:layout_marginTop="24dp"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragmentContainerCarouselPhoto"
+            app:layout_constraintTop_toBottomOf="@+id/carouselPhotosRecyclerView"
             tools:text="Une chambre parfaite pour la famille avec de l'espace et un canapé réversible pour les invités" />
 
         <TextView
@@ -83,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/fragmentContainerCarouselPhoto"
+            app:layout_constraintStart_toStartOf="@+id/carouselPhotosRecyclerView"
             app:layout_constraintTop_toBottomOf="@+id/tvDescriptionDetailsChambre"
             tools:text="Nombres de lits: X" />
 

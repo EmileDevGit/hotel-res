@@ -10,6 +10,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
+import com.google.android.material.carousel.CarouselLayoutManager
+import com.google.android.material.carousel.CarouselSnapHelper
+import com.google.android.material.carousel.FullScreenCarouselStrategy
 import com.leen.hotelres_app.Model.DetailsChambreModel
 import com.leen.hotelres_app.Presentateur.ContratFragmentPresentateurDetailsChambre.IPresentateurDetailsChambre
 import com.leen.hotelres_app.Presentateur.ContratFragmentPresentateurDetailsChambre.IFragmentDetailsChambre
@@ -29,6 +34,9 @@ class DetailChambreFragment : Fragment(), IFragmentDetailsChambre {
     private lateinit var btnReserverChambre : Button
     private lateinit var iconHome : ImageView
     private lateinit var iconHistorique : ImageView
+    var snapHelper: SnapHelper? = null
+
+    private lateinit var carouselPhotosRecyclerView : RecyclerView
 //    private lateinit var iconProfil : ImageView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -54,6 +62,7 @@ class DetailChambreFragment : Fragment(), IFragmentDetailsChambre {
         tvInclusDetailsChambre = vue.findViewById<TextView>(R.id.tvInclusDetailsChambre)
         tvNbLitsDetailsChambre = vue.findViewById<TextView>(R.id.tvNbLitsDetailsChambre)
         tvNbPersonne = vue.findViewById<TextView>(R.id.tvNbPersonneDetailsChambre)
+        carouselPhotosRecyclerView = vue.findViewById<RecyclerView>(R.id.carouselPhotosRecyclerView)
     }
 
     private fun attacherBoutons(vue : View){
@@ -86,15 +95,22 @@ class DetailChambreFragment : Fragment(), IFragmentDetailsChambre {
         description: String,
         inclusions: String,
         nbrePersonnes: Int,
-        prixParNuit: Float
+        prixParNuit: Float,
+        urlsPhotos: Array<String>
     ) {
-        Log.d("DEBUG", "SET TV TEXT")
-
         titreDetailsChambre.setText("Détails de la chambre ${numero}")
         tvNbPersonne.setText("Chambre pour ${nbrePersonnes} personne(s)")
         tvDescriptionDetailsChambre.setText("Description: ${description}")
         tvNbLitsDetailsChambre.setText("Nombre de lits: ${nbreLits}")
         tvInclusDetailsChambre.setText("Inclus: ${inclusions}")
         btnReserverChambre.setText("Réserver - ${prixParNuit}$ / nuit")
+
+        carouselPhotosRecyclerView.apply {
+            layoutManager = CarouselLayoutManager(FullScreenCarouselStrategy())
+            snapHelper?.attachToRecyclerView(null)
+            snapHelper = CarouselSnapHelper()
+            snapHelper?.attachToRecyclerView(this)
+            adapter = CarouselPhotosChambreAdapter(urlsPhotos)
+        }
     }
 }
