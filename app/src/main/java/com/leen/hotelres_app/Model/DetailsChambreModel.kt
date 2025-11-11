@@ -4,6 +4,7 @@ import com.leen.hotelres_app.Entities.ChambreDetails
 
 class DetailsChambreModel {
     fun getChambreSelectionne() : ChambreDetails{
+        //Thread.sleep(5000)
         return ChambreDetails(
             "B260",
             2,
