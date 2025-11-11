@@ -23,5 +23,6 @@ class ChambreDetails (
     var prixParNuit : Float,
     var nbreLits : Int,
     var description : String,
-    var inclusions : String
+    var inclusions : String,
+    var urlsPhotos : Array<String>
     )

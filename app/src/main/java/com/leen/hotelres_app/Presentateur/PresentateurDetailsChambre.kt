@@ -19,7 +19,8 @@ class PresentateurDetailsChambre (
             chambre.description,
             chambre.inclusions,
             chambre.nbrePersonnes,
-            chambre.prixParNuit
+            chambre.prixParNuit,
+            chambre.urlsPhotos
         )
     }
 
