@@ -5,15 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.leen.hotelres_app.Model.Reservation
+import com.leen.hotelres_app.Presentateur.ContratFragmentPresentateurHistoriqueReservations
 import com.leen.hotelres_app.R
 import com.leen.hotelres_app.Presentateur.HistoriqueReservationsPresentateur
 
-class HistoriqueReservationsFragment : Fragment() {
+class HistoriqueReservationsFragment : Fragment(),
+    ContratFragmentPresentateurHistoriqueReservations.IFragmentHistoriqueReservations {
 
     private lateinit var presenter: HistoriqueReservationsPresentateur
 
@@ -36,12 +39,16 @@ class HistoriqueReservationsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         presenter = HistoriqueReservationsPresentateur(this)
-        presenter.afficherReservations()
+        presenter.chargerReservations()
     }
 
-    fun afficherReservations(reservations: List<Reservation>) {
+    override fun afficherReservations(reservations: List<Reservation>) {
         val recyclerView = view?.findViewById<RecyclerView>(R.id.recyclerReservations)
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
         recyclerView?.adapter = HistoriqueReservationsAdapter(reservations)
+    }
+
+    override fun aucuneHistorique() {
+        Toast.makeText(requireContext(),"Aucune historique à afficher.", Toast.LENGTH_SHORT).show()
     }
 }

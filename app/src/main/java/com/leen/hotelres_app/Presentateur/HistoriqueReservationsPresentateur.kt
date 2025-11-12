@@ -1,12 +1,11 @@
 package com.leen.hotelres_app.Presentateur
 
 import com.leen.hotelres_app.Model.Reservation
-import com.leen.hotelres_app.Vue.HistoriqueReservationsFragment
 
-class HistoriqueReservationsPresentateur(private val view: HistoriqueReservationsFragment) {
+class HistoriqueReservationsPresentateur(private val view: ContratFragmentPresentateurHistoriqueReservations.IFragmentHistoriqueReservations) :
+    ContratFragmentPresentateurHistoriqueReservations.IPresentateurHistoriqueReservations {
 
-    fun afficherReservations() {
-
+    override fun chargerReservations() {
         val sdf = java.text.SimpleDateFormat("dd MMM yyyy", java.util.Locale.ENGLISH)
 
         val reservations = listOf(
