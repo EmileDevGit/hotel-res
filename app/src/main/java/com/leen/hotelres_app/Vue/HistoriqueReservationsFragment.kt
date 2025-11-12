@@ -51,4 +51,6 @@ class HistoriqueReservationsFragment : Fragment(),
     override fun aucuneHistorique() {
         Toast.makeText(requireContext(),"Aucune historique à afficher.", Toast.LENGTH_SHORT).show()
     }
+
+    override fun erreurDeAffichage(message: String) {}
 }

@@ -7,6 +7,7 @@ interface ContratFragmentPresentateurHistoriqueReservations {
     interface IFragmentHistoriqueReservations{
         fun afficherReservations(reservations: List<Reservation>)
         fun aucuneHistorique()
+        fun erreurDeAffichage(message: String)
     }
 
 
