@@ -6,7 +6,7 @@ object SourceDeDonneesBidonHistorique {
 
     val sdf = java.text.SimpleDateFormat("dd MMM yyyy", java.util.Locale.ENGLISH)
 
-    val reservations = listOf(
+    var reservations = mutableListOf(
         Reservation(
             "Chambre pour 2 personnes",
             sdf.parse("14 Oct 2025")?.time ?: 0L,
