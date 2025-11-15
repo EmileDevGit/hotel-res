@@ -1,13 +1,11 @@
 package com.leen.hotelres_app.Presentateur
 
-import com.leen.hotelres_app.Model.Reservation
 import com.leen.hotelres_app.Model.FormulaireReservationModel
 import com.leen.hotelres_app.Presentateur.ContratFragmentPresentateurFormulaireReservation.IFragmentFormulaireReservations
 import com.leen.hotelres_app.Presentateur.ContratFragmentPresentateurFormulaireReservation.IPresentateurFormulaireReservations
+import com.leen.hotelres_app.SourceDeDonnees.SourceDeDonneesBidonFormulaire
 import com.leen.hotelres_app.Vue.FormulaireReservationsFragment
 import kotlinx.coroutines.*
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 class FormulaireReservationsPresentateur(
     var vue : IFragmentFormulaireReservations = FormulaireReservationsFragment(),
@@ -16,7 +14,8 @@ class FormulaireReservationsPresentateur(
 
     override fun initialiserVue() {
         CoroutineScope(Dispatchers.IO).launch{
-            val reservation = modele.getReservation()
+            Thread.sleep(1000)
+            val reservation = SourceDeDonneesBidonFormulaire.reservation
             CoroutineScope(Dispatchers.Main).launch {
                 vue.chargerInfoReservation(
                     reservation.dateDébut,
@@ -38,5 +37,4 @@ class FormulaireReservationsPresentateur(
     override fun naviguerVersHistorique() {
         // Sauvegarde les données dans le modèle
     }
-
 }
