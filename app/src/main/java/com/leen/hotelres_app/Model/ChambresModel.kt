@@ -84,14 +84,16 @@ class ChambresModel {
         )
     )
 
-    fun recupérerChambres(): ArrayList<Chambre> {
-        Thread.sleep(5000)
-        return listeChambres
-    }
-
     fun recupérerChambres(filtre: ChambreFiltre): ArrayList<Chambre> {
         Thread.sleep(5000)
-        return listeChambres.slice(0..3) as ArrayList<Chambre>
+        return listeChambres.filter {
+            if(filtre.prixMaximal != null){
+                return@filter it.prix <= filtre.prixMaximal!!
+            }else{
+                return@filter true
+            }
+
+        } as ArrayList<Chambre>
     }
 }
 

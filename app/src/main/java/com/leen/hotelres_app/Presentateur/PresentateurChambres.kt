@@ -12,6 +12,13 @@ import java.util.Date
 
 class PresentateurChambres(private val vue: ContratFragmentPresentateurChambres.IVueChambres) : ContratFragmentPresentateurChambres.IPresentateurChambres {
 
+
+    init {
+        // Recupérer les données de filtres en cache ici...
+        vue.afficherFiltres(
+            ChambreFiltre()
+        )
+    }
     val model = ChambresModel()
 
     override fun traiterNaviguerVersDetails(id: Int) {

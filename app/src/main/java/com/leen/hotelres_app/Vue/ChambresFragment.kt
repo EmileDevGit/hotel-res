@@ -177,13 +177,13 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
 
     override fun afficherFiltres(filtre: ChambreFiltre) {
         etMontantMaximum.setText(
-            filtre.prixMaximal.toString() as CharSequence
+            (filtre.prixMaximal?.toString() ?: "") as CharSequence
         )
 
-        btnDateDebut.text = filtre.dateDebut.toString().format(formatDate)
+        btnDateDebut.text = filtre.dateDebut?.toString()?.format(formatDate) ?: ""
         dateDebutCalendrier?.time = filtre.dateDebut ?: aujourdhuiCalendrier.time
 
-        btnDateFin.text = filtre.dateFin.toString().format(formatDate)
+        btnDateFin.text = filtre.dateFin?.toString()?.format(formatDate) ?: ""
         dateFinCalendrier?.time = filtre.dateFin ?: aujourdhuiCalendrier.time
     }
 }
