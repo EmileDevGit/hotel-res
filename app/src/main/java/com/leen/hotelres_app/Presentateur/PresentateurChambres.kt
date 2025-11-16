@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Date
 
-class PresentateurChambres(private val vue: ContratFragmentPresentateurChambres.IVueChambres) : ContratFragmentPresentateurChambres.IPresentateurChambres {
+class PresentateurChambres(private val vue: ContratFragmentPresentateurChambres.IVueChambres, private val model: ChambresModel = ChambresModel()) : ContratFragmentPresentateurChambres.IPresentateurChambres {
 
 
     init {
@@ -19,7 +19,6 @@ class PresentateurChambres(private val vue: ContratFragmentPresentateurChambres.
             ChambreFiltre()
         )
     }
-    val model = ChambresModel()
 
     override fun traiterNaviguerVersDetails(id: Int) {
         vue.naviguerVersDetails(id)
