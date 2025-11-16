@@ -25,6 +25,7 @@ import com.leen.hotelres_app.Model.ChambreFiltre
 import com.leen.hotelres_app.Presentateur.PresentateurChambres
 import com.leen.hotelres_app.R
 import java.util.Calendar
+import kotlin.String
 
 class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueChambres {
     private lateinit var chambresAdaptater: ChambresAdaptater
@@ -73,7 +74,7 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
         chambresAdaptater = ChambresAdaptater(ArrayList<Chambre>(), presentateurChambres)
         chambresRecyclerView.adapter = chambresAdaptater
 
-        presentateurChambres.traiterRéinitialiserFiltres()
+        presentateurChambres.traiterFiltrer()
         navController = Navigation.findNavController(view)
 
         attacherEvenements()
@@ -101,7 +102,7 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
                     }
 
                     filtre.dateDebut = calendar.time
-                    presentateurChambres.traiterFiltrer(filtre)
+                    presentateurChambres.traiterFiltrer()
                 },
                 calendrier.get(Calendar.YEAR),
                 calendrier.get(Calendar.MONTH),
@@ -124,7 +125,7 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
                     }
 
                     filtre.dateFin = calendar.time
-                    presentateurChambres.traiterFiltrer(filtre)
+                    presentateurChambres.traiterFiltrer()
                 },
                 calendrier.get(Calendar.YEAR),
                 calendrier.get(Calendar.MONTH),
@@ -136,24 +137,19 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
         etMontantMaximum.setOnFocusChangeListener { view, focus ->
             if(!focus){
                 filtre.prixMaximal = etMontantMaximum.text.toString().toFloatOrNull()
-                presentateurChambres.traiterFiltrer(filtre)
+                presentateurChambres.traiterFiltrer()
             }
         }
 
         btnRefresh.setOnClickListener {
             etMontantMaximum.text.clear()
             filtre.prixMaximal = null
-            presentateurChambres.traiterFiltrer(filtre)
+            presentateurChambres.traiterFiltrer()
         }
     }
 
-
     override fun afficherChambres(chambres: ArrayList<Chambre>) {
         chambresAdaptater.updateData(chambres)
-    }
-
-    override fun réinitialiserFiltres() {
-        // reinitialiser tous les champs à 0 ou récupérràer de a bd
     }
 
     override fun naviguerVersDetails(id: Int) {
@@ -164,7 +160,20 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
         navController.navigate(R.id.action_ecran_liste_chambres_to_ecran_historique_reservations)
     }
 
-    override fun notifier(texte: String) {
+    override fun afficherNotification(texte: String) {
         Toast.makeText(context, texte, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun obtenirFiltres(): ChambreFiltre {
+        return filtre
+    }
+
+    override fun afficherFiltres(filtre: ChambreFiltre) {
+        etMontantMaximum.setText(
+            filtre.prixMaximal.toString() as CharSequence
+        )
+
+        btnDateDebut.text = filtre.dateDebut.toString().format(formatDate)
+        btnDateFin.text = filtre.dateFin.toString().format(formatDate)
     }
 }
