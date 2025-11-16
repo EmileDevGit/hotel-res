@@ -1,22 +1,40 @@
 package com.leen.hotelres_app.Presentateur
 
-import com.leen.hotelres_app.Model.Reservation
-import java.text.SimpleDateFormat
-import java.util.Locale
+import com.leen.hotelres_app.Model.FormulaireReservationModel
+import com.leen.hotelres_app.Presentateur.ContratFragmentPresentateurFormulaireReservation.IFragmentFormulaireReservations
+import com.leen.hotelres_app.Presentateur.ContratFragmentPresentateurFormulaireReservation.IPresentateurFormulaireReservations
+import com.leen.hotelres_app.SourceDeDonnees.SourceDeDonneesBidonFormulaire
+import com.leen.hotelres_app.Vue.FormulaireReservationsFragment
+import kotlinx.coroutines.*
 
-class FormulaireReservationsPresentateur {
+class FormulaireReservationsPresentateur(
+    var vue : IFragmentFormulaireReservations = FormulaireReservationsFragment(),
+    var modele : FormulaireReservationModel = FormulaireReservationModel()
+) : IPresentateurFormulaireReservations {
 
-    fun getReservation() : Reservation{
+    override fun initialiserVue() {
+        CoroutineScope(Dispatchers.IO).launch{
+            Thread.sleep(1000)
+            val reservation = SourceDeDonneesBidonFormulaire.reservation
+            CoroutineScope(Dispatchers.Main).launch {
+                vue.chargerInfoReservation(
+                    reservation.dateDébut,
+                    reservation.dateFin,
+                    reservation.nbPersonnes
+                )
+            }
+        }
+    }
 
-        val sdf = SimpleDateFormat("dd MMM yyyy", Locale.FRENCH)
+    override fun naviguerVersDetailsChambre() {
+        // Sauvegarde les données dans le modèle
+    }
 
-        return Reservation(
-            "Chambre pour 2 personnes",
-            sdf.parse("14 Oct 2025")?.time ?: 0L,
-            sdf.parse("27 Oct 2025")?.time ?: 0L,
-            "10 oct. 2025",
-            "130$/par nuit",
-            3
-        )
+    override fun naviguerVersAccueil() {
+        // Sauvegarde les données dans le modèle
+    }
+
+    override fun naviguerVersHistorique() {
+        // Sauvegarde les données dans le modèle
     }
 }
