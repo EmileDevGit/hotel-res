@@ -1,7 +1,7 @@
 package com.leen.hotelres_app
 
-import com.leen.hotelres_app.Model.Reservation
-import com.leen.hotelres_app.SourceDeDonnees.SourceDeDonneesBidonFormulaire.sdf
+import com.leen.hotelres_app.presentation.model.Reservation
+import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidonFormulaire.sdf
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
 

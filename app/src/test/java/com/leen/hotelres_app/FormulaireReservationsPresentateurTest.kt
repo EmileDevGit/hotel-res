@@ -1,8 +1,8 @@
 package com.leen.hotelres_app
 
-import com.leen.hotelres_app.Presentateur.ContratFragmentPresentateurFormulaireReservation
-import com.leen.hotelres_app.Presentateur.FormulaireReservationsPresentateur
-import com.leen.hotelres_app.SourceDeDonnees.SourceDeDonneesBidonFormulaire
+import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurFormulaireReservation
+import com.leen.hotelres_app.presentation.presentateur.FormulaireReservationsPresentateur
+import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidonFormulaire
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.test.*

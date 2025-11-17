@@ -1,8 +1,8 @@
 package com.leen.hotelres_app
 
-import com.leen.hotelres_app.Presentateur.ContratFragmentPresentateurHistoriqueReservations
-import com.leen.hotelres_app.Presentateur.HistoriqueReservationsPresentateur
-import com.leen.hotelres_app.SourceDeDonnees.SourceDeDonneesBidonHistorique
+import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurHistoriqueReservations
+import com.leen.hotelres_app.presentation.presentateur.HistoriqueReservationsPresentateur
+import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidonHistorique
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
