@@ -13,20 +13,16 @@ class PresentateurDetailsChambre (
 ): IPresentateurDetailsChambre{
 
     override fun initialiserVue() {
-        CoroutineScope(Dispatchers.IO).launch{
-            val chambre = modele.getChambreSelectionne()
-            CoroutineScope(Dispatchers.Main).launch {
-                vue.chargerInfosChambre(
-                    chambre.numero,
-                    chambre.nbreLits,
-                    chambre.description,
-                    chambre.inclusions,
-                    chambre.nbrePersonnes,
-                    chambre.prixParNuit,
-                    chambre.urlsPhotos
-                )
-            }
-        }
+        val chambre = modele.getChambreSelectionne()
+        vue.chargerInfosChambre(
+            chambre.numero,
+            chambre.nbreLits,
+            chambre.description,
+            chambre.inclusions,
+            chambre.nbrePersonnes,
+            chambre.prixParNuit,
+            chambre.urlsPhotos
+        )
     }
 
     override fun naviguerVersReservation() {
