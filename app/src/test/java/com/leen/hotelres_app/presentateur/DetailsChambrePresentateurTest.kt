@@ -1,41 +1,30 @@
 package com.leen.hotelres_app.presentateur
 
-import com.leen.hotelres_app.Entities.ChambreDetails
-import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidon
+import com.leen.hotelres_app.presentation.model.ModelHotelRes
+import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurDetailsChambre
-import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurFormulaireReservation
-import com.leen.hotelres_app.presentation.presentateur.FormulaireReservationsPresentateur
 import com.leen.hotelres_app.presentation.presentateur.PresentateurDetailsChambre
-import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.mockito.Mockito
-import kotlin.Float
-
 class DetailsChambrePresentateurTest {
 
     @Test
-    fun `étant donné un PresentateurDetailsChambre, lorsqu'on charge les informations de la chambre, alors on doit retourner les dates et le nombre de personnes à la vue`(){
+    fun `étant donné un PresentateurDetailsChambre, lorsqu'on charge les informations de la chambre, alors on doit retourner les informations de la chambre à la vue`(){
 
         val mockVue = Mockito.mock(ContratFragmentPresentateurDetailsChambre.IFragmentDetailsChambre::class.java)
-        val mockModel = Mockito.mock(DetailsChambreModel::class.java)
+        val mockModel = Mockito.mock(ModelHotelRes::class.java)
 
-        val chambre = ChambreDetails(
-            "B260",
-            2,
-            125f,
-            2,
-            "Une chambre parfaite pour un couple avec des enfants ou des amis en vacances!",
-            "Micro-onde, cafetière, mini-frigo, douche et bain séparé ainsi qu'une vue sur le paysage montagneux.",
-            arrayOf(
-                "https://picsum.photos/800/400?image=10",
-                "https://picsum.photos/800/400?image=20",
-                "https://picsum.photos/800/400?image=30",
-                "https://picsum.photos/800/400?image=40",
-                "https://picsum.photos/800/400?image=50"
-            )
+        val chambre = Chambre(
+            numero = "B260",
+            nombreLits = 2,
+            prix = 125f,
+            inclusions = "Micro-onde, cafetière, mini-frigo, douche et bain séparé ainsi qu'une vue sur le paysage montagneux.",
+            description = "Une chambre parfaite pour un couple avec des enfants ou des amis en vacances!",
+            nombrePersonnes = 2,
+            suite = "VIP"
         )
 
-        Mockito.`when`(mockModel.getChambreSelectionne()).thenReturn(chambre)
+        Mockito.`when`(mockModel.recupererChambreSelectionnee()).thenReturn(chambre)
 
         val presentateur = PresentateurDetailsChambre(
             vue = mockVue,
@@ -44,12 +33,12 @@ class DetailsChambrePresentateurTest {
 
         Mockito.verify(mockVue).chargerInfosChambre(
             chambre.numero,
-            chambre.nbreLits,
+            chambre.nombreLits,
             chambre.description,
             chambre.inclusions,
-            chambre.nbrePersonnes,
-            chambre.prixParNuit,
-            chambre.urlsPhotos
+            chambre.nombrePersonnes,
+            chambre.prix,
+            chambre.images
         )
     }
 }
