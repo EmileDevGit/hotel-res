@@ -1,8 +1,8 @@
-package com.leen.hotelres_app
+package com.leen.hotelres_app.presentateur
 
+import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidon
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurHistoriqueReservations
 import com.leen.hotelres_app.presentation.presentateur.HistoriqueReservationsPresentateur
-import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidonHistorique
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
@@ -36,10 +36,10 @@ class historiqueReservationPresentateurTest {
     fun `étant donné un présentateur, lorsque l'historique de réservation est vide, on appelle aucuneHistorique sur la vue`() = runBlocking {
 
         val mockVue = Mockito.mock(ContratFragmentPresentateurHistoriqueReservations.IFragmentHistoriqueReservations::class.java)
-        val original = SourceDeDonneesBidonHistorique.reservations.toList()
+        val original = SourceDeDonneesBidon.historiqueReservations.toList()
 
         try {
-            SourceDeDonneesBidonHistorique.reservations = mutableListOf()
+            SourceDeDonneesBidon.historiqueReservations = mutableListOf()
 
             val presentateur = HistoriqueReservationsPresentateur(view = mockVue)
             presentateur.chargerReservations()
@@ -48,7 +48,7 @@ class historiqueReservationPresentateurTest {
 
             Mockito.verify(mockVue).aucuneHistorique()
         } finally {
-            SourceDeDonneesBidonHistorique.reservations = original.toMutableList()
+            SourceDeDonneesBidon.historiqueReservations = original.toMutableList()
         }
     }
 
@@ -61,6 +61,6 @@ class historiqueReservationPresentateurTest {
         presentateur.chargerReservations()
         Thread.sleep(1100)
 
-        Mockito.verify(mockVue).afficherReservations(SourceDeDonneesBidonHistorique.reservations)
+        Mockito.verify(mockVue).afficherReservations(SourceDeDonneesBidon.historiqueReservations)
     }
 }

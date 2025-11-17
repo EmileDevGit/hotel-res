@@ -1,4 +1,4 @@
-package com.leen.hotelres_app
+package com.leen.hotelres_app.model
 
 import com.leen.hotelres_app.presentation.model.Reservation
 import junit.framework.TestCase.assertEquals

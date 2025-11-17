@@ -1,7 +1,7 @@
-package com.leen.hotelres_app
+package com.leen.hotelres_app.model
 
 import com.leen.hotelres_app.presentation.model.Reservation
-import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidonFormulaire.sdf
+import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidon
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
 
@@ -9,6 +9,8 @@ class FormulaireReservationsModeleTest {
 
     @Test
     fun `Étant donné un modèle, lorsqu’une réservation est créée avec des valeurs valides, elle est créée avec succès`(){
+
+        val sdf = SourceDeDonneesBidon.sdf_en
 
         val reservation = Reservation(
             "Chambre pour 3 personnes",

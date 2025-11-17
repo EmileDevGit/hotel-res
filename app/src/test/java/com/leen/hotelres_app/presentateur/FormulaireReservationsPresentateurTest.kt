@@ -1,8 +1,8 @@
-package com.leen.hotelres_app
+package com.leen.hotelres_app.presentateur
 
+import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidon
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurFormulaireReservation
 import com.leen.hotelres_app.presentation.presentateur.FormulaireReservationsPresentateur
-import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidonFormulaire
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.test.*
@@ -35,7 +35,7 @@ class FormulaireReservationsPresentateurTest {
         val mockVue = Mockito.mock(ContratFragmentPresentateurFormulaireReservation.IFragmentFormulaireReservations::class.java)
         val presentateur = FormulaireReservationsPresentateur(mockVue)
 
-        val reservation = SourceDeDonneesBidonFormulaire.reservation
+        val reservation = SourceDeDonneesBidon.reservation
 
         // Action
         presentateur.initialiserVue()

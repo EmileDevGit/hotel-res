@@ -1,6 +1,6 @@
 package com.leen.hotelres_app.presentation.presentateur
 
-import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidonHistorique
+import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidon
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -12,7 +12,7 @@ class HistoriqueReservationsPresentateur(private val view: ContratFragmentPresen
         try {
             CoroutineScope(Dispatchers.IO).launch{
                 Thread.sleep(1000)
-                val reservations = SourceDeDonneesBidonHistorique.reservations
+                val reservations = SourceDeDonneesBidon.historiqueReservations
 
                 CoroutineScope(Dispatchers.Main).launch {
                     if(reservations.isEmpty()){
