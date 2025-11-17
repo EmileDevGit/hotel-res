@@ -1,7 +1,7 @@
 package com.leen.hotelres_app.presentation.presentateur
 
-import com.leen.hotelres_app.Entities.Chambre
-import com.leen.hotelres_app.presentation.model.ChambreFiltre
+import com.leen.hotelres_app.presentation.model.entities.Chambre
+import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 
 interface ContratFragmentPresentateurChambres {
     interface IVueChambres {

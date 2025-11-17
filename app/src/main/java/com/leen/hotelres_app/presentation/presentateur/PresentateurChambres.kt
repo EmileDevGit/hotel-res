@@ -2,15 +2,18 @@ package com.leen.hotelres_app.presentation.presentateur
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.leen.hotelres_app.Entities.Chambre
-import com.leen.hotelres_app.presentation.model.ChambreFiltre
-import com.leen.hotelres_app.presentation.model.ChambresModel
+import com.leen.hotelres_app.presentation.model.entities.Chambre
+import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
+import com.leen.hotelres_app.presentation.model.ModelHotelRes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Date
 
-class PresentateurChambres(private val vue: ContratFragmentPresentateurChambres.IVueChambres, private val model: ChambresModel = ChambresModel()) : ContratFragmentPresentateurChambres.IPresentateurChambres {
+class PresentateurChambres(
+    private val vue: ContratFragmentPresentateurChambres.IVueChambres,
+    private val model: ModelHotelRes = ModelHotelRes()
+) : ContratFragmentPresentateurChambres.IPresentateurChambres {
 
 
     init {
@@ -56,7 +59,7 @@ class PresentateurChambres(private val vue: ContratFragmentPresentateurChambres.
 
         vue.afficherNotification("Chargement... Veuillez patienter")
         CoroutineScope(Dispatchers.IO).launch {
-            val résultat: ArrayList<Chambre> = model.recupérerChambres(filtre)
+            val résultat: ArrayList<Chambre> = model.recupererListeChambres(filtre)
 
             CoroutineScope(Dispatchers.Main).launch {
                 vue.afficherChambres(

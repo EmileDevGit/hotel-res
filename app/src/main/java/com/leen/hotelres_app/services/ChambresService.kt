@@ -1,18 +1,18 @@
 package com.leen.hotelres_app.services
 
-import com.leen.hotelres_app.Entities.Chambre
-import com.leen.hotelres_app.accesAuxDonnees.ISourceDeDonnéesChambres
-import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonnéesFacticesChambres
-import com.leen.hotelres_app.presentation.model.ChambreFiltre
+import com.leen.hotelres_app.presentation.model.entities.Chambre
+import com.leen.hotelres_app.accesAuxDonnees.ISourceDeDonnees
+import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidon
+import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 
-class ChambresService(private val source: ISourceDeDonnéesChambres = SourceDeDonnéesFacticesChambres()) {
+class ChambresService(private val source: ISourceDeDonnees = SourceDeDonneesBidon()) {
 
     fun recupérerChambres(filtre: ChambreFiltre): ArrayList<Chambre> {
-        return source.récupérerListeChambres(filtre)
+        return source.getListeChambresFiltre(filtre)
     }
 
     fun récupérerChambreparId(id: Int): Chambre {
-        return source.récupérerChambreParId(id)
+        return source.getChambreParId(id)
     }
 
 }

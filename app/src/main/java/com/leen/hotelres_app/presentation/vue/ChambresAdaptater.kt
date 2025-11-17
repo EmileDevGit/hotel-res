@@ -12,7 +12,7 @@ import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.carousel.CarouselSnapHelper
 import com.google.android.material.carousel.FullScreenCarouselStrategy
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurChambres
-import com.leen.hotelres_app.Entities.Chambre
+import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.R
 
 class ChambresAdaptater(private var chambres: ArrayList<Chambre>, private val presentateurChambre: ContratFragmentPresentateurChambres.IPresentateurChambres) : RecyclerView.Adapter<ChambresAdaptater.ViewHolder>() {

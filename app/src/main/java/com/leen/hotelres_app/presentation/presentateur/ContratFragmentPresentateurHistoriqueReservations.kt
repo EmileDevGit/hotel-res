@@ -1,6 +1,6 @@
 package com.leen.hotelres_app.presentation.presentateur
 
-import com.leen.hotelres_app.presentation.model.Reservation
+import com.leen.hotelres_app.presentation.model.entities.Reservation
 
 interface ContratFragmentPresentateurHistoriqueReservations {
 

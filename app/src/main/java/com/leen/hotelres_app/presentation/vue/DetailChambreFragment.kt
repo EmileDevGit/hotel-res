@@ -15,17 +15,17 @@ import androidx.recyclerview.widget.SnapHelper
 import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.android.material.carousel.CarouselSnapHelper
 import com.google.android.material.carousel.FullScreenCarouselStrategy
-import com.leen.hotelres_app.presentation.model.DetailsChambreModel
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurDetailsChambre.IPresentateurDetailsChambre
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurDetailsChambre.IFragmentDetailsChambre
 import com.leen.hotelres_app.presentation.presentateur.PresentateurDetailsChambre
 import com.leen.hotelres_app.R
+import com.leen.hotelres_app.presentation.model.ModelHotelRes
 
 class DetailChambreFragment : Fragment(), IFragmentDetailsChambre {
 
     var presentateur : IPresentateurDetailsChambre = PresentateurDetailsChambre(
         this,
-        DetailsChambreModel() )
+        ModelHotelRes() )
     private lateinit var titreDetailsChambre: TextView
     private lateinit var tvNbPersonne: TextView
     private lateinit var tvDescriptionDetailsChambre : TextView

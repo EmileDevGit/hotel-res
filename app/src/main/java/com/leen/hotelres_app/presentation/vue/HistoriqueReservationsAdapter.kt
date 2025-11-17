@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.leen.hotelres_app.R
-import com.leen.hotelres_app.presentation.model.Reservation
+import com.leen.hotelres_app.presentation.model.entities.Reservation
 import java.text.SimpleDateFormat
 import java.util.Locale
 

@@ -1,4 +1,4 @@
-package com.leen.hotelres_app.presentation.model
+package com.leen.hotelres_app.presentation.model.entities
 
 data class Reservation(
     val titre: String,

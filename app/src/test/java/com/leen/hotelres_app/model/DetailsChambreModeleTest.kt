@@ -1,7 +1,6 @@
 package com.leen.hotelres_app.model
 
 import com.leen.hotelres_app.Entities.ChambreDetails
-import com.leen.hotelres_app.presentation.model.DetailsChambreModel
 import junit.framework.TestCase.assertEquals
 import org.junit.Assert.assertArrayEquals
 import org.junit.Test

@@ -1,18 +1,22 @@
 package com.leen.hotelres_app.presentation.presentateur
 
 import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidon
+import com.leen.hotelres_app.presentation.model.ModelHotelRes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class HistoriqueReservationsPresentateur(private val view: ContratFragmentPresentateurHistoriqueReservations.IFragmentHistoriqueReservations) :
+class HistoriqueReservationsPresentateur(
+    private val view: ContratFragmentPresentateurHistoriqueReservations.IFragmentHistoriqueReservations,
+    private val modele: ModelHotelRes = ModelHotelRes()
+) :
     ContratFragmentPresentateurHistoriqueReservations.IPresentateurHistoriqueReservations {
 
     override fun chargerReservations() {
         try {
             CoroutineScope(Dispatchers.IO).launch{
                 Thread.sleep(1000)
-                val reservations = SourceDeDonneesBidon.historiqueReservations
+                val reservations = modele.recupererHistoriqueReservation()
 
                 CoroutineScope(Dispatchers.Main).launch {
                     if(reservations.isEmpty()){

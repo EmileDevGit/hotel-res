@@ -1,6 +1,6 @@
 package com.leen.hotelres_app.model
 
-import com.leen.hotelres_app.presentation.model.Reservation
+import com.leen.hotelres_app.presentation.model.entities.Reservation
 import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidon
 import junit.framework.TestCase.assertEquals
 import org.junit.Test

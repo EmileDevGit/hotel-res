@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.leen.hotelres_app.presentation.model.Reservation
+import com.leen.hotelres_app.presentation.model.entities.Reservation
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurHistoriqueReservations
 import com.leen.hotelres_app.R
 import com.leen.hotelres_app.presentation.presentateur.HistoriqueReservationsPresentateur

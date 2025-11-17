@@ -2,7 +2,6 @@ package com.leen.hotelres_app.presentateur
 
 import com.leen.hotelres_app.Entities.ChambreDetails
 import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidon
-import com.leen.hotelres_app.presentation.model.DetailsChambreModel
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurDetailsChambre
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurFormulaireReservation
 import com.leen.hotelres_app.presentation.presentateur.FormulaireReservationsPresentateur

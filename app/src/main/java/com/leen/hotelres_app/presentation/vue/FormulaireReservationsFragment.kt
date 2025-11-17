@@ -17,11 +17,11 @@ import androidx.core.util.Pair
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.leen.hotelres_app.presentation.model.FormulaireReservationModel
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurFormulaireReservation.IFragmentFormulaireReservations
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurFormulaireReservation.IPresentateurFormulaireReservations
 import com.leen.hotelres_app.presentation.presentateur.FormulaireReservationsPresentateur
 import com.leen.hotelres_app.R
+import com.leen.hotelres_app.presentation.model.ModelHotelRes
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -31,7 +31,7 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
 
     var presentateur: IPresentateurFormulaireReservations = FormulaireReservationsPresentateur(
         this,
-        FormulaireReservationModel())
+        ModelHotelRes())
 
     private lateinit var btnConfirmation : Button
     private lateinit var btnModifierDatesChoisi : Button

@@ -1,4 +1,4 @@
-package com.leen.hotelres_app.presentation.model
+package com.leen.hotelres_app.presentation.model.entities
 
 import java.util.Date
 
