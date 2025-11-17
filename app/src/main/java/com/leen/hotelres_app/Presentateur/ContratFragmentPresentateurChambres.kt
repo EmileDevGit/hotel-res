@@ -6,23 +6,26 @@ import com.leen.hotelres_app.Model.ChambreFiltre
 interface ContratFragmentPresentateurChambres {
     interface IVueChambres {
 
-        fun réinitialiserFiltres()
-
         fun afficherChambres(chambres: ArrayList<Chambre>)
 
         fun naviguerVersDetails(id: Int)
         fun naviguerVersHistoriqueReservations()
 
         // faire une notification
-        fun notifier(texte: String)
+        fun afficherNotification(texte: String)
+
+        // permet de recupérer les filtres à l'écran
+        fun obtenirFiltres(): ChambreFiltre
+
+        // permet d'afficher les filtres à l'ecran
+        fun afficherFiltres(filtre: ChambreFiltre)
+
     }
 
     interface IPresentateurChambres{
         fun traiterNaviguerVersDetails(id:Int)
 
-        fun traiterRéinitialiserFiltres()
-
-        fun traiterFiltrer(filtre : ChambreFiltre)
+        fun traiterFiltrer()
 
         fun traiterNaviguerVersHistoriqueReservations()
     }

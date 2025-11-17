@@ -25,6 +25,7 @@ import com.leen.hotelres_app.Model.ChambreFiltre
 import com.leen.hotelres_app.Presentateur.PresentateurChambres
 import com.leen.hotelres_app.R
 import java.util.Calendar
+import kotlin.String
 
 class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueChambres {
     private lateinit var chambresAdaptater: ChambresAdaptater
@@ -34,14 +35,15 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
     private lateinit var btnDateDebut: Button
     private lateinit var btnDateFin: Button
     private lateinit var btnRefresh: ImageView
-    //private lateinit var etMontantMinimum: EditText
     private lateinit var etMontantMaximum: EditText
     private lateinit var btnVersHistoriqueDeReservation: ImageView
 
     private val formatDate = "%02d/%02d/%d"
-    private val calendrier = Calendar.getInstance()
 
-    private val filtre: ChambreFiltre = ChambreFiltre()
+    private var dateDebutCalendrier : Calendar? = null
+    private var dateFinCalendrier : Calendar? = null
+
+    private val aujourdhuiCalendrier = Calendar.getInstance()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,7 +75,7 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
         chambresAdaptater = ChambresAdaptater(ArrayList<Chambre>(), presentateurChambres)
         chambresRecyclerView.adapter = chambresAdaptater
 
-        presentateurChambres.traiterRéinitialiserFiltres()
+        presentateurChambres.traiterFiltrer()
         navController = Navigation.findNavController(view)
 
         attacherEvenements()
@@ -94,18 +96,21 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
                     val formattedDate = String.format(formatDate, selectedDay, selectedMonth + 1, selectedYear)
                     btnDateDebut.text = formattedDate
 
-                    val calendar = Calendar.getInstance().apply {
-                        set(Calendar.YEAR, selectedYear)
-                        set(Calendar.MONTH, selectedMonth)
-                        set(Calendar.DAY_OF_MONTH, selectedDay)
+                    dateDebutCalendrier = Calendar.getInstance()
+
+                    dateDebutCalendrier?.let {
+                        it.apply {
+                            set(Calendar.YEAR, selectedYear)
+                            set(Calendar.MONTH, selectedMonth)
+                            set(Calendar.DAY_OF_MONTH, selectedDay)
+                        }
                     }
 
-                    filtre.dateDebut = calendar.time
-                    presentateurChambres.traiterFiltrer(filtre)
+                    presentateurChambres.traiterFiltrer()
                 },
-                calendrier.get(Calendar.YEAR),
-                calendrier.get(Calendar.MONTH),
-                calendrier.get(Calendar.DAY_OF_MONTH)
+                aujourdhuiCalendrier.get(Calendar.YEAR),
+                aujourdhuiCalendrier.get(Calendar.MONTH),
+                aujourdhuiCalendrier.get(Calendar.DAY_OF_MONTH)
             )
             datePickerDialog.show()
         }
@@ -117,43 +122,37 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
                     val formattedDate = String.format(formatDate, selectedDay, selectedMonth + 1, selectedYear)
                     btnDateFin.text = formattedDate
 
-                    val calendar = Calendar.getInstance().apply {
-                        set(Calendar.YEAR, selectedYear)
-                        set(Calendar.MONTH, selectedMonth)
-                        set(Calendar.DAY_OF_MONTH, selectedDay)
+                    dateFinCalendrier?.let{
+                        it.apply {
+                            set(Calendar.YEAR, selectedYear)
+                            set(Calendar.MONTH, selectedMonth)
+                            set(Calendar.DAY_OF_MONTH, selectedDay)
+                        }
                     }
 
-                    filtre.dateFin = calendar.time
-                    presentateurChambres.traiterFiltrer(filtre)
+                    presentateurChambres.traiterFiltrer()
                 },
-                calendrier.get(Calendar.YEAR),
-                calendrier.get(Calendar.MONTH),
-                calendrier.get(Calendar.DAY_OF_MONTH)
+                aujourdhuiCalendrier.get(Calendar.YEAR),
+                aujourdhuiCalendrier.get(Calendar.MONTH),
+                aujourdhuiCalendrier.get(Calendar.DAY_OF_MONTH)
             )
             datePickerDialog.show()
         }
 
         etMontantMaximum.setOnFocusChangeListener { view, focus ->
             if(!focus){
-                filtre.prixMaximal = etMontantMaximum.text.toString().toFloatOrNull()
-                presentateurChambres.traiterFiltrer(filtre)
+                presentateurChambres.traiterFiltrer()
             }
         }
 
         btnRefresh.setOnClickListener {
             etMontantMaximum.text.clear()
-            filtre.prixMaximal = null
-            presentateurChambres.traiterFiltrer(filtre)
+            presentateurChambres.traiterFiltrer()
         }
     }
 
-
     override fun afficherChambres(chambres: ArrayList<Chambre>) {
         chambresAdaptater.updateData(chambres)
-    }
-
-    override fun réinitialiserFiltres() {
-        // reinitialiser tous les champs à 0 ou récupérràer de a bd
     }
 
     override fun naviguerVersDetails(id: Int) {
@@ -164,7 +163,27 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
         navController.navigate(R.id.action_ecran_liste_chambres_to_ecran_historique_reservations)
     }
 
-    override fun notifier(texte: String) {
+    override fun afficherNotification(texte: String) {
         Toast.makeText(context, texte, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun obtenirFiltres(): ChambreFiltre {
+        return ChambreFiltre(
+            dateDebutCalendrier?.time,
+            dateFinCalendrier?.time ,
+            prixMaximal = etMontantMaximum.text.toString().toFloatOrNull()
+        )
+    }
+
+    override fun afficherFiltres(filtre: ChambreFiltre) {
+        etMontantMaximum.setText(
+            (filtre.prixMaximal?.toString() ?: "") as CharSequence
+        )
+
+        btnDateDebut.text = filtre.dateDebut?.toString()?.format(formatDate) ?: ""
+        dateDebutCalendrier?.time = filtre.dateDebut ?: aujourdhuiCalendrier.time
+
+        btnDateFin.text = filtre.dateFin?.toString()?.format(formatDate) ?: ""
+        dateFinCalendrier?.time = filtre.dateFin ?: aujourdhuiCalendrier.time
     }
 }
