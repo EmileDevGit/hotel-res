@@ -15,4 +15,11 @@ class ChambresService(private val source: ISourceDeDonnees = SourceDeDonneesBido
         return source.getChambreParId(id)
     }
 
+    fun enregristrerFiltre(filtre: ChambreFiltre): Boolean {
+        return source.enregistrerFiltres(filtre)
+    }
+
+    fun recupererFiltre() : ChambreFiltre {
+        return source.getFiltres()
+    }
 }
