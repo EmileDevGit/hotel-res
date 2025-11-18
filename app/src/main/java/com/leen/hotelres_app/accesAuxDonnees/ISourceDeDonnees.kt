@@ -15,7 +15,4 @@ interface ISourceDeDonnees {
     fun getListeChambresFiltre(filtre: ChambreFiltre): ArrayList<Chambre>
 
     fun enregistrerReservation(): Boolean
-
-    fun getFiltres(): ChambreFiltre
-    fun enregistrerFiltres(filtre: ChambreFiltre): Boolean
 }

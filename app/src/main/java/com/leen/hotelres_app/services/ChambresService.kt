@@ -2,10 +2,12 @@ package com.leen.hotelres_app.services
 
 import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.accesAuxDonnees.ISourceDeDonnees
+import com.leen.hotelres_app.accesAuxDonnees.ISourceDeDonneesFichier
 import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidon
+import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesFichier
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 
-class ChambresService(private val source: ISourceDeDonnees = SourceDeDonneesBidon()) {
+class ChambresService(private val source: ISourceDeDonnees = SourceDeDonneesBidon(), private val sourceFichiers : ISourceDeDonneesFichier = SourceDeDonneesFichier()) {
 
     fun recupérerChambres(filtre: ChambreFiltre): ArrayList<Chambre> {
         return source.getListeChambresFiltre(filtre)
@@ -16,10 +18,10 @@ class ChambresService(private val source: ISourceDeDonnees = SourceDeDonneesBido
     }
 
     fun enregristrerFiltre(filtre: ChambreFiltre): Boolean {
-        return source.enregistrerFiltres(filtre)
+        return sourceFichiers.enregistrerFiltres(filtre)
     }
 
     fun recupererFiltre() : ChambreFiltre {
-        return source.getFiltres()
+        return sourceFichiers.getFiltres()
     }
 }

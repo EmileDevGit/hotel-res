@@ -1,19 +1,13 @@
 package com.leen.hotelres_app.accesAuxDonnees
-import android.content.Context
-import com.google.gson.Gson
 import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import com.leen.hotelres_app.presentation.model.entities.Reservation
-import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 class SourceDeDonneesException(message : String) : Exception( message ) {}
 
-class SourceDeDonneesBidon(private val context: Context) : ISourceDeDonnees {
-
-    private val gson = Gson()
-    private val nomFichierChambreFiltre = "chambre_filtre.json"
+class SourceDeDonneesBidon() : ISourceDeDonnees {
     // Variables contenant les données factices
     companion object{
         private val sdf_en = SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH)
@@ -242,31 +236,5 @@ class SourceDeDonneesBidon(private val context: Context) : ISourceDeDonnees {
         }else{
             throw Exception("Chambre non trouvée")
         }
-    }
-
-    override fun getFiltres(): ChambreFiltre {
-        return try {
-            val file = File(context.filesDir, nomFichierChambreFiltre)
-            if (!file.exists()) return ChambreFiltre()
-
-            val json = file.readText()
-            gson.fromJson(json, ChambreFiltre::class.java)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            ChambreFiltre()
-        }
-    }
-
-    override fun enregistrerFiltres(filtre: ChambreFiltre): Boolean {
-        return try {
-            val json = gson.toJson(filtre)
-            val file = File(context.filesDir , nomFichierChambreFiltre)
-            file.writeText(json)
-            true
-        } catch (e: Exception) {
-            e.printStackTrace()
-            false
-        }
-
     }
 }
