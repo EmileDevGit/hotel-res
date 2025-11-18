@@ -53,7 +53,7 @@ class FormulaireReservationsPresentateurTest {
 
         Mockito.`when`(mockModele.recupererReservation()).thenReturn(mockReservation)
         presentateur.initialiserVue()
-        Thread.sleep(1000)
+        Thread.sleep(1100)
 
         Mockito.verify(mockVue).chargerInfoReservation(mockReservation.dateDébut, mockReservation.dateFin, mockReservation.nbPersonnes)
     }

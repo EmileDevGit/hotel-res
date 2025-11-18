@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="chambre_pour_2_personnes">Room for 2 people</string>
-    <string name="chambre_pour_4_personnes">Room for 4 people</string>
-    <string name="chambre_pour_3_personnes">Room for 3 people</string>
-    <string name="_130_par_nuit">130$/per night</string>
-    <string name="_160_par_nuit">160$/per night</string>
-    <string name="_165_par_nuit">160$/per night</string>
-    <string name="_150_par_nuit">150$/per night</string>
-    <string name="_145_par_nuit">145$/per night</string>
-    <string name="nombre_de_personnes">Number of people:</string>
-    <string name="date_de_reservation">Reservation date:</string>
-    <string name="prix">Price:</string>
+    <string name="chambre_pour_x_personnes">Room for %1$d people</string>
+    <string name="nombre_de_personnes">Number of people: %1$d</string>
+    <string name="date_de_reservation">Reservation date: %1$s</string>
+    <string name="prix_nuit">Price: %1$s</string>
     <string name="choissisez_vos_dates_de_reservation">Choose your reservation dates:</string>
     <string name="aucun_changement_au_prix">No price change</string>
-    <string name="le_prix_augmente_de">The price went up by</string>
+    <string name="le_prix_augmente_de">The price went up by %1$s</string>
     <string name="details_de_la_chambre">Details of the room</string>
     <string name="inclus">Includes:</string>
+    <string name="historique_des_reservations">Reservation history</string>
+    <string name="aucune_historique_afficher">No history to show.</string>
+    <string name="reservation_confirmee">Reservation confirmed !</string>
+    <string name="dates_reservationForm">Reservation dates: %1$s to %2$s</string>
+    <string name="formulaire_de_reservation">Reservation form</string>
+    <string name="confirmer_la_reservation">Confirm the reservation</string>
+    <string name="modifier_dates_reservation">Modify your reservation dates</string>
+    <string name="nbr_personnesForm">"Number of people : "</string>
 </resources>
