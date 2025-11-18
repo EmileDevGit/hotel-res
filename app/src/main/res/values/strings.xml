@@ -6,10 +6,15 @@
     <string name="prix_nuit">Prix: %1$s</string>
     <string name="choissisez_vos_dates_de_reservation">Choissisez vos dates de réservation</string>
     <string name="aucun_changement_au_prix">Aucun changement au prix</string>
-    <string name="le_prix_augmente_de">Le prix augmente de</string>
+    <string name="le_prix_augmente_de">Le prix augmente de %1$s</string>
     <string name="details_de_la_chambre">Détails de la chambre</string>
     <string name="inclus">Inclus:</string>
     <string name="historique_des_reservations">Historique des réservations</string>
     <string name="aucune_historique_afficher">Aucune historique à afficher.</string>
     <string name="reservation_confirmee">Réservation confirmée !</string>
+    <string name="dates_reservationForm">Date de réservation: %1$s au %2$s</string>
+    <string name="formulaire_de_reservation">Formulaire de réservation</string>
+    <string name="confirmer_la_reservation">Confirmer la réservation</string>
+    <string name="modifier_dates_reservation">Modifier vos dates de réservation</string>
+    <string name="nbr_personnesForm">Nombre de personnes :</string>
 </resources>

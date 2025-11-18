@@ -14,26 +14,28 @@
         android:background="@color/primary"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="horizontal">
+
         <ImageButton
             android:id="@+id/btnRetour"
-            android:layout_width="wrap_content"
+            android:layout_width="32dp"
             android:layout_height="match_parent"
+            android:backgroundTint="@color/primary"
             android:src="@drawable/previous_icon"
-            app:tint="@color/white"
-            android:backgroundTint="@color/primary" />
+            app:tint="@color/white" />
+
         <TextView
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="60dp"
+            android:layout_weight="1"
             android:background="@color/primary"
             android:gravity="center"
             android:orientation="horizontal"
-            android:text="Formulaire de réservation"
+            android:text="@string/formulaire_de_reservation"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_weight="1"
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
     <TextView
@@ -42,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="65dp"
-        android:text="Nombre de personnes :"
+        android:text="@string/nbr_personnesForm"
         android:textColor="@color/black"
         android:textColorLink="#0F0F0F"
         android:textSize="20sp"
@@ -96,7 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:backgroundTint="@color/primary"
-        android:text="Confirmer la réservation"
+        android:text="@string/confirmer_la_reservation"
         app:layout_constraintBottom_toTopOf="@+id/bottom_banner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -106,7 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="TextView"
+        android:text="⟳"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/btnConfirmerReservation"
@@ -131,7 +133,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
         android:backgroundTint="@color/primary"
-        android:text="Modifier vos dates de réservation"
+        android:text="@string/modifier_dates_reservation"
         app:layout_constraintBottom_toTopOf="@+id/tvDatesChoisis"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -143,7 +145,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:text="TextView"
+        android:text="⟳"
         app:layout_constraintBottom_toTopOf="@+id/btnConfirmerReservation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

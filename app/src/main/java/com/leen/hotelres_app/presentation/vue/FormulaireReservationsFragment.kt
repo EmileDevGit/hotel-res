@@ -87,7 +87,7 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
         btnConfirmation.setOnClickListener {
             AlertDialog.Builder(requireContext())
                 .setTitle("Confirmation")
-                .setMessage("Réservation confirmée !")
+                .setMessage(getString(R.string.reservation_confirmee))
                 .setPositiveButton("OK") { _, _ ->
                     presentateur?.naviguerVersAccueil()
                     vue.findNavController().navigate(R.id.action_ecran_reservation_chambre_to_ecran_liste_chambres)
@@ -108,12 +108,16 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
         val dateDébutString = dateFormat.format(Date(dateDébutVar))
         val dateFinString = dateFormat.format(Date(dateFinVar))
 
-        tvDatesChoisi.text = "Dates de réservation : $dateDébutString au $dateFinString"
+        tvDatesChoisi.text = tvDatesChoisi.context.getString(
+            R.string.dates_reservationForm,
+            dateDébutString,
+            dateFinString
+        )
 
         btnModifierDatesChoisi.setOnClickListener{
             val sélecteurDates = MaterialDatePicker.Builder.dateRangePicker()
                 .setTheme(R.style.MaterialCalendarTheme)
-                .setTitleText("Choissisez vos dates de réservation")
+                .setTitleText(getString(R.string.choissisez_vos_dates_de_reservation))
                 .setSelection(Pair(dateDébutVar, dateFinVar))
                 .setCalendarConstraints(null) // À implémenter au plus tard pour éviter que l'utilisateur sélectionne des dates hors de la sélection
                 .build()
@@ -130,7 +134,11 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
                 val dateDébutString = dateFormat.format(Date(it.first))
                 val dateFinString = dateFormat.format(Date(it.second))
 
-                tvDatesChoisi.text = "Dates de réservation : $dateDébutString au $dateFinString"
+                tvDatesChoisi.text = tvDatesChoisi.context.getString(
+                    R.string.dates_reservationForm,
+                    dateDébutString,
+                    dateFinString
+                )
             }
 
             sélecteurDates.addOnNegativeButtonClickListener{
@@ -155,7 +163,7 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
                 } else if(personnesSelectionné == 5) {
                     tvPrixSelonNbPersonnes.text = "Le prix augmente de 60$"
                 } else {
-                    tvPrixSelonNbPersonnes.text = "Aucun changement au prix"
+                    tvPrixSelonNbPersonnes.text = getString(R.string.aucun_changement_au_prix)
                 }
             }
 
