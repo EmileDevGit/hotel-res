@@ -187,7 +187,7 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
             val mois = calendar.get(Calendar.MONTH) + 1
             val annee = calendar.get(Calendar.YEAR)
 
-            btnDateDebut.text = "$jour/$mois/$annee"
+            btnDateDebut.text = ""
         }
         dateFinCalendrier?.time = filtre.dateFin ?: aujourdhuiCalendrier.time
         filtre.dateFin?.let {
@@ -196,7 +196,7 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
             val mois = calendar.get(Calendar.MONTH) + 1
             val annee = calendar.get(Calendar.YEAR)
 
-            btnDateFin.text = "$jour/$mois/$annee"
+            btnDateFin.text = ""
             afficherNotification("$jour/$mois/$annee")
         }
     }
