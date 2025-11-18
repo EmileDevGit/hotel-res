@@ -1,19 +1,15 @@
 <resources>
     <string name="app_name" translatable="false">HotelRes_App</string>
-    <string name="chambre_pour_2_personnes">Chambre pour 2 personnes</string>
-    <string name="chambre_pour_4_personnes">Chambre pour 4 personnes</string>
-    <string name="chambre_pour_3_personnes">Chambre pour 3 personnes</string>
-    <string name="_130_par_nuit">130$/par nuit</string>
-    <string name="_160_par_nuit">160$/par nuit</string>
-    <string name="_165_par_nuit">165$/par nuit</string>
-    <string name="_150_par_nuit">150$/par nuit</string>
-    <string name="_145_par_nuit">145$/par nuit</string>
-    <string name="nombre_de_personnes">Nombre de personnes:</string>
-    <string name="date_de_reservation">Date de réservation:</string>
-    <string name="prix">Prix:</string>
+    <string name="chambre_pour_x_personnes">Chambre pour %1$d personnes</string>
+    <string name="nombre_de_personnes">Nombre de personnes: %1$d</string>
+    <string name="date_de_reservation">Date de réservation: %1$s</string>
+    <string name="prix_nuit">Prix: %1$s</string>
     <string name="choissisez_vos_dates_de_reservation">Choissisez vos dates de réservation</string>
     <string name="aucun_changement_au_prix">Aucun changement au prix</string>
     <string name="le_prix_augmente_de">Le prix augmente de</string>
     <string name="details_de_la_chambre">Détails de la chambre</string>
     <string name="inclus">Inclus:</string>
+    <string name="historique_des_reservations">Historique des réservations</string>
+    <string name="aucune_historique_afficher">Aucune historique à afficher.</string>
+    <string name="reservation_confirmee">Réservation confirmée !</string>
 </resources>
