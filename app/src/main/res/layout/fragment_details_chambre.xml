@@ -129,14 +129,6 @@
                 android:padding="8dp"
                 android:src="@drawable/bookmark_icon" />
 
-            <ImageView
-                android:id="@+id/profile_icon"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:contentDescription="Profile"
-                android:padding="8dp"
-                android:src="@drawable/profile_icon" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
