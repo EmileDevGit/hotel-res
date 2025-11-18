@@ -5,13 +5,13 @@ import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import com.leen.hotelres_app.presentation.model.entities.Reservation
 import com.leen.hotelres_app.services.ChambresService
 import com.leen.hotelres_app.services.HistoriqueReservationService
+import org.koin.java.KoinJavaComponent.inject
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 class ModelHotelRes {
     private val historiqueService = HistoriqueReservationService()
-    private val chambreService = ChambresService()
-
+    private val chambreService : ChambresService by inject(ChambresService::class.java)
     fun recupererReservation(): Reservation {
         val sdf = SimpleDateFormat("dd MMM yyyy", Locale.FRENCH)
         return Reservation(

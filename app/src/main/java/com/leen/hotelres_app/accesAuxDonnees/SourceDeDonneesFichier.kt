@@ -1,11 +1,12 @@
 package com.leen.hotelres_app.accesAuxDonnees
 
+import android.content.Context
 import com.google.gson.Gson
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import java.io.File
 
 
-class SourceDeDonneesFichier : ISourceDeDonneesFichier {
+class SourceDeDonneesFichier(private val context: Context) : ISourceDeDonneesFichier {
 
     private val gson = Gson()
     private val nomFichierChambreFiltre = "chambre_filtre.json"
