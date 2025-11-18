@@ -1,6 +1,7 @@
-image: gradle:jdk21-alpine
+image: alpine
 
 stages:
+  # - build
   # - test
   - sync # push the project from gitlab to github
 
@@ -9,13 +10,12 @@ stages:
 # runtime for each build is more reliable since the runtime is completely
 # isolated from any previous builds.
 
-
 # note: this job only pushes branches and tags, not issues & pull requests
 # all the github remotes urls must be placed into "docs/pipelineConfigs/.cd-remotes" file
 sync-repositories:
   stage: sync
   script:
-    - apt-get update && apt-get install -y git
+    - apk add --no-cache git
     # debug stuffs
     - git branch -a
     - git tag -l
@@ -27,8 +27,7 @@ sync-repositories:
     - |
       while IFS= read -r line
       do
-        
-        IFS=':' read -r remote_item custom_ci_var_name <<< "$line" # retreives the 2 values from 
+        echo "$line" | IFS=':' read -r remote_item custom_ci_var_name # retreives the 2 values from 
         custom_token_value="${!custom_ci_var_name}" # retreiving real token value with indirect references
         echo "Pushing to: https://$custom_token_value@github.com/$remote_item"
         git push --mirror --force "https://$custom_token_value@github.com/$remote_item"
