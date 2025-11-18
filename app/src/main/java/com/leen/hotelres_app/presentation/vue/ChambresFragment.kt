@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -21,11 +22,11 @@ import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import com.leen.hotelres_app.presentation.presentateur.PresentateurChambres
 import com.leen.hotelres_app.R
-import java.text.SimpleDateFormat
 import java.util.Calendar
 import kotlin.String
 
 class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueChambres {
+
     private lateinit var chambresAdaptater: ChambresAdaptater
     private lateinit var chambresRecyclerView: RecyclerView
     private lateinit var presentateurChambres: PresentateurChambres
@@ -37,12 +38,13 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
     private lateinit var btnVersHistoriqueDeReservation: ImageView
 
     private val formatDate = "%02d/%02d/%d"
-
-    private var dateDebutCalendrier : Calendar? = null
-    private var dateFinCalendrier : Calendar? = null
+    private var dateDebutCalendrier: Calendar? = null
+    private var dateFinCalendrier: Calendar? = null
 
     private val aujourdhuiCalendrier = Calendar.getInstance()
 
+    private lateinit var loadChambresAccueil: TextView
+    private var isLoading = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,42 +54,46 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_chambres, container, false)
     }
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        chambresRecyclerView = requireActivity().findViewById<RecyclerView>(R.id.rv_chambres)
-        btnDateFin = requireActivity().findViewById<Button>(R.id.btn_date_debut)
-        btnDateDebut = requireActivity().findViewById<Button>(R.id.btn_date_fin)
-        btnRefresh = requireActivity().findViewById<ImageView>(R.id.btn_refresh_prix)
-        //etMontantMinimum = requireActivity().findViewById<EditText>(R.id.et_prix_minimum)
-        etMontantMaximum = requireActivity().findViewById<EditText>(R.id.et_prix_maximum)
 
+        loadChambresAccueil = requireActivity().findViewById(R.id.loadChambresAccueil)
+        chambresRecyclerView = requireActivity().findViewById(R.id.rv_chambres)
+        btnDateFin = requireActivity().findViewById(R.id.btn_date_debut)
+        btnDateDebut = requireActivity().findViewById(R.id.btn_date_fin)
+        btnRefresh = requireActivity().findViewById(R.id.btn_refresh_prix)
+        etMontantMaximum = requireActivity().findViewById(R.id.et_prix_maximum)
+        btnVersHistoriqueDeReservation = requireActivity().findViewById(R.id.vers_historique_reservation)
 
-        btnVersHistoriqueDeReservation = requireActivity().findViewById<ImageView>(R.id.vers_historique_reservation)
         chambresRecyclerView.layoutManager = LinearLayoutManager(context)
+
         presentateurChambres = PresentateurChambres(this)
 
         chambresAdaptater = ChambresAdaptater(ArrayList<Chambre>(), presentateurChambres)
         chambresRecyclerView.adapter = chambresAdaptater
 
-        presentateurChambres.traiterFiltrer()
         navController = Navigation.findNavController(view)
 
         attacherEvenements()
+
+        showLoader()
+        presentateurChambres.traiterFiltrer()
     }
 
-    // attache les évènements à tous les composants qui en ont besoin
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun attacherEvenements(){
+    private fun attacherEvenements() {
+
         btnVersHistoriqueDeReservation.setOnClickListener {
             presentateurChambres.traiterNaviguerVersHistoriqueReservations()
         }
 
         btnDateDebut.setOnClickListener {
-            val datePickerDialog =  DatePickerDialog(
+            val d = aujourdhuiCalendrier
+            val picker = DatePickerDialog(
                 requireContext(), R.style.DatePickerTheme,
                 {_, selectedYear, selectedMonth, selectedDay ->
 
@@ -96,60 +102,70 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
 
                     dateDebutCalendrier = Calendar.getInstance()
 
-                    dateDebutCalendrier?.let {
-                        it.apply {
-                            set(Calendar.YEAR, selectedYear)
-                            set(Calendar.MONTH, selectedMonth)
-                            set(Calendar.DAY_OF_MONTH, selectedDay)
-                        }
-                    }
-
+                    showLoader()
                     presentateurChambres.traiterFiltrer()
                 },
                 aujourdhuiCalendrier.get(Calendar.YEAR),
                 aujourdhuiCalendrier.get(Calendar.MONTH),
                 aujourdhuiCalendrier.get(Calendar.DAY_OF_MONTH)
             )
-            datePickerDialog.show()
+            picker.show()
         }
+
         btnDateFin.setOnClickListener {
-            val datePickerDialog =  DatePickerDialog(
+            val d = aujourdhuiCalendrier
+            val picker = DatePickerDialog(
                 requireContext(), R.style.DatePickerTheme,
                 {_, selectedYear, selectedMonth, selectedDay ->
 
                     val formattedDate = String.format(formatDate, selectedDay, selectedMonth + 1, selectedYear)
                     btnDateFin.text = formattedDate
 
-                    dateFinCalendrier?.let{
-                        it.apply {
-                            set(Calendar.YEAR, selectedYear)
-                            set(Calendar.MONTH, selectedMonth)
-                            set(Calendar.DAY_OF_MONTH, selectedDay)
-                        }
-                    }
-
+                    showLoader()
                     presentateurChambres.traiterFiltrer()
                 },
                 aujourdhuiCalendrier.get(Calendar.YEAR),
                 aujourdhuiCalendrier.get(Calendar.MONTH),
                 aujourdhuiCalendrier.get(Calendar.DAY_OF_MONTH)
             )
-            datePickerDialog.show()
+            picker.show()
         }
 
-        etMontantMaximum.setOnFocusChangeListener { view, focus ->
-            if(!focus){
+        etMontantMaximum.setOnFocusChangeListener { _, focus ->
+            if (!focus) {
+                showLoader()
                 presentateurChambres.traiterFiltrer()
             }
         }
 
         btnRefresh.setOnClickListener {
             etMontantMaximum.text.clear()
+            showLoader()
             presentateurChambres.traiterFiltrer()
         }
     }
 
+    private fun showLoader() {
+        isLoading = true
+        loadChambresAccueil.visibility = View.VISIBLE
+        chambresRecyclerView.visibility = View.INVISIBLE
+
+        loadChambresAccueil.animate()
+            .rotationBy(360f)
+            .setDuration(700)
+            .withEndAction { if (isLoading) showLoader() }
+            .start()
+    }
+
+    private fun hideLoader() {
+        isLoading = false
+        loadChambresAccueil.clearAnimation()
+        loadChambresAccueil.visibility = View.GONE
+        chambresRecyclerView.visibility = View.VISIBLE
+    }
+
     override fun afficherChambres(chambres: ArrayList<Chambre>) {
+        hideLoader()
         chambresAdaptater.updateData(chambres)
     }
 
@@ -168,36 +184,14 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
     override fun obtenirFiltres(): ChambreFiltre {
         return ChambreFiltre(
             dateDebutCalendrier?.time,
-            dateFinCalendrier?.time ,
+            dateFinCalendrier?.time,
             prixMaximal = etMontantMaximum.text.toString().toFloatOrNull()
         )
     }
 
     override fun afficherFiltres(filtre: ChambreFiltre) {
-        btnDateFin.text=""
-        btnDateDebut.text =""
-        etMontantMaximum.setText(
-            (filtre.prixMaximal?.toString() ?: "") as CharSequence
-        )
-
-        dateDebutCalendrier?.time = filtre.dateDebut ?: aujourdhuiCalendrier.time
-        filtre.dateFin?.let {
-            val calendar = Calendar.getInstance().apply { time = it }
-            val jour = calendar.get(Calendar.DAY_OF_MONTH)
-            val mois = calendar.get(Calendar.MONTH) + 1
-            val annee = calendar.get(Calendar.YEAR)
-
-            btnDateDebut.text = ""
-        }
-        dateFinCalendrier?.time = filtre.dateFin ?: aujourdhuiCalendrier.time
-        filtre.dateFin?.let {
-            val calendar = Calendar.getInstance().apply { time = it }
-            val jour = calendar.get(Calendar.DAY_OF_MONTH)
-            val mois = calendar.get(Calendar.MONTH) + 1
-            val annee = calendar.get(Calendar.YEAR)
-
-            btnDateFin.text = ""
-            afficherNotification("$jour/$mois/$annee")
-        }
+        btnDateFin.text = ""
+        btnDateDebut.text = ""
+        etMontantMaximum.setText(filtre.prixMaximal?.toString() ?: "")
     }
 }

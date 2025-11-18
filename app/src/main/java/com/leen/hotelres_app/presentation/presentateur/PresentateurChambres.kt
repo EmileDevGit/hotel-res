@@ -45,7 +45,6 @@ class PresentateurChambres(
 //        }
 
 
-
         filtre.prixMaximal?.let {
             if(it < 0 ){
                 vue.afficherNotification("Le prix maximal ne peut pas être négatif..")
@@ -57,7 +56,6 @@ class PresentateurChambres(
 
         }
 
-        vue.afficherNotification("Chargement... Veuillez patienter")
         CoroutineScope(Dispatchers.IO).launch {
             model.enregristrerFiltre(filtre)
             val résultat: ArrayList<Chambre> = model.recupererListeChambres(filtre)
@@ -67,7 +65,6 @@ class PresentateurChambres(
                 )
             }
         }
-
     }
 
     override fun traiterNaviguerVersHistoriqueReservations() {

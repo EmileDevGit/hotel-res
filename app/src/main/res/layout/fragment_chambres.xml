@@ -27,7 +27,7 @@
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:text="Trouvez la chambre idéale"
+                android:text="@string/trouvez_la_chambre_ideale"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Réserver de:"
+                    android:text="@string/reserver_de"
                     android:textStyle="bold" />
                 <Button
                     android:id="@+id/btn_date_debut"
@@ -52,7 +52,7 @@
                     android:textColor="@color/black"
                     android:textAlignment="center"
                     android:layout_weight="1"
-                    android:hint="Cliquez ici"
+                    android:hint="@string/cliquez_ici"
                     style="?android:spinnerStyle"
                     android:backgroundTint="@color/primary"
                     />
@@ -60,7 +60,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" À: "
+                    android:text="@string/To"
                     android:textStyle="bold" />
                 <Button
                     android:id="@+id/btn_date_fin"
@@ -69,7 +69,7 @@
                     android:textColor="@color/black"
                     android:textAlignment="center"
                     android:layout_weight="1"
-                    android:hint="Date de fin"
+                    android:hint="@string/date_de_fin"
                     style="?android:spinnerStyle" />
             </LinearLayout>
             <LinearLayout
@@ -82,7 +82,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Prix maximum:"
+                    android:text="@string/prix_maximum"
                     android:textStyle="bold" />
 
                 <EditText
@@ -105,15 +105,22 @@
             </LinearLayout>
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/loadChambresAccueil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⟳"
+            android:textSize="36sp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            />
+
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_weight="1"
             android:id="@+id/rv_chambres"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll_header_recherche"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_banner"
+            android:layout_weight="1"
             />
 
         <LinearLayout
