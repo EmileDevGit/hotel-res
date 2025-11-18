@@ -21,6 +21,7 @@ import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import com.leen.hotelres_app.presentation.presentateur.PresentateurChambres
 import com.leen.hotelres_app.R
+import java.text.SimpleDateFormat
 import java.util.Calendar
 import kotlin.String
 
@@ -173,14 +174,30 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
     }
 
     override fun afficherFiltres(filtre: ChambreFiltre) {
+        btnDateFin.text=""
+        btnDateDebut.text =""
         etMontantMaximum.setText(
             (filtre.prixMaximal?.toString() ?: "") as CharSequence
         )
 
-        btnDateDebut.text = filtre.dateDebut?.toString()?.format(formatDate) ?: ""
         dateDebutCalendrier?.time = filtre.dateDebut ?: aujourdhuiCalendrier.time
+        filtre.dateFin?.let {
+            val calendar = Calendar.getInstance().apply { time = it }
+            val jour = calendar.get(Calendar.DAY_OF_MONTH)
+            val mois = calendar.get(Calendar.MONTH) + 1
+            val annee = calendar.get(Calendar.YEAR)
 
-        btnDateFin.text = filtre.dateFin?.toString()?.format(formatDate) ?: ""
+            btnDateDebut.text = "$jour/$mois/$annee"
+        }
         dateFinCalendrier?.time = filtre.dateFin ?: aujourdhuiCalendrier.time
+        filtre.dateFin?.let {
+            val calendar = Calendar.getInstance().apply { time = it }
+            val jour = calendar.get(Calendar.DAY_OF_MONTH)
+            val mois = calendar.get(Calendar.MONTH) + 1
+            val annee = calendar.get(Calendar.YEAR)
+
+            btnDateFin.text = "$jour/$mois/$annee"
+            afficherNotification("$jour/$mois/$annee")
+        }
     }
 }

@@ -7,8 +7,7 @@ import java.util.Locale
 
 class SourceDeDonneesException(message : String) : Exception( message ) {}
 
-class SourceDeDonneesBidon: ISourceDeDonnees {
-
+class SourceDeDonneesBidon() : ISourceDeDonnees {
     // Variables contenant les données factices
     companion object{
         private val sdf_en = SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH)
@@ -70,8 +69,8 @@ class SourceDeDonneesBidon: ISourceDeDonnees {
             nombreLits = 1,
             prix = 480F,
             suite = "vip",
-            inclusions = "",
-            description = "",
+            inclusions = "Wifi, service personalisé",
+            description = "Vue sur la mer, accès Handicapé, insonorisé",
             nombrePersonnes = 2
         ),
         Chambre(
@@ -79,8 +78,8 @@ class SourceDeDonneesBidon: ISourceDeDonnees {
             nombreLits = 2,
             prix = 480F,
             suite = "vip",
-            inclusions = "",
-            description = "",
+            inclusions = "Wifi, service à la porte",
+            description = "accès Handicapé, Vue sur la mer",
             nombrePersonnes = 2
         ),
         Chambre(
@@ -96,7 +95,7 @@ class SourceDeDonneesBidon: ISourceDeDonnees {
             numero = "202",
             nombreLits = 2,
             prix = 680F,
-            suite = "",
+            suite = "familliale",
             inclusions = "",
             description = "",
             nombrePersonnes = 2
@@ -105,7 +104,7 @@ class SourceDeDonneesBidon: ISourceDeDonnees {
             numero = "203",
             nombreLits = 2,
             prix = 720F,
-            suite = "",
+            suite = "familliale",
             inclusions = "",
             description = "",
             nombrePersonnes = 2
@@ -115,7 +114,7 @@ class SourceDeDonneesBidon: ISourceDeDonnees {
             numero = "301",
             nombreLits = 3,
             prix = 850F,
-            suite = "",
+            suite = "familliale",
             inclusions = "",
             description = "",
             nombrePersonnes = 3
@@ -133,7 +132,7 @@ class SourceDeDonneesBidon: ISourceDeDonnees {
             numero = "401",
             nombreLits = 4,
             prix = 1200F,
-            suite = "",
+            suite = "econonomique",
             inclusions = "",
             description = "",
             nombrePersonnes = 4
@@ -142,7 +141,7 @@ class SourceDeDonneesBidon: ISourceDeDonnees {
             numero = "402",
             nombreLits = 4,
             prix = 1250F,
-            suite = "",
+            suite = "econonomique",
             inclusions = "",
             description = "",
             nombrePersonnes = 4
@@ -238,5 +237,4 @@ class SourceDeDonneesBidon: ISourceDeDonnees {
             throw Exception("Chambre non trouvée")
         }
     }
-
 }
