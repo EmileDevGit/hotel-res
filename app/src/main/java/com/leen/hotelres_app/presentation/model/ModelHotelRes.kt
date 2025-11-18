@@ -43,4 +43,12 @@ class ModelHotelRes {
         )
     }
 
+    fun enregristrerFiltre(filtre: ChambreFiltre): Boolean{
+        return chambreService.enregristrerFiltre(filtre)
+    }
+
+    fun recupererFiltre(): ChambreFiltre{
+        return chambreService.recupererFiltre()
+    }
+
 }

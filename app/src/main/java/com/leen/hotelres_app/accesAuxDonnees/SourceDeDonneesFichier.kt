@@ -2,13 +2,16 @@ package com.leen.hotelres_app.accesAuxDonnees
 
 import android.content.Context
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import java.io.File
 
 
 class SourceDeDonneesFichier(private val context: Context) : ISourceDeDonneesFichier {
 
-    private val gson = Gson()
+    private val gson = GsonBuilder()
+        .setDateFormat("dd/MM//yyyy")
+        .create()
     private val nomFichierChambreFiltre = "chambre_filtre.json"
 
 

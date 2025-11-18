@@ -19,7 +19,7 @@ class PresentateurChambres(
     init {
         // Recupérer les données de filtres en cache ici...
         vue.afficherFiltres(
-            ChambreFiltre()
+            model.recupererFiltre()
         )
     }
 
@@ -59,8 +59,8 @@ class PresentateurChambres(
 
         vue.afficherNotification("Chargement... Veuillez patienter")
         CoroutineScope(Dispatchers.IO).launch {
+            model.enregristrerFiltre(filtre)
             val résultat: ArrayList<Chambre> = model.recupererListeChambres(filtre)
-
             CoroutineScope(Dispatchers.Main).launch {
                 vue.afficherChambres(
                     résultat
