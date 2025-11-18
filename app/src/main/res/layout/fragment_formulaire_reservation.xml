@@ -80,7 +80,7 @@
             android:layout_weight="1"
             android:contentDescription="Save"
             android:padding="8dp"
-            android:src="@drawable/bookmark_icon" />
+            android:src="@drawable/history_icon" />
 
     </LinearLayout>
 
