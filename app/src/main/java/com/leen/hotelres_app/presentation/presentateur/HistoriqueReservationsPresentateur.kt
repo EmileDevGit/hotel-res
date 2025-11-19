@@ -15,7 +15,7 @@ class HistoriqueReservationsPresentateur(
     override fun chargerReservations() {
         try {
             CoroutineScope(Dispatchers.IO).launch{
-                Thread.sleep(1000)
+                Thread.sleep(2000)
                 val reservations = modele.recupererHistoriqueReservation()
 
                 CoroutineScope(Dispatchers.Main).launch {

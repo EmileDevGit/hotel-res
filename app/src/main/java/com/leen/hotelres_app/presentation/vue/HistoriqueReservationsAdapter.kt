@@ -34,7 +34,7 @@ class HistoriqueReservationsAdapter(
         val reservation = reservations[position]
 
         val sdfDisplay = SimpleDateFormat("dd MMM yyyy", Locale.FRANCE)
-        val dateRange = "${sdfDisplay.format(reservation.dateDébut)} - ${sdfDisplay.format(reservation.dateFin)}"
+        val dateRange = "${sdfDisplay.format(reservation.dateDébut)}    ->    ${sdfDisplay.format(reservation.dateFin)}"
 
         holder.tvTitre.text = holder.itemView.context.getString(
             R.string.chambre_pour_x_personnes,

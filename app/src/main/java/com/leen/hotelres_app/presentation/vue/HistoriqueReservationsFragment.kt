@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -19,6 +20,8 @@ class HistoriqueReservationsFragment : Fragment(),
     ContratFragmentPresentateurHistoriqueReservations.IFragmentHistoriqueReservations {
 
     private lateinit var presenter: HistoriqueReservationsPresentateur
+    private lateinit var loadHistoriqueReservation: TextView
+    private var isLoading = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,20 +41,45 @@ class HistoriqueReservationsFragment : Fragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        loadHistoriqueReservation = view.findViewById(R.id.loadHistoriqueReservation)
         presenter = HistoriqueReservationsPresentateur(this)
+
+        showLoader()
         presenter.chargerReservations()
     }
 
     override fun afficherReservations(reservations: List<Reservation>) {
+        stopLoader()
+
         val recyclerView = view?.findViewById<RecyclerView>(R.id.recyclerReservations)
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
         recyclerView?.adapter = HistoriqueReservationsAdapter(reservations)
     }
 
     override fun aucuneHistorique() {
+        stopLoader()
+
         Toast.makeText(requireContext(),
             getString(R.string.aucune_historique_afficher), Toast.LENGTH_SHORT).show()
     }
 
     override fun erreurDeAffichage(message: String) {}
+
+    private fun showLoader() {
+        isLoading = true
+        loadHistoriqueReservation.visibility = View.VISIBLE
+
+        loadHistoriqueReservation.animate()
+            .rotationBy(360f)
+            .setDuration(700)
+            .withEndAction { if (isLoading) showLoader() }
+            .start()
+    }
+
+    private fun stopLoader() {
+        isLoading = false
+        loadHistoriqueReservation.clearAnimation()
+        loadHistoriqueReservation.visibility = View.GONE
+    }
+
 }
