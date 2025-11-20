@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="chambre_pour_x_personnes">Room for %1$d people</string>
     <string name="nombre_de_personnes">Number of people: %1$d</string>
     <string name="date_de_reservation">Reservation date: %1$s</string>
     <string name="prix_nuit">Price: %1$s</string>
@@ -25,4 +24,9 @@
     <string name="prix_maximum">Maximum price:</string>
     <string name="nombre_de_lits">Nombre of beds: %1$s</string>
     <string name="reserverNuit_details">Reserve - %1$s$ / night</string>
+    <string name="details_chambre_titre">Room %1$s details</string>
+    <string name="detail_chambre_nb_personnes">Room for %1$d person(s)</string>
+    <string name="details_chambre_reserver_prix_nuit">Book at %1$s$/night</string>
+    <string name="details_chambre_nombre_de_lits">Number of beds: %1$d</string>
+    <string name="details_chambre_inclusion">Included: %1$s</string>
 </resources>

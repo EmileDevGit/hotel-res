@@ -60,7 +60,7 @@ class DetailChambreFragment : Fragment(), IFragmentDetailsChambre {
         titreDetailsChambre = vue.findViewById<TextView>(R.id.titreDetailsChambre)
         tvDescriptionDetailsChambre = vue.findViewById<TextView>(R.id.tvDescriptionDetailsChambre)
         tvInclusDetailsChambre = vue.findViewById<TextView>(R.id.tvInclusDetailsChambre)
-        tvNbLitsDetailsChambre = vue.findViewById<TextView>(R.id.tvNbLitsDetailsChambre)
+        tvNbLitsDetailsChambre = vue.findViewById<TextView>(R.id.tvNombreLitsDetailsChambre)
         tvNbPersonne = vue.findViewById<TextView>(R.id.tvNbPersonneDetailsChambre)
         carouselPhotosRecyclerView = vue.findViewById<RecyclerView>(R.id.carouselPhotosRecyclerView)
     }
@@ -95,15 +95,30 @@ class DetailChambreFragment : Fragment(), IFragmentDetailsChambre {
         description: String,
         inclusions: String,
         nbrePersonnes: Int,
-        prixParNuit: Float,
+        prixParNuit: String,
         urlsPhotos: Array<String>
     ) {
-        titreDetailsChambre.setText("Détails de la chambre ${numero}")
-        tvNbPersonne.setText("Chambre pour ${nbrePersonnes} personne(s)")
-        tvDescriptionDetailsChambre.setText("Description: ${description}")
-        tvNbLitsDetailsChambre.setText("Nombre de lits: ${nbreLits}")
-        tvInclusDetailsChambre.setText("Inclus: ${inclusions}")
-        btnReserverChambre.setText("Réserver - ${prixParNuit}$ / nuit")
+        titreDetailsChambre.text = getString(
+            R.string.details_chambre_titre,
+            numero
+        )
+        tvNbPersonne.text = getString(
+            R.string.detail_chambre_nb_personnes,
+            nbrePersonnes
+        )
+        tvDescriptionDetailsChambre.setText(description)
+        tvNbLitsDetailsChambre.text = getString(
+            R.string.details_chambre_nombre_de_lits,
+            nbreLits
+        )
+        tvInclusDetailsChambre.text = getString(
+            R.string.details_chambre_inclusion,
+            inclusions
+        )
+        btnReserverChambre.text = getString(
+            R.string.details_chambre_reserver_prix_nuit,
+            prixParNuit
+        )
 
         carouselPhotosRecyclerView.apply {
             layoutManager = CarouselLayoutManager(FullScreenCarouselStrategy())

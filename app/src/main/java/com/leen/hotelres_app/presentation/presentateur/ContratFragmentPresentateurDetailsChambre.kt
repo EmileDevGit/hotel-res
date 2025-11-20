@@ -8,7 +8,7 @@ interface ContratFragmentPresentateurDetailsChambre {
             description : String,
             inclusions : String,
             nbrePersonnes : Int,
-            prixParNuit : Float,
+            prixParNuit : String,
             urlsPhotos : Array<String>
         )
     }

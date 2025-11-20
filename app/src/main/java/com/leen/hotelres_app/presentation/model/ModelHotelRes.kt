@@ -37,7 +37,7 @@ class ModelHotelRes {
             nombreLits = 1,
             prix = 480F,
             suite = "vip",
-            inclusions = "Inclus: micro-onde, frigo, bain tourbillon, espace de rangement, canapé-lit pour les invités",
+            inclusions = "micro-onde, frigo, bain tourbillon, espace de rangement, canapé-lit pour les invités",
             description = "Une belle chambre avec vue sur le paysage montagneux, parfait pour une escapade en famille, les animaux sont les bienvenus!",
             nombrePersonnes = 2
         )
