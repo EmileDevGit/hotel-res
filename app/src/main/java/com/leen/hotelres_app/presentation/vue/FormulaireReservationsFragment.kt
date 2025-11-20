@@ -1,7 +1,9 @@
 package com.leen.hotelres_app.presentation.vue
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +24,7 @@ import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentate
 import com.leen.hotelres_app.presentation.presentateur.FormulaireReservationsPresentateur
 import com.leen.hotelres_app.R
 import com.leen.hotelres_app.presentation.model.ModelHotelRes
+import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -41,6 +44,8 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
     private lateinit var tvPrixSelonNbPersonnes: TextView
     private lateinit var iconeAccueil: ImageView
     private lateinit var iconeHistorique: ImageView
+    private var dateDébutVar: Long = 0L
+    private var dateFinVar: Long = 0L
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
         val vue = inflater.inflate(R.layout.fragment_formulaire_reservation, container, false)
@@ -89,6 +94,7 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
                 .setTitle("Confirmation")
                 .setMessage(getString(R.string.reservation_confirmee))
                 .setPositiveButton("OK") { _, _ ->
+                    ajouterEvenementAuCalendrier(dateDébutVar, dateFinVar)
                     presentateur?.naviguerVersAccueil()
                     vue.findNavController().navigate(R.id.action_ecran_reservation_chambre_to_ecran_liste_chambres)
                 }
@@ -101,9 +107,22 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
         }
     }
 
+    fun ajouterEvenementAuCalendrier(startMillis: Long, endMillis: Long) {
+        val intent = Intent(Intent.ACTION_INSERT).apply {
+            data = CalendarContract.Events.CONTENT_URI
+            putExtra(CalendarContract.Events.EVENT_TIMEZONE, "UTC")
+            putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startMillis)
+            putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endMillis)
+            putExtra(CalendarContract.Events.TITLE, "Réservation d'hôtel")
+            putExtra(CalendarContract.Events.DESCRIPTION, "Votre réservation est confirmée!")
+            putExtra(CalendarContract.Events.EVENT_LOCATION, "HotelRes")
+        }
+        startActivity(intent)
+    }
+
     override fun chargerInfoReservation(dateDébut: Long, dateFin: Long, nbPersonnes: Int?) {
-        var dateDébutVar = dateDébut
-        var dateFinVar = dateFin
+        dateDébutVar = dateDébut
+        dateFinVar = dateFin
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.FRENCH)
         val dateDébutString = dateFormat.format(Date(dateDébutVar))
         val dateFinString = dateFormat.format(Date(dateFinVar))
@@ -125,7 +144,6 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
             sélecteurDates.show(parentFragmentManager, "TAG")
 
             sélecteurDates.addOnPositiveButtonClickListener {
-
                 dateFormat.timeZone = TimeZone.getTimeZone("UTC")
 
                 dateDébutVar = it.first
