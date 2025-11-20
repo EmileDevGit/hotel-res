@@ -32,7 +32,7 @@
             android:background="@color/primary"
             android:gravity="center"
             android:orientation="horizontal"
-            android:text="@string/tv_titre_details_de_la_chambre"
+            android:text="@string/details_chambre_titre"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -79,26 +79,6 @@
             app:layout_constraintTop_toBottomOf="@+id/carouselPhotosRecyclerView"
             tools:text="Une chambre parfaite pour la famille avec de l'espace et un canapé réversible pour les invités" />
 
-        <TextView
-            android:id="@+id/tvNbLitsDetailsChambre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/lblNombreLitsDetailsChambre"
-            app:layout_constraintTop_toTopOf="@+id/lblNombreLitsDetailsChambre"
-            tools:text="X" />
-
-        <TextView
-            android:id="@+id/tvInclusDetailsChambre"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/lblInclusDetailsChambre"
-            app:layout_constraintTop_toTopOf="@+id/lblInclusDetailsChambre"
-            tools:text="Micro-onde, mini-réfrigérateur, accès wifi, bain et douche." />
-
         <LinearLayout
             android:id="@+id/bottom_banner"
             android:layout_width="0dp"
@@ -133,24 +113,24 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/lblNombreLitsDetailsChambre"
+            android:id="@+id/tvNombreLitsDetailsChambre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/details_chambre_nombre_de_lits_lbl"
+            android:text="@string/details_chambre_nombre_de_lits"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@+id/carouselPhotosRecyclerView"
             app:layout_constraintTop_toBottomOf="@+id/tvDescriptionDetailsChambre" />
 
         <TextView
-            android:id="@+id/lblInclusDetailsChambre"
+            android:id="@+id/tvInclusDetailsChambre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/details_chambre_inclus_lbl"
+            android:text="@string/details_chambre_inclusion"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/lblNombreLitsDetailsChambre"
-            app:layout_constraintTop_toBottomOf="@+id/lblNombreLitsDetailsChambre" />
+            app:layout_constraintStart_toStartOf="@+id/tvNombreLitsDetailsChambre"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombreLitsDetailsChambre" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

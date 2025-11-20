@@ -24,9 +24,9 @@
     <string name="prix_maximum">Prix maximum:</string>
     <string name="nombre_de_lits">Nombre de lits: %1$s</string>
     <string name="reserverNuit_details">Réserver - %1$s$ / nuit</string>
-    <string name="tv_titre_details_de_la_chambre">Détails de la chambre</string>
+    <string name="details_chambre_titre">Détails de la chambre %1$s</string>
     <string name="detail_chambre_nb_personnes">Chambre pour %1$d personne(s)</string>
-    <string name="details_chambre_reserver_prix_nuit">Réserver %1$f/nuit</string>
-    <string name="details_chambre_nombre_de_lits_lbl">Nombre de lits:</string>
-    <string name="details_chambre_inclus_lbl">Inclus:</string>
+    <string name="details_chambre_reserver_prix_nuit">Réserver %1$s$/nuit</string>
+    <string name="details_chambre_nombre_de_lits">Nombre de lits: %1$d</string>
+    <string name="details_chambre_inclusion">Inclus: %1$s</string>
 </resources>

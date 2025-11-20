@@ -5,6 +5,7 @@ import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentate
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurDetailsChambre.IFragmentDetailsChambre
 import com.leen.hotelres_app.presentation.vue.DetailChambreFragment
 import kotlinx.coroutines.*
+import java.util.Locale
 
 
 class PresentateurDetailsChambre (
@@ -20,7 +21,7 @@ class PresentateurDetailsChambre (
             chambre.description,
             chambre.inclusions,
             chambre.nombrePersonnes,
-            chambre.prix,
+            String.format("%.2f", chambre.prix),
             chambre.images
         )
     }
