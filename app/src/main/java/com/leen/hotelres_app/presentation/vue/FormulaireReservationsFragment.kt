@@ -110,7 +110,7 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
     fun ajouterEvenementAuCalendrier(startMillis: Long, endMillis: Long) {
         val intent = Intent(Intent.ACTION_INSERT).apply {
             data = CalendarContract.Events.CONTENT_URI
-            putExtra(CalendarContract.Events.EVENT_TIMEZONE, TimeZone.getDefault().id)
+            putExtra(CalendarContract.Events.EVENT_TIMEZONE, "UTC")
             putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startMillis)
             putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endMillis)
             putExtra(CalendarContract.Events.TITLE, "Réservation d'hôtel")
@@ -144,7 +144,6 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
             sélecteurDates.show(parentFragmentManager, "TAG")
 
             sélecteurDates.addOnPositiveButtonClickListener {
-
                 dateFormat.timeZone = TimeZone.getTimeZone("UTC")
 
                 dateDébutVar = it.first
