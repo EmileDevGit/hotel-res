@@ -27,7 +27,7 @@ class PresentateurDetailsChambre (
     }
 
     override fun naviguerVersReservation() {
-        // Sauvegarde les données dans le modèle
+        modele.preparerReservation()
     }
 
     override fun naviguerVersAccueil() {

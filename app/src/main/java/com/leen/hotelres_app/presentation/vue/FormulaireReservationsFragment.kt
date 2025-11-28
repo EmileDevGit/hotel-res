@@ -24,6 +24,7 @@ import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentate
 import com.leen.hotelres_app.presentation.presentateur.FormulaireReservationsPresentateur
 import com.leen.hotelres_app.R
 import com.leen.hotelres_app.presentation.model.ModelHotelRes
+import org.w3c.dom.Text
 import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -39,6 +40,7 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
     private lateinit var btnConfirmation : Button
     private lateinit var btnModifierDatesChoisi : Button
     private lateinit var tvDatesChoisi : TextView
+    private lateinit var title: TextView
     private lateinit var btnRetour : ImageButton
     private lateinit var spinnerNbPersonnes: Spinner
     private lateinit var tvPrixSelonNbPersonnes: TextView
@@ -75,6 +77,7 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
         btnRetour = vue.findViewById<ImageButton>(R.id.btnRetour)
         spinnerNbPersonnes = vue.findViewById<Spinner>(R.id.spinnerNbPersonnes)
         tvPrixSelonNbPersonnes = vue.findViewById<TextView>(R.id.tvPrixParPersonnes)
+        title = vue.findViewById<TextView>(R.id.title)
     }
 
     private fun attacherEcouteursNavigation(vue : View){
@@ -120,7 +123,10 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
         startActivity(intent)
     }
 
-    override fun chargerInfoReservation(dateDébut: Long, dateFin: Long, nbPersonnes: Int?) {
+    override fun chargerInfoReservation(titre: String, dateDébut: Long, dateFin: Long, nbPersonnes: Int?) {
+
+        title.text = titre
+
         dateDébutVar = dateDébut
         dateFinVar = dateFin
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.FRENCH)

@@ -1,5 +1,6 @@
 package com.leen.hotelres_app.presentation.model.entities
 
+import java.time.LocalDate
 import java.util.Date
 
 class ChambreFiltre(

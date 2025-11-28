@@ -4,6 +4,7 @@ interface ContratFragmentPresentateurFormulaireReservation {
 
     interface IFragmentFormulaireReservations{
         fun chargerInfoReservation(
+            title: String,
             dateDébut: Long,
             dateFin: Long,
             nbPersonnes : Int?
