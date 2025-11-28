@@ -53,11 +53,11 @@ object ModelHotelRes {
             .toEpochMilli()
 
         val reservation = Reservation(
-            "Réservation pour la chambre ${chambreSelectionnee.numero} - ${chambreSelectionnee.suite}",
+            chambreSelectionnee.numero,
             debutMillis,
             finMillis,
             LocalDate.now().toString(),
-            "${chambreSelectionnee.prix}$/par nuit",
+            chambreSelectionnee.prix,
             chambreSelectionnee.nombrePersonnes
         )
         this.reservationEnCours = reservation

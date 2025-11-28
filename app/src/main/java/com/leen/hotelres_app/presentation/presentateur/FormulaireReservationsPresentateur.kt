@@ -18,7 +18,7 @@ class FormulaireReservationsPresentateur(
             val reservation = modele.recupererReservation()
             CoroutineScope(Dispatchers.Main).launch {
                 vue.chargerInfoReservation(
-                    reservation.titre,
+                    reservation.numero,
                     reservation.dateDébut,
                     reservation.dateFin,
                     reservation.nbPersonnes

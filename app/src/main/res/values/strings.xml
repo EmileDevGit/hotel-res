@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false">HotelRes_App</string>
     <string name="nombre_de_personnes">Nombre de personnes: %1$d</string>
     <string name="date_de_reservation">Date de réservation: %1$s</string>
-    <string name="prix_nuit">Prix: %1$s</string>
+    <string name="prix_nuit">Prix: %1$s$</string>
     <string name="choissisez_vos_dates_de_reservation">Choissisez vos dates de réservation</string>
     <string name="aucun_changement_au_prix">Aucun changement au prix</string>
     <string name="le_prix_augmente_de">Le prix augmente de %1$s</string>
@@ -29,4 +29,5 @@
     <string name="details_chambre_reserver_prix_nuit">Réserver %1$s$/nuit</string>
     <string name="details_chambre_nombre_de_lits">Nombre de lits: %1$d</string>
     <string name="details_chambre_inclusion">Inclus: %1$s</string>
+    <string name="historique_reservation_titre">Réservation de la chambre %1$s</string>
 </resources>

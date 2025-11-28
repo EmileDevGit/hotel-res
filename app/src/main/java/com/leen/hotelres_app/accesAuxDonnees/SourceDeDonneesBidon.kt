@@ -10,54 +10,54 @@ class SourceDeDonneesException(message : String) : Exception( message ) {}
 class SourceDeDonneesBidon() : ISourceDeDonnees {
     // Variables contenant les données factices
     companion object{
-        private val sdf_en = SimpleDateFormat("dd MMM yyyy", Locale.ENGLISH)
+
         var historiqueReservations = mutableListOf(
             Reservation(
-                "Chambre pour 2 personnes",
-                sdf_en.parse("14 Oct 2025")?.time ?: 0L,
-                sdf_en.parse("17 Oct 2025")?.time ?: 0L,
+                "101",
+                1760390400000, // 14 Oct 2025
+                1760649600000, // 17 Oct 2025
                 "10 Oct 2025",
-                "130$/par nuit",
+                130f,
                 3
             ),
             Reservation(
-                "Chambre pour 4 personnes",
-                sdf_en.parse("8 Sep 2025")?.time ?: 0L,
-                sdf_en.parse("13 Sep 2025")?.time ?: 0L,
+                "102",
+                1757280000000, // 8 Sep 2025
+                1757712000000, // 13 Sep 2025
                 "6 Sep 2025",
-                "160$/par nuit",
+                160f,
                 4
             ),
             Reservation(
-                "Chambre pour 3 personnes",
-                sdf_en.parse("2 Aug 2025")?.time ?: 0L,
-                sdf_en.parse("10 Aug 2025")?.time ?: 0L,
+                "103",
+                1754092800000, // 2 Aug 2025
+                1754764800000, // 10 Aug 2025
                 "31 Jul 2025",
-                "145$/par nuit",
+                145f,
                 3
             ),
             Reservation(
-                "Chambre pour 2 personnes",
-                sdf_en.parse("15 Jun 2025")?.time ?: 0L,
-                sdf_en.parse("21 Jun 2025")?.time ?: 0L,
+                "104",
+                1750032000000, // 15 Jun 2025
+                1750550400000, // 21 Jun 2025
                 "2 Jun 2025",
-                "130$/par nuit",
+                130f,
                 2
             ),
             Reservation(
-                "Chambre pour 3 personnes",
-                sdf_en.parse("10 May 2025")?.time ?: 0L,
-                sdf_en.parse("15 May 2025")?.time ?: 0L,
+                "105",
+                1746835200000, // 10 May 2025
+                1747267200000, // 15 May 2025
                 "8 Mai 2025",
-                "150$/par nuit",
+                150f,
                 3
             ),
             Reservation(
-                "Chambre pour 3 personnes",
-                sdf_en.parse("10 Jun 2025")?.time ?: 0L,
-                sdf_en.parse("13 Jun 2025")?.time ?: 0L,
+                "106",
+                1749513600000, // 10 Jun 2025
+                1749772800000, // 13 Jun 2025
                 "6 Jun 2025",
-                "165$/par nuit",
+                165f,
                 4
             )
         )
@@ -69,8 +69,8 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             nombreLits = 1,
             prix = 480F,
             suite = "vip",
-            inclusions = "Wifi, service personalisé",
-            description = "Vue sur la mer, accès Handicapé, insonorisé",
+            inclusions = "Wifi haut débit, Service personnalisé, Petit-déjeuner inclus, Minibar offert",
+            description = "Suite lumineuse avec vue sur la mer, accès handicapé, insonorisation complète, literie premium",
             nombrePersonnes = 2
         ),
         Chambre(
@@ -78,8 +78,8 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             nombreLits = 2,
             prix = 480F,
             suite = "vip",
-            inclusions = "Wifi, service à la porte",
-            description = "accès Handicapé, Vue sur la mer",
+            inclusions = "Wifi, Service à la porte, Machine à café premium, Peignoirs et chaussons",
+            description = "Chambre élégante avec vue sur la mer, accès handicapé, ambiance chaleureuse",
             nombrePersonnes = 2
         ),
         Chambre(
@@ -87,8 +87,8 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             nombreLits = 2,
             prix = 650F,
             suite = "vip",
-            inclusions = "",
-            description = "",
+            inclusions = "Jacuzzi privé, Wifi haut débit, Service en chambre 24h/24, Coffre-fort",
+            description = "Suite VIP spacieuse avec coin salon, décoration moderne et vue panoramique",
             nombrePersonnes = 2
         ),
         Chambre(
@@ -96,8 +96,8 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             nombreLits = 2,
             prix = 680F,
             suite = "familliale",
-            inclusions = "",
-            description = "",
+            inclusions = "Wifi, Mini-frigo, Télévision 4K, Jeux de société",
+            description = "Chambre familiale confortable avec espace de rangement, ambiance chaleureuse",
             nombrePersonnes = 2
         ),
         Chambre(
@@ -105,8 +105,8 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             nombreLits = 2,
             prix = 720F,
             suite = "familliale",
-            inclusions = "",
-            description = "",
+            inclusions = "Wifi, Coin salon, Plateau de bienvenue, Télévision 4K",
+            description = "Chambre familiale très lumineuse avec vue sur le jardin",
             nombrePersonnes = 2
         ),
 
@@ -115,35 +115,35 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             nombreLits = 3,
             prix = 850F,
             suite = "familliale",
-            inclusions = "",
-            description = "",
+            inclusions = "Wifi, Cuisine équipée, Espace salon, Climatisation",
+            description = "Grande suite familiale parfaitement adaptée aux séjours prolongés",
             nombrePersonnes = 3
         ),
         Chambre(
             numero = "302",
             nombreLits = 3,
             prix = 890F,
-            suite = "",
-            inclusions = "",
-            description = "",
+            suite = "familliale",
+            inclusions = "Wifi, Machine à café, Coin repas, Télévision connectée",
+            description = "Suite familiale moderne avec décoration épurée et vue sur la ville",
             nombrePersonnes = 3
         ),
         Chambre(
             numero = "401",
             nombreLits = 4,
             prix = 1200F,
-            suite = "econonomique",
-            inclusions = "",
-            description = "",
+            suite = "economique",
+            inclusions = "Wifi, Ventilateur, Télévision, Serviettes fournies",
+            description = "Chambre économique spacieuse idéale pour les groupes",
             nombrePersonnes = 4
         ),
         Chambre(
             numero = "402",
             nombreLits = 4,
             prix = 1250F,
-            suite = "econonomique",
-            inclusions = "",
-            description = "",
+            suite = "economique",
+            inclusions = "Wifi, Climatisation légère, Télévision, Kit de toilette basique",
+            description = "Chambre pratique et fonctionnelle pour un groupe ou une grande famille",
             nombrePersonnes = 4
         ),
 
@@ -151,36 +151,36 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             numero = "501",
             nombreLits = 2,
             prix = 750F,
-            suite = "",
-            inclusions = "",
-            description = "",
+            suite = "standard",
+            inclusions = "Wifi, Mini-frigo, Climatisation, Télévision HD",
+            description = "Chambre moderne avec décor relaxant, idéale pour les couples",
             nombrePersonnes = 2
         ),
         Chambre(
             numero = "502",
             nombreLits = 1,
             prix = 520F,
-            suite = "",
-            inclusions = "",
-            description = "",
+            suite = "standard",
+            inclusions = "Wifi, Bureau de travail, Télévision HD",
+            description = "Chambre simple confortable, parfaite pour les voyageurs seuls",
             nombrePersonnes = 1
         ),
         Chambre(
             numero = "601",
             nombreLits = 3,
             prix = 920F,
-            suite = "",
-            inclusions = "",
-            description = "",
+            suite = "standard",
+            inclusions = "Wifi, Climatisation, Coin salon, Télévision connectée",
+            description = "Grande chambre moderne adaptée aux familles ou groupes",
             nombrePersonnes = 3
         ),
         Chambre(
             numero = "602",
             nombreLits = 2,
             prix = 700F,
-            suite = "",
-            inclusions = "",
-            description = "",
+            suite = "standard",
+            inclusions = "Wifi, Télévision HD, Petit réfrigérateur",
+            description = "Chambre simple mais élégante avec un bon confort général",
             nombrePersonnes = 2
         ),
 
@@ -188,21 +188,22 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             numero = "701",
             nombreLits = 2,
             prix = 950F,
-            suite = "",
-            inclusions = "",
-            description = "",
+            suite = "standard",
+            inclusions = "Wifi, TV connectée, Machine à café, Climatisation",
+            description = "Chambre moderne située en étage élevé avec excellente vue",
             nombrePersonnes = 2
         ),
         Chambre(
             numero = "702",
             nombreLits = 1,
             prix = 600F,
-            suite = "",
-            inclusions = "",
-            description = "",
+            suite = "standard",
+            inclusions = "Wifi, Bureau ergonomique, Télévision HD",
+            description = "Chambre idéale pour séjour d’affaires avec espace de travail",
             nombrePersonnes = 1
         )
     )
+
 
 
     // Implémentation des méthodes de l'interface ISourceDeDonnees

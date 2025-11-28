@@ -24,6 +24,7 @@ import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentate
 import com.leen.hotelres_app.presentation.presentateur.FormulaireReservationsPresentateur
 import com.leen.hotelres_app.R
 import com.leen.hotelres_app.presentation.model.ModelHotelRes
+import com.leen.hotelres_app.presentation.utils.viewUtils
 import org.w3c.dom.Text
 import java.sql.Time
 import java.text.SimpleDateFormat
@@ -127,11 +128,8 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
 
         title.text = titre
 
-        dateDébutVar = dateDébut
-        dateFinVar = dateFin
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.FRENCH)
-        val dateDébutString = dateFormat.format(Date(dateDébutVar))
-        val dateFinString = dateFormat.format(Date(dateFinVar))
+        val dateDébutString = viewUtils.convertirEpochEnDateFormattee(dateDébut)
+        val dateFinString = viewUtils.convertirEpochEnDateFormattee(dateFin)
 
         tvDatesChoisi.text = tvDatesChoisi.context.getString(
             R.string.dates_reservationForm,
@@ -143,20 +141,20 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
             val sélecteurDates = MaterialDatePicker.Builder.dateRangePicker()
                 .setTheme(R.style.MaterialCalendarTheme)
                 .setTitleText(getString(R.string.choissisez_vos_dates_de_reservation))
-                .setSelection(Pair(dateDébutVar, dateFinVar))
+                .setSelection(Pair(dateDébut, dateFin))
                 .setCalendarConstraints(null) // À implémenter au plus tard pour éviter que l'utilisateur sélectionne des dates hors de la sélection
                 .build()
 
             sélecteurDates.show(parentFragmentManager, "TAG")
 
             sélecteurDates.addOnPositiveButtonClickListener {
-                dateFormat.timeZone = TimeZone.getTimeZone("UTC")
+
 
                 dateDébutVar = it.first
                 dateFinVar = it.second
 
-                val dateDébutString = dateFormat.format(Date(it.first))
-                val dateFinString = dateFormat.format(Date(it.second))
+                val dateDébutString = viewUtils.convertirEpochEnDateFormattee(it.first)
+                val dateFinString = viewUtils.convertirEpochEnDateFormattee(it.second)
 
                 tvDatesChoisi.text = tvDatesChoisi.context.getString(
                     R.string.dates_reservationForm,
