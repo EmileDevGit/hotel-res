@@ -9,7 +9,7 @@ import kotlinx.coroutines.*
 
 class FormulaireReservationsPresentateur(
     var vue : IFragmentFormulaireReservations = FormulaireReservationsFragment(),
-    var modele : ModelHotelRes = ModelHotelRes()
+    var modele : ModelHotelRes = ModelHotelRes
 ) : IPresentateurFormulaireReservations {
 
     override fun initialiserVue() {

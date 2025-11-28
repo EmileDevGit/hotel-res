@@ -25,7 +25,7 @@ class DetailChambreFragment : Fragment(), IFragmentDetailsChambre {
 
     var presentateur : IPresentateurDetailsChambre = PresentateurDetailsChambre(
         this,
-        ModelHotelRes() )
+        ModelHotelRes )
     private lateinit var titreDetailsChambre: TextView
     private lateinit var tvNbPersonne: TextView
     private lateinit var tvDescriptionDetailsChambre : TextView

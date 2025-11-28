@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 
 class HistoriqueReservationsPresentateur(
     private val view: ContratFragmentPresentateurHistoriqueReservations.IFragmentHistoriqueReservations,
-    private val modele: ModelHotelRes = ModelHotelRes()
+    private val modele: ModelHotelRes = ModelHotelRes
 ) :
     ContratFragmentPresentateurHistoriqueReservations.IPresentateurHistoriqueReservations {
 

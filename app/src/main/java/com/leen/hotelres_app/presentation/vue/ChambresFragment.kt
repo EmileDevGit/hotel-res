@@ -169,7 +169,7 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
         chambresAdaptater.updateData(chambres)
     }
 
-    override fun naviguerVersDetails(id: Int) {
+    override fun naviguerVersDetails() {
         navController.navigate(R.id.action_ecran_liste_chambres_to_ecran_details_chambre)
     }
 

@@ -1,6 +1,7 @@
 package com.leen.hotelres_app.presentation.presentateur
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
@@ -12,9 +13,10 @@ import java.util.Date
 
 class PresentateurChambres(
     private val vue: ContratFragmentPresentateurChambres.IVueChambres,
-    private val model: ModelHotelRes = ModelHotelRes()
+    private val model: ModelHotelRes = ModelHotelRes
 ) : ContratFragmentPresentateurChambres.IPresentateurChambres {
 
+    private lateinit var chambresDisponibles: ArrayList<Chambre>
 
     init {
         // Recupérer les données de filtres en cache ici...
@@ -23,8 +25,10 @@ class PresentateurChambres(
         )
     }
 
-    override fun traiterNaviguerVersDetails(id: Int) {
-        vue.naviguerVersDetails(id)
+    override fun traiterNaviguerVersDetails(numero: String) {
+        val chambre = chambresDisponibles.first { it.numero == numero }
+        model.selectionnerChambre(chambre)
+        vue.naviguerVersDetails()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -58,10 +62,10 @@ class PresentateurChambres(
 
         CoroutineScope(Dispatchers.IO).launch {
             model.enregristrerFiltre(filtre)
-            val résultat: ArrayList<Chambre> = model.recupererListeChambres(filtre)
+            chambresDisponibles= model.recupererListeChambres(filtre)
             CoroutineScope(Dispatchers.Main).launch {
                 vue.afficherChambres(
-                    résultat
+                    chambresDisponibles
                 )
             }
         }

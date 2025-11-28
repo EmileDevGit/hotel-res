@@ -37,7 +37,7 @@ class HistoriqueReservationsAdapter(
         val dateRange = "${sdfDisplay.format(reservation.dateDébut)}    ->    ${sdfDisplay.format(reservation.dateFin)}"
 
         holder.tvTitre.text = holder.itemView.context.getString(
-            R.string.chambre_pour_x_personnes,
+            R.string.nombre_de_personnes,
             reservation.nbPersonnes
         )
         holder.tvDates.text = dateRange

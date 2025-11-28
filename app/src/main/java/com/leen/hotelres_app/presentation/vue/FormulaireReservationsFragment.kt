@@ -34,7 +34,7 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
 
     var presentateur: IPresentateurFormulaireReservations = FormulaireReservationsPresentateur(
         this,
-        ModelHotelRes())
+        ModelHotelRes)
 
     private lateinit var btnConfirmation : Button
     private lateinit var btnModifierDatesChoisi : Button
