@@ -9,9 +9,11 @@ import org.koin.java.KoinJavaComponent.inject
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class ModelHotelRes {
+object ModelHotelRes {
     private val historiqueService = HistoriqueReservationService()
     private val chambreService : ChambresService by inject(ChambresService::class.java)
+
+    private lateinit var chambreSelectionnee: Chambre
     fun recupererReservation(): Reservation {
         val sdf = SimpleDateFormat("dd MMM yyyy", Locale.FRENCH)
         return Reservation(
@@ -31,16 +33,12 @@ class ModelHotelRes {
     fun recupererListeChambres(filtre: ChambreFiltre): ArrayList<Chambre>{
         return chambreService.recupérerChambres(filtre)
     }
+
+    fun selectionnerChambre(chambre: Chambre){
+        this.chambreSelectionnee = chambre
+    }
     fun recupererChambreSelectionnee(): Chambre{
-        return Chambre(
-            numero = "102",
-            nombreLits = 1,
-            prix = 480F,
-            suite = "vip",
-            inclusions = "micro-onde, frigo, bain tourbillon, espace de rangement, canapé-lit pour les invités",
-            description = "Une belle chambre avec vue sur le paysage montagneux, parfait pour une escapade en famille, les animaux sont les bienvenus!",
-            nombrePersonnes = 2
-        )
+        return chambreSelectionnee
     }
 
     fun enregristrerFiltre(filtre: ChambreFiltre): Boolean{
