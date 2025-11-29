@@ -2,13 +2,18 @@ image: alpine
 
 stages:
   # - build
-  # - test
+  - test
   - sync # push the project from gitlab to github
 
 # Disable the Gradle daemon for Continuous Integration servers as correctness
 # is usually a priority over speed in CI environments. Using a fresh
 # runtime for each build is more reliable since the runtime is completely
 # isolated from any previous builds.
+
+# test-job:
+#   stage: test
+#   script:
+    
 
 # note: this job only pushes branches and tags, not issues & pull requests
 # all the github remotes urls must be placed into "docs/pipelineConfigs/.cd-remotes" file
@@ -31,5 +36,5 @@ sync-repositories:
         custom_token_value="${!custom_ci_var_name}" # retreiving real token value with indirect references
         echo "Pushing to: https://$custom_token_value@github.com/$remote_item"
         git push --mirror --force "https://$custom_token_value@github.com/$remote_item"
-      done < ../pipelineConfigs/.cd-remotes
+      done < ../docs/pipelineConfigs/.cd-remotes
     - |
