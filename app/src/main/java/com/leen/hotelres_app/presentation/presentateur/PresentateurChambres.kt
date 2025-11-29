@@ -49,14 +49,14 @@ class PresentateurChambres(
 //        }
 
 
-        filtre.prixMaximal?.let {
+        filtre.prix?.let {
             if(it < 0 ){
                 vue.afficherNotification("Le prix maximal ne peut pas être négatif..")
                 return
             }
         }
 
-        if(filtre.prixMinimum != null){
+        if(filtre.prix != null){
 
         }
 

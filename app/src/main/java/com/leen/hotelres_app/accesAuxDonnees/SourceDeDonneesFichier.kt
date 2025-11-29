@@ -9,9 +9,7 @@ import java.io.File
 
 class SourceDeDonneesFichier(private val context: Context) : ISourceDeDonneesFichier {
 
-    private val gson = GsonBuilder()
-        .setDateFormat("dd/MM//yyyy")
-        .create()
+    private val gson = GsonBuilder().create()
     private val nomFichierChambreFiltre = "chambre_filtre.json"
 
 
