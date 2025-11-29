@@ -84,32 +84,31 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
     private fun attacherEcouteursNavigation(vue : View){
 
         iconeAccueil.setOnClickListener {
-            presentateur?.naviguerVersAccueil()
             vue.findNavController().navigate(R.id.action_ecran_reservation_chambre_to_ecran_liste_chambres)
         }
 
         iconeHistorique.setOnClickListener {
-            presentateur?.naviguerVersHistorique()
             vue.findNavController().navigate(R.id.action_ecran_reservation_chambre_to_ecran_historique_reservations)
         }
 
         btnConfirmation.setOnClickListener {
-            AlertDialog.Builder(requireContext())
-                .setTitle("Confirmation")
-                .setMessage(getString(R.string.reservation_confirmee))
-                .setPositiveButton("OK") { _, _ ->
-                    ajouterEvenementAuCalendrier(dateDébutVar, dateFinVar)
-                    presentateur?.naviguerVersAccueil()
-                    vue.findNavController().navigate(R.id.action_ecran_reservation_chambre_to_ecran_liste_chambres)
-                }
-                .show()
+//            AlertDialog.Builder(requireContext())
+//                .setTitle("Confirmation")
+//                .setMessage(getString(R.string.reservation_confirmee))
+//                .setPositiveButton("OK") { _, _ ->
+//                    ajouterEvenementAuCalendrier(dateDébutVar, dateFinVar)
+//                    vue.findNavController().navigate(R.id.action_ecran_reservation_chambre_to_ecran_liste_chambres)
+//                }
+//                .show()
+            presentateur.enregistrerReservation()
         }
 
         btnRetour.setOnClickListener {
-            presentateur?.naviguerVersDetailsChambre()
             vue.findNavController().navigate(R.id.action_ecran_reservation_chambre_to_ecran_details_chambre)
         }
     }
+
+
 
     fun ajouterEvenementAuCalendrier(startMillis: Long, endMillis: Long) {
         val intent = Intent(Intent.ACTION_INSERT).apply {
@@ -122,6 +121,27 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
             putExtra(CalendarContract.Events.EVENT_LOCATION, "HotelRes")
         }
         startActivity(intent)
+    }
+
+    override fun afficherDialogue(message: String, isSaved: Boolean){
+
+        if (isSaved) {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Confirmation")
+                .setMessage(message)
+                .setPositiveButton("OK") { _, _ ->
+                    ajouterEvenementAuCalendrier(dateDébutVar, dateFinVar)
+                    //vue.findNavController().navigate(R.id.action_ecran_reservation_chambre_to_ecran_liste_chambres)
+                }
+                .show()
+        } else {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Erreur")
+                .setMessage(message)
+                .setPositiveButton("OK") { _, _ ->
+                }
+                .show()
+        }
     }
 
     override fun chargerInfoReservation(titre: String, dateDébut: Long, dateFin: Long, nbPersonnes: Int?) {

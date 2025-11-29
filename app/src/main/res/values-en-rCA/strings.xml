@@ -30,4 +30,5 @@
     <string name="details_chambre_nombre_de_lits">Number of beds: %1$d</string>
     <string name="details_chambre_inclusion">Included: %1$s</string>
     <string name="historique_reservation_titre">Booking for room %1$s</string>
+    <string name="reservation_erreur">Error occured while saving your booking</string>
 </resources>

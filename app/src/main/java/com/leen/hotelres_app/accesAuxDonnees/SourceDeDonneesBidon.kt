@@ -2,8 +2,6 @@ package com.leen.hotelres_app.accesAuxDonnees
 import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import com.leen.hotelres_app.presentation.model.entities.Reservation
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 class SourceDeDonneesException(message : String) : Exception( message ) {}
 
@@ -211,8 +209,13 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
         return historiqueReservations
     }
 
-    override fun enregistrerReservation(): Boolean{
-        return true
+    override fun enregistrerReservation(reservation: Reservation){
+        try {
+            Thread.sleep(3000)
+        }
+        catch (e: Exception){
+            throw SourceDeDonneesException("Erreur lors de l'enregistrement de la réservation")
+        }
     }
 
     override fun getListeChambres(): ArrayList<Chambre> {

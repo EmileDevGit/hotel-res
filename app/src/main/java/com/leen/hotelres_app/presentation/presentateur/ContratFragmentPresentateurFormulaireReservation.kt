@@ -1,5 +1,6 @@
 package com.leen.hotelres_app.presentation.presentateur
 
+
 interface ContratFragmentPresentateurFormulaireReservation {
 
     interface IFragmentFormulaireReservations{
@@ -9,13 +10,12 @@ interface ContratFragmentPresentateurFormulaireReservation {
             dateFin: Long,
             nbPersonnes : Int?
         )
+
+        fun afficherDialogue(message: String, isSaved: Boolean)
     }
 
     interface IPresentateurFormulaireReservations{
         fun initialiserVue()
-        fun naviguerVersDetailsChambre()
-        fun naviguerVersAccueil()
-        fun naviguerVersHistorique()
-        //fun naviguerVersProfil()
+        fun enregistrerReservation()
     }
 }

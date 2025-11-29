@@ -7,6 +7,7 @@ import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import com.leen.hotelres_app.presentation.model.entities.Reservation
 import com.leen.hotelres_app.services.ChambresService
+import com.leen.hotelres_app.services.FormulaireReservationService
 import com.leen.hotelres_app.services.HistoriqueReservationService
 import org.koin.java.KoinJavaComponent.inject
 import java.text.SimpleDateFormat
@@ -15,6 +16,7 @@ import java.time.ZoneId
 
 object ModelHotelRes {
     private val historiqueService = HistoriqueReservationService()
+    private val formulaireReservationService = FormulaireReservationService()
     private val chambreService : ChambresService by inject(ChambresService::class.java)
 
     private lateinit var chambreSelectionnee: Chambre
@@ -64,6 +66,10 @@ object ModelHotelRes {
     }
     fun recupererChambreSelectionnee(): Chambre{
         return chambreSelectionnee
+    }
+
+    fun enregistrerReservationEnCours(){
+        formulaireReservationService.enregistrerReservation(this.reservationEnCours)
     }
 
     fun enregristrerFiltre(filtre: ChambreFiltre): Boolean{
