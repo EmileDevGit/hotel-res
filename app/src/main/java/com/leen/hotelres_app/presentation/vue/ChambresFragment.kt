@@ -19,13 +19,19 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.CalendarConstraints.DateValidator
+import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurChambres
 import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import com.leen.hotelres_app.presentation.presentateur.PresentateurChambres
 import com.leen.hotelres_app.R
+import com.leen.hotelres_app.presentation.model.ModelHotelRes
 import com.leen.hotelres_app.presentation.utils.viewUtils
+import java.time.LocalDate
+import java.time.ZoneId
 import java.util.Calendar
 import java.util.Date
 import kotlin.String
@@ -121,13 +127,22 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
 //            )
 //            picker.show()
 
-
+            val dateValidator : DateValidator = DateValidatorPointForward.from(
+                LocalDate.now()
+                .atStartOfDay(ZoneId.systemDefault())
+                .toInstant()
+                .toEpochMilli()
+             - 1.days.toLong(DurationUnit.MILLISECONDS))
+            val constraints = CalendarConstraints
+                .Builder()
+                .setValidator(dateValidator)
+                .build()
 
             val sélecteurDates = MaterialDatePicker.Builder.dateRangePicker()
                 .setTheme(R.style.MaterialCalendarTheme)
                 .setTitleText(getString(R.string.choissisez_vos_dates_de_reservation))
                 .setSelection(Pair(dateDebut, dateFin))
-                .setCalendarConstraints(null) // À implémenter au plus tard pour éviter que l'utilisateur sélectionne des dates hors de la sélection
+                .setCalendarConstraints(constraints)
                 .build()
 
             sélecteurDates.show(parentFragmentManager, "TAG")

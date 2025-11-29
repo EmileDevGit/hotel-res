@@ -220,7 +220,7 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
     }
 
     override fun getListeChambresFiltre(filtre: ChambreFiltre): ArrayList<Chambre> {
-        Thread.sleep(5000)
+        Thread.sleep(1000)
         return listeChambres.filter {
             if(filtre.prix != null){
                 return@filter it.prix <= filtre.prix!!
