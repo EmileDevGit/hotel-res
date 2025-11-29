@@ -52,7 +52,7 @@ class ChambresAdaptater(private var chambres: ArrayList<Chambre>, private val pr
         }
 
         holder.btnDetails.setOnClickListener {
-            presentateurChambre.traiterNaviguerVersDetails(position)
+            presentateurChambre.traiterNaviguerVersDetails(chambres[position].numero)
         }
 
     }

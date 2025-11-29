@@ -10,7 +10,7 @@ import java.util.Locale
 
 class PresentateurDetailsChambre (
     var vue : IFragmentDetailsChambre = DetailChambreFragment(),
-    var modele : ModelHotelRes = ModelHotelRes()
+    var modele : ModelHotelRes = ModelHotelRes
 ): IPresentateurDetailsChambre{
 
     override fun initialiserVue() {
@@ -27,7 +27,7 @@ class PresentateurDetailsChambre (
     }
 
     override fun naviguerVersReservation() {
-        // Sauvegarde les données dans le modèle
+        modele.preparerReservation()
     }
 
     override fun naviguerVersAccueil() {

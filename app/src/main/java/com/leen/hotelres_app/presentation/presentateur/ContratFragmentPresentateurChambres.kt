@@ -8,7 +8,7 @@ interface ContratFragmentPresentateurChambres {
 
         fun afficherChambres(chambres: ArrayList<Chambre>)
 
-        fun naviguerVersDetails(id: Int)
+        fun naviguerVersDetails()
         fun naviguerVersHistoriqueReservations()
 
         // faire une notification
@@ -23,7 +23,9 @@ interface ContratFragmentPresentateurChambres {
     }
 
     interface IPresentateurChambres{
-        fun traiterNaviguerVersDetails(id:Int)
+
+        fun initialiserVue()
+        fun traiterNaviguerVersDetails(numero : String)
 
         fun traiterFiltrer()
 

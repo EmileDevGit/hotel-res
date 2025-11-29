@@ -4,6 +4,7 @@ import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import com.leen.hotelres_app.presentation.model.entities.Reservation
 import kotlin.compareTo
+import kotlin.jvm.Throws
 
 interface ISourceDeDonnees {
     fun getHistoriqueReservations(): List<Reservation>
@@ -14,5 +15,5 @@ interface ISourceDeDonnees {
 
     fun getListeChambresFiltre(filtre: ChambreFiltre): ArrayList<Chambre>
 
-    fun enregistrerReservation(): Boolean
+    fun enregistrerReservation(reservation: Reservation)
 }

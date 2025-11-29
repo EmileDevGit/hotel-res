@@ -25,7 +25,7 @@ class DetailChambreFragment : Fragment(), IFragmentDetailsChambre {
 
     var presentateur : IPresentateurDetailsChambre = PresentateurDetailsChambre(
         this,
-        ModelHotelRes() )
+        ModelHotelRes )
     private lateinit var titreDetailsChambre: TextView
     private lateinit var tvNbPersonne: TextView
     private lateinit var tvDescriptionDetailsChambre : TextView
@@ -74,17 +74,17 @@ class DetailChambreFragment : Fragment(), IFragmentDetailsChambre {
 
     private fun attacherEcouteursNavigation(vue: View){
         btnReserverChambre.setOnClickListener {
-            presentateur?.naviguerVersReservation()
+            presentateur.naviguerVersReservation()
             vue.findNavController().navigate(R.id.action_ecran_details_chambre_to_ecran_reservation_chambre)
         }
 
         iconHome.setOnClickListener {
-            presentateur?.naviguerVersAccueil()
+            presentateur.naviguerVersAccueil()
             vue.findNavController().navigate(R.id.action_ecran_details_chambre_to_ecran_liste_chambres)
         }
 
         iconHistorique.setOnClickListener {
-            presentateur?.naviguerVersHistorique()
+            presentateur.naviguerVersHistorique()
             vue.findNavController().navigate(R.id.action_ecran_details_chambre_to_ecran_historique_reservations)
         }
     }

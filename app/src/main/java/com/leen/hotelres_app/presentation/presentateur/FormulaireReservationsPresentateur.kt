@@ -2,39 +2,41 @@ package com.leen.hotelres_app.presentation.presentateur
 
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurFormulaireReservation.IFragmentFormulaireReservations
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurFormulaireReservation.IPresentateurFormulaireReservations
-import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidon
+import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesException
 import com.leen.hotelres_app.presentation.model.ModelHotelRes
 import com.leen.hotelres_app.presentation.vue.FormulaireReservationsFragment
 import kotlinx.coroutines.*
 
 class FormulaireReservationsPresentateur(
     var vue : IFragmentFormulaireReservations = FormulaireReservationsFragment(),
-    var modele : ModelHotelRes = ModelHotelRes()
+    var modele : ModelHotelRes = ModelHotelRes
 ) : IPresentateurFormulaireReservations {
 
     override fun initialiserVue() {
-        CoroutineScope(Dispatchers.IO).launch{
-            Thread.sleep(1000)
-            val reservation = modele.recupererReservation()
-            CoroutineScope(Dispatchers.Main).launch {
-                vue.chargerInfoReservation(
-                    reservation.dateDébut,
-                    reservation.dateFin,
-                    reservation.nbPersonnes
-                )
+        val reservation = modele.recupererReservation()
+        vue.chargerInfoReservation(
+            reservation.numero,
+            reservation.dateDébut,
+            reservation.dateFin,
+            reservation.nbPersonnes
+        )
+    }
+
+    override fun enregistrerReservation(){
+        CoroutineScope(Dispatchers.IO ).launch{
+            try {
+                modele.enregistrerReservationEnCours()
+                CoroutineScope(Dispatchers.Main).launch{
+                    val message = "L'enregistrement de votre réservation à été exécuté avec succès!"
+                    vue.afficherDialogue(message, true)
+                }
             }
+            catch (exception: SourceDeDonneesException){
+                CoroutineScope(Dispatchers.Main).launch{
+                    vue.afficherDialogue(exception.message!!, false)
+                }
+            }
+
         }
-    }
-
-    override fun naviguerVersDetailsChambre() {
-        // Sauvegarde les données dans le modèle
-    }
-
-    override fun naviguerVersAccueil() {
-        // Sauvegarde les données dans le modèle
-    }
-
-    override fun naviguerVersHistorique() {
-        // Sauvegarde les données dans le modèle
     }
 }

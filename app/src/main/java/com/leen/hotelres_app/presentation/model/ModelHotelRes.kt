@@ -3,25 +3,26 @@ package com.leen.hotelres_app.presentation.model
 import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import com.leen.hotelres_app.presentation.model.entities.Reservation
+import com.leen.hotelres_app.presentation.utils.viewUtils
 import com.leen.hotelres_app.services.ChambresService
+import com.leen.hotelres_app.services.FormulaireReservationService
 import com.leen.hotelres_app.services.HistoriqueReservationService
 import org.koin.java.KoinJavaComponent.inject
-import java.text.SimpleDateFormat
-import java.util.Locale
+import java.time.LocalDate
+import java.time.ZoneId
 
-class ModelHotelRes {
+object ModelHotelRes {
     private val historiqueService = HistoriqueReservationService()
+    private val formulaireReservationService = FormulaireReservationService()
     private val chambreService : ChambresService by inject(ChambresService::class.java)
+
+    private lateinit var chambreSelectionnee: Chambre
+    private lateinit var reservationEnCours: Reservation
+    private var dateDebut: Long = 0L
+    private var dateFin: Long = 0L
+
     fun recupererReservation(): Reservation {
-        val sdf = SimpleDateFormat("dd MMM yyyy", Locale.FRENCH)
-        return Reservation(
-            "Chambre pour 3 personnes",
-            sdf.parse("10 nov. 2025")?.time ?: 0L,
-            sdf.parse("27 nov. 2025")?.time ?: 0L,
-            "10 nov. 2025",
-            "155$/par nuit",
-            5
-        )
+        return reservationEnCours
     }
 
     fun recupererHistoriqueReservation(): List<Reservation>{
@@ -31,19 +32,34 @@ class ModelHotelRes {
     fun recupererListeChambres(filtre: ChambreFiltre): ArrayList<Chambre>{
         return chambreService.recupérerChambres(filtre)
     }
-    fun recupererChambreSelectionnee(): Chambre{
-        return Chambre(
-            numero = "102",
-            nombreLits = 1,
-            prix = 480F,
-            suite = "vip",
-            inclusions = "micro-onde, frigo, bain tourbillon, espace de rangement, canapé-lit pour les invités",
-            description = "Une belle chambre avec vue sur le paysage montagneux, parfait pour une escapade en famille, les animaux sont les bienvenus!",
-            nombrePersonnes = 2
+
+    fun selectionnerChambre(chambre: Chambre){
+        this.chambreSelectionnee = chambre
+    }
+
+    fun preparerReservation(){
+
+        val reservation = Reservation(
+            numero = chambreSelectionnee.numero,
+            dateDébut = this.dateDebut,
+            dateFin = this.dateFin,
+            dateReservation = LocalDate.now().toString(),
+            prix = chambreSelectionnee.prix,
+            nbPersonnes = chambreSelectionnee.nombrePersonnes
         )
+        this.reservationEnCours = reservation
+    }
+    fun recupererChambreSelectionnee(): Chambre{
+        return chambreSelectionnee
+    }
+
+    fun enregistrerReservationEnCours(){
+        formulaireReservationService.enregistrerReservation(this.reservationEnCours)
     }
 
     fun enregristrerFiltre(filtre: ChambreFiltre): Boolean{
+        this.dateDebut = filtre.dateDebut
+        this.dateFin = filtre.dateFin
         return chambreService.enregristrerFiltre(filtre)
     }
 

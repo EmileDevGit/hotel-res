@@ -24,6 +24,8 @@ import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentate
 import com.leen.hotelres_app.presentation.presentateur.FormulaireReservationsPresentateur
 import com.leen.hotelres_app.R
 import com.leen.hotelres_app.presentation.model.ModelHotelRes
+import com.leen.hotelres_app.presentation.utils.viewUtils
+import org.w3c.dom.Text
 import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -34,11 +36,12 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
 
     var presentateur: IPresentateurFormulaireReservations = FormulaireReservationsPresentateur(
         this,
-        ModelHotelRes())
+        ModelHotelRes)
 
     private lateinit var btnConfirmation : Button
     private lateinit var btnModifierDatesChoisi : Button
     private lateinit var tvDatesChoisi : TextView
+    private lateinit var title: TextView
     private lateinit var btnRetour : ImageButton
     private lateinit var spinnerNbPersonnes: Spinner
     private lateinit var tvPrixSelonNbPersonnes: TextView
@@ -75,37 +78,30 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
         btnRetour = vue.findViewById<ImageButton>(R.id.btnRetour)
         spinnerNbPersonnes = vue.findViewById<Spinner>(R.id.spinnerNbPersonnes)
         tvPrixSelonNbPersonnes = vue.findViewById<TextView>(R.id.tvPrixParPersonnes)
+        title = vue.findViewById<TextView>(R.id.title)
     }
 
     private fun attacherEcouteursNavigation(vue : View){
 
         iconeAccueil.setOnClickListener {
-            presentateur?.naviguerVersAccueil()
             vue.findNavController().navigate(R.id.action_ecran_reservation_chambre_to_ecran_liste_chambres)
         }
 
         iconeHistorique.setOnClickListener {
-            presentateur?.naviguerVersHistorique()
             vue.findNavController().navigate(R.id.action_ecran_reservation_chambre_to_ecran_historique_reservations)
         }
 
         btnConfirmation.setOnClickListener {
-            AlertDialog.Builder(requireContext())
-                .setTitle("Confirmation")
-                .setMessage(getString(R.string.reservation_confirmee))
-                .setPositiveButton("OK") { _, _ ->
-                    ajouterEvenementAuCalendrier(dateDébutVar, dateFinVar)
-                    presentateur?.naviguerVersAccueil()
-                    vue.findNavController().navigate(R.id.action_ecran_reservation_chambre_to_ecran_liste_chambres)
-                }
-                .show()
+            presentateur.enregistrerReservation()
+            vue.findNavController().navigate(R.id.action_ecran_reservation_chambre_to_ecran_historique_reservations)
         }
 
         btnRetour.setOnClickListener {
-            presentateur?.naviguerVersDetailsChambre()
             vue.findNavController().navigate(R.id.action_ecran_reservation_chambre_to_ecran_details_chambre)
         }
     }
+
+
 
     fun ajouterEvenementAuCalendrier(startMillis: Long, endMillis: Long) {
         val intent = Intent(Intent.ACTION_INSERT).apply {
@@ -120,12 +116,35 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
         startActivity(intent)
     }
 
-    override fun chargerInfoReservation(dateDébut: Long, dateFin: Long, nbPersonnes: Int?) {
+    override fun afficherDialogue(message: String, isSaved: Boolean){
+
+        if (isSaved) {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Confirmation")
+                .setMessage(message)
+                .setPositiveButton("OK") { _, _ ->
+                    ajouterEvenementAuCalendrier(dateDébutVar, dateFinVar)
+
+                }
+                .show()
+        } else {
+            AlertDialog.Builder(requireContext())
+                .setTitle("Erreur")
+                .setMessage(message)
+                .setPositiveButton("OK") { _, _ ->
+                }
+                .show()
+        }
+    }
+
+    override fun chargerInfoReservation(titre: String, dateDébut: Long, dateFin: Long, nbPersonnes: Int?) {
+
+        title.text = titre
+
         dateDébutVar = dateDébut
         dateFinVar = dateFin
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.FRENCH)
-        val dateDébutString = dateFormat.format(Date(dateDébutVar))
-        val dateFinString = dateFormat.format(Date(dateFinVar))
+        val dateDébutString = viewUtils.convertirEpochEnDateFormattee(dateDébut)
+        val dateFinString = viewUtils.convertirEpochEnDateFormattee(dateFin)
 
         tvDatesChoisi.text = tvDatesChoisi.context.getString(
             R.string.dates_reservationForm,
@@ -137,20 +156,20 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
             val sélecteurDates = MaterialDatePicker.Builder.dateRangePicker()
                 .setTheme(R.style.MaterialCalendarTheme)
                 .setTitleText(getString(R.string.choissisez_vos_dates_de_reservation))
-                .setSelection(Pair(dateDébutVar, dateFinVar))
+                .setSelection(Pair(dateDébut, dateFin))
                 .setCalendarConstraints(null) // À implémenter au plus tard pour éviter que l'utilisateur sélectionne des dates hors de la sélection
                 .build()
 
             sélecteurDates.show(parentFragmentManager, "TAG")
 
             sélecteurDates.addOnPositiveButtonClickListener {
-                dateFormat.timeZone = TimeZone.getTimeZone("UTC")
+
 
                 dateDébutVar = it.first
                 dateFinVar = it.second
 
-                val dateDébutString = dateFormat.format(Date(it.first))
-                val dateFinString = dateFormat.format(Date(it.second))
+                val dateDébutString = viewUtils.convertirEpochEnDateFormattee(it.first)
+                val dateFinString = viewUtils.convertirEpochEnDateFormattee(it.second)
 
                 tvDatesChoisi.text = tvDatesChoisi.context.getString(
                     R.string.dates_reservationForm,

@@ -1,10 +1,14 @@
 package com.leen.hotelres_app.presentation.model.entities
 
+import android.R
+import java.time.LocalDate
 import java.util.Date
+import kotlin.time.Duration.Companion.days
+import kotlin.time.DurationUnit
 
 class ChambreFiltre(
-    public var dateDebut: Date? = null,
-    public var dateFin: Date? = null,
-    public var prixMinimum: Float? = null,
-    public var prixMaximal: Float? = null
+    public var dateDebut: Long = System.currentTimeMillis(),
+    public var dateFin: Long = System.currentTimeMillis()  + 7.days.toLong(DurationUnit.MILLISECONDS),
+    public var prix: Float? = null,
+    public var suite: String = ""
 )

@@ -7,7 +7,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.leen.hotelres_app.R
 import com.leen.hotelres_app.presentation.model.entities.Reservation
+import com.leen.hotelres_app.presentation.utils.viewUtils
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 import java.util.Locale
 
 class HistoriqueReservationsAdapter(
@@ -33,12 +39,14 @@ class HistoriqueReservationsAdapter(
     override fun onBindViewHolder(holder: ReservationViewHolder, position: Int) {
         val reservation = reservations[position]
 
-        val sdfDisplay = SimpleDateFormat("dd MMM yyyy", Locale.FRANCE)
-        val dateRange = "${sdfDisplay.format(reservation.dateDébut)}    ->    ${sdfDisplay.format(reservation.dateFin)}"
+        val dateDebut = viewUtils.convertirEpochEnDateFormattee(reservation.dateDébut)
+        val dateFin = viewUtils.convertirEpochEnDateFormattee(reservation.dateFin)
+
+        val dateRange = "$dateDebut   ->    $dateFin"
 
         holder.tvTitre.text = holder.itemView.context.getString(
-            R.string.chambre_pour_x_personnes,
-            reservation.nbPersonnes
+            R.string.historique_reservation_titre,
+            reservation.numero
         )
         holder.tvDates.text = dateRange
         holder.tvNbrPersonnes.text = holder.itemView.context.getString(
@@ -48,7 +56,9 @@ class HistoriqueReservationsAdapter(
             R.string.date_de_reservation, reservation.dateReservation
         )
         holder.tvPrix.text = holder.itemView.context.getString(
-            R.string.prix_nuit, reservation.prix
+            R.string.prix_nuit, String.format("%.2f", reservation.prix)
         )
     }
+
+
 }

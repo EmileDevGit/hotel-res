@@ -1,10 +1,10 @@
 package com.leen.hotelres_app.presentation.model.entities
 
 data class Reservation(
-    val titre: String,
+    val numero: String,
     var dateDébut: Long,
     var dateFin: Long,
     val dateReservation: String,
-    val prix: String,
+    val prix: Float,
     val nbPersonnes : Int?
 )

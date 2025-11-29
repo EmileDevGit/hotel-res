@@ -2,7 +2,7 @@
 <resources>
     <string name="nombre_de_personnes">Number of people: %1$d</string>
     <string name="date_de_reservation">Reservation date: %1$s</string>
-    <string name="prix_nuit">Price: %1$s</string>
+    <string name="prix_nuit">Price: $%1$s</string>
     <string name="choissisez_vos_dates_de_reservation">Choose your reservation dates:</string>
     <string name="aucun_changement_au_prix">No price change</string>
     <string name="le_prix_augmente_de">The price went up by %1$s</string>
@@ -29,4 +29,6 @@
     <string name="details_chambre_reserver_prix_nuit">Book at %1$s$/night</string>
     <string name="details_chambre_nombre_de_lits">Number of beds: %1$d</string>
     <string name="details_chambre_inclusion">Included: %1$s</string>
+    <string name="historique_reservation_titre">Booking for room %1$s</string>
+    <string name="reservation_erreur">Error occured while saving your booking</string>
 </resources>
