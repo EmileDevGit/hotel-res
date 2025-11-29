@@ -37,5 +37,5 @@ sync-repositories:
         echo "DEBUG: $custom_token_value et $custom_ci_var_name et $remote_item"
         echo "Pushing to: https://x-access-token:$custom_token_value@github.com/$remote_item"
         git push --mirror --force "https://x-access-token:$custom_token_value@github.com/$remote_item"
-      done < ../pipelineConfigs/.cd-remotes
+      done < ../docs/pipelineConfigs/.cd-remotes
     - |
