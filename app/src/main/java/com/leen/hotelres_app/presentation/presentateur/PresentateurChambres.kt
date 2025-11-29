@@ -18,8 +18,8 @@ class PresentateurChambres(
 
     private lateinit var chambresDisponibles: ArrayList<Chambre>
 
-    init {
-        // Recupérer les données de filtres en cache ici...
+
+    override fun initialiserVue() {
         vue.afficherFiltres(
             model.recupererFiltre()
         )
@@ -31,33 +31,14 @@ class PresentateurChambres(
         vue.naviguerVersDetails()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun traiterFiltrer() {
         val filtre: ChambreFiltre = vue.obtenirFiltres()
-        val aujourdhuiDate = Date()
-
-//        if(filtre.dateDebut != null ){
-//            if(filtre.dateDebut!!.before(aujourdhuiDate)){
-//                vue.notifier("On ne peut pas réserver pour une date passée.")
-//                return
-//            }
-//
-//            if( filtre.dateFin != null && filtre.dateFin?.before(filtre.dateDebut) == true){
-//                vue.notifier("Les date de début et de de fin d'occupations doivent etre cohérentes")
-//                return
-//            }
-//        }
-
 
         filtre.prix?.let {
             if(it < 0 ){
                 vue.afficherNotification("Le prix maximal ne peut pas être négatif..")
                 return
             }
-        }
-
-        if(filtre.prix != null){
-
         }
 
         CoroutineScope(Dispatchers.IO).launch {

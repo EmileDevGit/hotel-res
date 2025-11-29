@@ -92,15 +92,8 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
         }
 
         btnConfirmation.setOnClickListener {
-//            AlertDialog.Builder(requireContext())
-//                .setTitle("Confirmation")
-//                .setMessage(getString(R.string.reservation_confirmee))
-//                .setPositiveButton("OK") { _, _ ->
-//                    ajouterEvenementAuCalendrier(dateDébutVar, dateFinVar)
-//                    vue.findNavController().navigate(R.id.action_ecran_reservation_chambre_to_ecran_liste_chambres)
-//                }
-//                .show()
             presentateur.enregistrerReservation()
+            vue.findNavController().navigate(R.id.action_ecran_reservation_chambre_to_ecran_historique_reservations)
         }
 
         btnRetour.setOnClickListener {
@@ -131,7 +124,7 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
                 .setMessage(message)
                 .setPositiveButton("OK") { _, _ ->
                     ajouterEvenementAuCalendrier(dateDébutVar, dateFinVar)
-                    //vue.findNavController().navigate(R.id.action_ecran_reservation_chambre_to_ecran_liste_chambres)
+
                 }
                 .show()
         } else {
@@ -148,6 +141,8 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
 
         title.text = titre
 
+        dateDébutVar = dateDébut
+        dateFinVar = dateFin
         val dateDébutString = viewUtils.convertirEpochEnDateFormattee(dateDébut)
         val dateFinString = viewUtils.convertirEpochEnDateFormattee(dateFin)
 

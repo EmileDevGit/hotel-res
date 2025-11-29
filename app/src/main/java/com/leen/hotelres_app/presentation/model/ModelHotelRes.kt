@@ -1,16 +1,13 @@
 package com.leen.hotelres_app.presentation.model
 
-import android.os.Build
-import android.util.Log
-import androidx.annotation.RequiresApi
 import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import com.leen.hotelres_app.presentation.model.entities.Reservation
+import com.leen.hotelres_app.presentation.utils.viewUtils
 import com.leen.hotelres_app.services.ChambresService
 import com.leen.hotelres_app.services.FormulaireReservationService
 import com.leen.hotelres_app.services.HistoriqueReservationService
 import org.koin.java.KoinJavaComponent.inject
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.ZoneId
 
@@ -21,10 +18,8 @@ object ModelHotelRes {
 
     private lateinit var chambreSelectionnee: Chambre
     private lateinit var reservationEnCours: Reservation
-
-    // Usage temporaire car les dates sélectionnées ne sont pas bien enregistrées
-    private var dateDebut: String = LocalDate.now().toString()
-    private var dateFin: String = LocalDate.now().toString()
+    private var dateDebut: Long = 0L
+    private var dateFin: Long = 0L
 
     fun recupererReservation(): Reservation {
         return reservationEnCours
@@ -44,23 +39,13 @@ object ModelHotelRes {
 
     fun preparerReservation(){
 
-        val debutMillis = LocalDate.parse(dateDebut)
-            .atStartOfDay(ZoneId.systemDefault())
-            .toInstant()
-            .toEpochMilli()
-
-        val finMillis = LocalDate.parse(dateFin)
-            .atStartOfDay(ZoneId.systemDefault())
-            .toInstant()
-            .toEpochMilli()
-
         val reservation = Reservation(
-            chambreSelectionnee.numero,
-            debutMillis,
-            finMillis,
-            LocalDate.now().toString(),
-            chambreSelectionnee.prix,
-            chambreSelectionnee.nombrePersonnes
+            numero = chambreSelectionnee.numero,
+            dateDébut = this.dateDebut,
+            dateFin = this.dateFin,
+            dateReservation = LocalDate.now().toString(),
+            prix = chambreSelectionnee.prix,
+            nbPersonnes = chambreSelectionnee.nombrePersonnes
         )
         this.reservationEnCours = reservation
     }
@@ -73,6 +58,8 @@ object ModelHotelRes {
     }
 
     fun enregristrerFiltre(filtre: ChambreFiltre): Boolean{
+        this.dateDebut = filtre.dateDebut
+        this.dateFin = filtre.dateFin
         return chambreService.enregristrerFiltre(filtre)
     }
 

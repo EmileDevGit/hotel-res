@@ -2,7 +2,6 @@ package com.leen.hotelres_app.presentation.presentateur
 
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurFormulaireReservation.IFragmentFormulaireReservations
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurFormulaireReservation.IPresentateurFormulaireReservations
-import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidon
 import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesException
 import com.leen.hotelres_app.presentation.model.ModelHotelRes
 import com.leen.hotelres_app.presentation.vue.FormulaireReservationsFragment

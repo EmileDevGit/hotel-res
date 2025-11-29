@@ -23,6 +23,8 @@ interface ContratFragmentPresentateurChambres {
     }
 
     interface IPresentateurChambres{
+
+        fun initialiserVue()
         fun traiterNaviguerVersDetails(numero : String)
 
         fun traiterFiltrer()

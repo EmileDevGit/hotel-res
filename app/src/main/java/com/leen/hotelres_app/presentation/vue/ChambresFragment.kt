@@ -2,6 +2,7 @@ package com.leen.hotelres_app.presentation.vue
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,7 +62,6 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
         return inflater.inflate(R.layout.fragment_chambres, container, false)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -85,10 +85,10 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
         attacherEvenements()
 
         showLoader()
+        presentateurChambres.initialiserVue()
         presentateurChambres.traiterFiltrer()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun attacherEvenements() {
 
         btnVersHistoriqueDeReservation.setOnClickListener {
@@ -154,6 +154,7 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
     }
 
     override fun obtenirFiltres(): ChambreFiltre {
+        Log.d("DEBUG", "Obtention des filtres ${viewUtils.convertirEpochEnDateFormattee(dateDebut)} | ${viewUtils.convertirEpochEnDateFormattee(dateFin)} ")
         return ChambreFiltre(
             dateDebut,
             dateFin,
@@ -162,6 +163,8 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
     }
 
     override fun afficherFiltres(filtre: ChambreFiltre) {
+        dateDebut = filtre.dateDebut
+        dateFin = filtre.dateFin
         btnDateFin.text = viewUtils.convertirEpochEnDateFormattee(filtre.dateFin)
         btnDateDebut.text = viewUtils.convertirEpochEnDateFormattee(filtre.dateDebut)
         etMontantMaximum.setText(filtre.prix?.toString() ?: "")
@@ -194,10 +197,13 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
 
             btnDateDebut.text = viewUtils.convertirEpochEnDateFormattee(dateDebut)
             btnDateFin.text = viewUtils.convertirEpochEnDateFormattee(dateFin)
+
+            presentateurChambres.traiterFiltrer()
         }
 
         sélecteurDates.addOnNegativeButtonClickListener{
             sélecteurDates.dismiss()
         }
+
     }
 }
