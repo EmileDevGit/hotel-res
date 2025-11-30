@@ -54,7 +54,7 @@ object ModelHotelRes {
     }
 
     fun enregistrerReservationEnCours(){
-        formulaireReservationService.enregistrerReservation(this.reservationEnCours)
+        formulaireReservationService.enregistrerReservation(this.reservationEnCours, this.chambreSelectionnee)
     }
 
     fun enregristrerFiltre(filtre: ChambreFiltre): Boolean{

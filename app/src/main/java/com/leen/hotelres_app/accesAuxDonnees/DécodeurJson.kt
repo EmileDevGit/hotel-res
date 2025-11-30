@@ -12,21 +12,21 @@ class DécodeurJson {
     fun decodeHistorique(json: String): List<Reservation> {
         val arr = JSONArray(json)
         val list = mutableListOf<Reservation>()
+        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.US)
 
         for (i in 0 until arr.length()) {
             val obj = arr.getJSONObject(i)
 
             val dateDebut = sdf.parse(obj.getString("date_debut"))?.time ?: 0L
             val dateFin = sdf.parse(obj.getString("date_fin"))?.time ?: 0L
-
-            val prix = obj.getDouble("prix").toFloat()
+            val prix = obj.optDouble("prix", 0.0).toFloat()
 
             list.add(
                 Reservation(
-                    numero = obj.getInt("id").toString(),
+                    numero = obj.optInt("chambre_id").toString(),
                     dateDébut = dateDebut,
                     dateFin = dateFin,
-                    dateReservation = obj.getString("date_reservation"),
+                    dateReservation = obj.optString("date_reservation", ""),
                     prix = prix,
                     nbPersonnes = null
                 )
@@ -43,6 +43,7 @@ class DécodeurJson {
         for (i in 0 until arr.length()) {
             val obj = arr.getJSONObject(i)
 
+            val id = obj.optInt("id", 0)
             val numero = obj.optString("numero_appart", "N/A")
             val nombreLits = obj.optInt("nbre_lits", 0)
             val description = obj.optString("description", "")
@@ -66,6 +67,7 @@ class DécodeurJson {
 
             list.add(
                 Chambre(
+                    id = id,
                     numero = numero,
                     nombreLits = nombreLits,
                     nombrePersonnes = nombrePersonnes,
@@ -86,6 +88,7 @@ class DécodeurJson {
 
         for (i in 0 until arr.length()) {
             val obj = arr.getJSONObject(i)
+            val id = obj.optInt("id", 0)
             val numero = obj.optString("numero_appart", "N/A")
 
             if (numero == numeroRecherche) {
@@ -110,6 +113,7 @@ class DécodeurJson {
                 }
 
                 return Chambre(
+                    id=id,
                     numero = numero,
                     nombreLits = nombreLits,
                     nombrePersonnes = nombrePersonnes,

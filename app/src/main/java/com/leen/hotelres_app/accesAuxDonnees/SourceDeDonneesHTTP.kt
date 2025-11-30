@@ -19,7 +19,7 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
         .readTimeout(10, java.util.concurrent.TimeUnit.SECONDS)
         .build()
 
-    // valide 30j
+    // Valide pour 30 jours
     private val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0Iiwicm9sZSI6IkNMSUVOVCIsImFsZyI6IkhTMjU2IiwiZXhwIjoxNzY2OTgzMTgxfQ.mXzYjhKpn-qEmJEwKooNFLhsc-ko-cMDe6Iw18Dav40"
 
     fun recupererHistoriqueReservation(): List<Reservation> {
@@ -41,7 +41,6 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
 
         return decodeurJSON.decodeHistorique(bodyString)
     }
-
 
     fun recupererChambres(filtre: ChambreFiltre): List<Chambre> {
 
@@ -95,18 +94,29 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
         return decodeurJSON.decodeChambreParNumero(bodyString, num)
     }
 
+    // Conversion des dates Long en Date
+    fun Long.toBackendDate(): String {
+        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.US)
+        return sdf.format(java.util.Date(this))
+    }
 
-    fun creerReservation(reservation: Reservation): Boolean {
+    fun creerReservation(reservation: Reservation, chambre : Chambre): Boolean {
         val urlReservation = "http://idefix.dti.crosemont.quebec:10170/reservations"
         Log.d("HTTP-REQUEST", urlReservation)
 
         val json = JSONObject().apply {
-            //put("locataire_id", reservation.locataireId)
-            put("chambre_id", reservation.numero)
-            put("date_debut", reservation.dateDébut)
-            put("date_fin", reservation.dateFin)
-            put("prix", reservation.prix)
-            put("nb_personnes", reservation.nbPersonnes)
+            put("chambre_id", chambre.id)
+            put("numero_appart", chambre.numero)
+            put("nbre_lits", chambre.nombreLits)
+            put("date_debut", reservation.dateDébut.toBackendDate())
+            put("date_fin", reservation.dateFin.toBackendDate())
+            put("dateDebut", reservation.dateDébut.toBackendDate())
+            put("dateFin", reservation.dateFin.toBackendDate())
+            put("prix", reservation.prix.toDouble())
+            put("nb_personnes", reservation.nbPersonnes ?: 1)
+            put("status", "EnAttente")
+            put("locataire_id", "4")
+            put("admin_id", "3")
         }
 
         val requestBody = json.toString()
@@ -118,12 +128,15 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
             .addHeader("Authorization", "Bearer $token")
             .build()
 
-        val response = client.newCall(request).execute()
-        Log.d("RESERVATION-HTTP", "HTTP code: ${response.code}")
-        val bodyString = response.body?.string()
-        Log.d("RESERVATION-HTTP", "Body: $bodyString")
-        response.close()
+        client.newCall(request).execute().use { response ->
+            Log.d("RESERVATION-HTTP", "HTTP code: ${response.code}")
+            val bodyString = response.body?.string()
+            Log.d("RESERVATION-HTTP", "Body: $bodyString")
 
-        return response.isSuccessful
+            if (!response.isSuccessful) {
+                throw IOException("Erreur HTTP : ${response.code} - $bodyString")
+            }
+            return true
+        }
     }
 }

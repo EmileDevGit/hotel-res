@@ -101,8 +101,6 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
         }
     }
 
-
-
     fun ajouterEvenementAuCalendrier(startMillis: Long, endMillis: Long) {
         val intent = Intent(Intent.ACTION_INSERT).apply {
             data = CalendarContract.Events.CONTENT_URI
