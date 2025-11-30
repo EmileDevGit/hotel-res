@@ -4,6 +4,7 @@ import com.leen.hotelres_app.accesAuxDonnees.ISourceDeDonnees
 import com.leen.hotelres_app.accesAuxDonnees.ISourceDeDonneesFichier
 import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidon
 import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesFichier
+import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesHTTP
 import com.leen.hotelres_app.services.ChambresService
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -21,6 +22,9 @@ val appModule = module {
         )
     }
 
+    single {
+        SourceDeDonneesHTTP()
+    }
 
     single {
         ChambresService(get(), get())
