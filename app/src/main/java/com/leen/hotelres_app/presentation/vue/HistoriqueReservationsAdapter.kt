@@ -49,9 +49,15 @@ class HistoriqueReservationsAdapter(
             reservation.numero
         )
         holder.tvDates.text = dateRange
-        holder.tvNbrPersonnes.text = holder.itemView.context.getString(
-            R.string.nombre_de_personnes, reservation.nbPersonnes
-        )
+        if(reservation.nbPersonnes == null){
+            holder.tvNbrPersonnes.text = holder.itemView.context.getString(
+                R.string.nombre_de_personnes, 0
+            )
+        } else {
+            holder.tvNbrPersonnes.text = holder.itemView.context.getString(
+                R.string.nombre_de_personnes, reservation.nbPersonnes
+            )
+        }
         holder.tvDateReservation.text = holder.itemView.context.getString(
             R.string.date_de_reservation, reservation.dateReservation
         )
