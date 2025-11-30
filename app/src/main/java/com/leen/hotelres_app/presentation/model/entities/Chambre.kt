@@ -1,6 +1,7 @@
 package com.leen.hotelres_app.presentation.model.entities
 
 class Chambre(
+    val id : Int,
     val numero: String ="101",
     val nombreLits: Int = 2,
     val nombrePersonnes: Int,
