@@ -20,7 +20,6 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
     // valide 30j
     private val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0Iiwicm9sZSI6IkNMSUVOVCIsImFsZyI6IkhTMjU2IiwiZXhwIjoxNzY2OTgzMTgxfQ.mXzYjhKpn-qEmJEwKooNFLhsc-ko-cMDe6Iw18Dav40"
 
-
     fun recupererHistoriqueReservation(): List<Reservation> {
         val urlHistorique = "http://idefix.dti.crosemont.quebec:10170/reservations/"
         Log.d("HTTP-REQUEST", urlHistorique)
@@ -32,9 +31,7 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
 
         val response = client.newCall(request).execute()
         val bodyString = response.body?.string() ?: "[]"
-        Log.d("HISTO-HTTP", "Body: $bodyString")
         response.close()
-        Log.d("HISTO-HTTP", "HTTP code: ${response.code}")
 
         if (!response.isSuccessful) {
             throw IOException("Erreur HTTP : ${response.code}")

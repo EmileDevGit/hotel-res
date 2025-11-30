@@ -17,8 +17,6 @@ class HistoriqueReservationsPresentateur(
             try {
                 //Thread.sleep(2000)
                 val reservations = modele.recupererHistoriqueReservation()
-                Log.d("HISTO", "Reservations fetched: $reservations")
-
                 CoroutineScope(Dispatchers.Main).launch {
                     if (reservations.isEmpty()) {
                         view.aucuneHistorique()
