@@ -3,9 +3,12 @@ package com.leen.hotelres_app.accesAuxDonnees
 import android.util.Log
 import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.presentation.model.entities.Reservation
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.io.IOException
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
 
 class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson()) {
 
@@ -41,7 +44,7 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
     }
 
 
-    fun recupérerChambres(): List<Chambre> {
+    fun recupererChambres(): List<Chambre> {
         val urlChambres = "http://idefix.dti.crosemont.quebec:10170/chambres/disponibilite"
         Log.d("HTTP-REQUEST", urlChambres)
 
@@ -52,14 +55,46 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
 
         val response = client.newCall(request).execute()
         val bodyString = response.body?.string() ?: "[]"
-        Log.d("HISTO-HTTP", "Body: $bodyString")
+        Log.d("CHAMBRES-HTTP", "Body: $bodyString")
         response.close()
-        Log.d("HISTO-HTTP", "HTTP code: ${response.code}")
+        Log.d("CHAMBRES-HTTP", "HTTP code: ${response.code}")
 
         if (!response.isSuccessful) {
             throw IOException("Erreur HTTP : ${response.code}")
         }
 
         return decodeurJSON.decodeChambres(bodyString)
+    }
+
+
+    fun creerReservation(reservation: Reservation): Boolean {
+        val urlReservation = "http://idefix.dti.crosemont.quebec:10170/reservations"
+        Log.d("HTTP-REQUEST", urlReservation)
+
+        val json = JSONObject().apply {
+            //put("locataire_id", reservation.locataireId)
+            put("chambre_id", reservation.numero)
+            put("date_debut", reservation.dateDébut)
+            put("date_fin", reservation.dateFin)
+            put("prix", reservation.prix)
+            put("nb_personnes", reservation.nbPersonnes)
+        }
+
+        val requestBody = json.toString()
+            .toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
+
+        val request = Request.Builder()
+            .url(urlReservation)
+            .post(requestBody)
+            .addHeader("Authorization", "Bearer $token")
+            .build()
+
+        val response = client.newCall(request).execute()
+        Log.d("RESERVATION-HTTP", "HTTP code: ${response.code}")
+        val bodyString = response.body?.string()
+        Log.d("RESERVATION-HTTP", "Body: $bodyString")
+        response.close()
+
+        return response.isSuccessful
     }
 }
