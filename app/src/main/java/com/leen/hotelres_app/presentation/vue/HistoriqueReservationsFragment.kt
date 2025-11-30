@@ -1,5 +1,6 @@
 package com.leen.hotelres_app.presentation.vue
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,9 @@ import com.leen.hotelres_app.presentation.presentateur.HistoriqueReservationsPre
 
 class HistoriqueReservationsFragment : Fragment(),
     ContratFragmentPresentateurHistoriqueReservations.IFragmentHistoriqueReservations {
+
+    private lateinit var adapter: HistoriqueReservationsAdapter
+    private lateinit var recyclerView: RecyclerView
 
     private lateinit var presenter: HistoriqueReservationsPresentateur
     private lateinit var loadHistoriqueReservation: TextView
@@ -41,6 +45,12 @@ class HistoriqueReservationsFragment : Fragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        recyclerView = view.findViewById(R.id.recyclerReservations)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        adapter = HistoriqueReservationsAdapter(emptyList()) // Attach immediately
+        recyclerView.adapter = adapter
+
         loadHistoriqueReservation = view.findViewById(R.id.loadHistoriqueReservation)
         presenter = HistoriqueReservationsPresentateur(this)
 
@@ -50,10 +60,7 @@ class HistoriqueReservationsFragment : Fragment(),
 
     override fun afficherReservations(reservations: List<Reservation>) {
         stopLoader()
-
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.recyclerReservations)
-        recyclerView?.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView?.adapter = HistoriqueReservationsAdapter(reservations)
+        adapter.updateData(reservations)
     }
 
     override fun aucuneHistorique() {
@@ -63,7 +70,16 @@ class HistoriqueReservationsFragment : Fragment(),
             getString(R.string.aucune_historique_afficher), Toast.LENGTH_SHORT).show()
     }
 
-    override fun erreurDeAffichage(message: String) {}
+    override fun erreurDeAffichage(message: String) {
+        stopLoader()
+
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Erreur")
+            .setMessage(message)
+            .setPositiveButton("OK", null)
+
+        builder.show()
+    }
 
     private fun showLoader() {
         isLoading = true

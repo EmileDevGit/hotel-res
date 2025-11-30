@@ -17,7 +17,7 @@ import java.time.format.FormatStyle
 import java.util.Locale
 
 class HistoriqueReservationsAdapter(
-    private val reservations: List<Reservation>
+    private var reservations: List<Reservation>
 ) : RecyclerView.Adapter<HistoriqueReservationsAdapter.ReservationViewHolder>() {
 
     class ReservationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -60,5 +60,8 @@ class HistoriqueReservationsAdapter(
         )
     }
 
-
+    fun updateData(newReservations: List<Reservation>) {
+        reservations = newReservations
+        notifyDataSetChanged()
+    }
 }

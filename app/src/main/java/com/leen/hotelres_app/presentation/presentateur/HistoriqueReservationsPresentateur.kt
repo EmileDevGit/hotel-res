@@ -1,6 +1,6 @@
 package com.leen.hotelres_app.presentation.presentateur
 
-import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesBidon
+import android.util.Log
 import com.leen.hotelres_app.presentation.model.ModelHotelRes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,24 +13,24 @@ class HistoriqueReservationsPresentateur(
     ContratFragmentPresentateurHistoriqueReservations.IPresentateurHistoriqueReservations {
 
     override fun chargerReservations() {
-        try {
-            CoroutineScope(Dispatchers.IO).launch{
-                Thread.sleep(2000)
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                //Thread.sleep(2000)
                 val reservations = modele.recupererHistoriqueReservation()
+                Log.d("HISTO", "Reservations fetched: $reservations")
 
                 CoroutineScope(Dispatchers.Main).launch {
-                    if(reservations.isEmpty()){
+                    if (reservations.isEmpty()) {
                         view.aucuneHistorique()
                     } else {
                         view.afficherReservations(reservations)
                     }
                 }
-            }
-        } catch (e: Exception) {
-            CoroutineScope(Dispatchers.Main).launch {
-                view.erreurDeAffichage("Erreur lors du chargement des réservations.")
+            } catch (e: Exception) {
+                CoroutineScope(Dispatchers.Main).launch {
+                    view.erreurDeAffichage("Erreur lors du chargement des réservations.")
+                }
             }
         }
-
     }
 }
