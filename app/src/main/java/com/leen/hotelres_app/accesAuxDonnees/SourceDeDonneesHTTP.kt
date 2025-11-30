@@ -2,7 +2,9 @@ package com.leen.hotelres_app.accesAuxDonnees
 
 import android.util.Log
 import com.leen.hotelres_app.presentation.model.entities.Chambre
+import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import com.leen.hotelres_app.presentation.model.entities.Reservation
+import okhttp3.HttpUrl
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.io.IOException
 import okhttp3.OkHttpClient
@@ -41,9 +43,17 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
     }
 
 
-    fun recupererChambres(): List<Chambre> {
-        val urlChambres = "http://idefix.dti.crosemont.quebec:10170/chambres/disponibilite"
-        Log.d("HTTP-REQUEST", urlChambres)
+    fun recupererChambres(filtre: ChambreFiltre): List<Chambre> {
+
+        val urlChambres = HttpUrl.Builder()
+            .scheme("http")
+            .host("idefix.dti.crosemont.quebec")
+            .port(10170)
+            .addPathSegments("chambres/disponibilite")
+            .addQueryParameter("dateDebut", filtre.dateDebut.toString())
+            .addQueryParameter("dateFin", filtre.dateFin.toString())
+            .addQueryParameter("prix", filtre.prix.toString())
+            .build()
 
         val request = Request.Builder()
             .url(urlChambres)
@@ -61,6 +71,28 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
         }
 
         return decodeurJSON.decodeChambres(bodyString)
+    }
+
+    fun recupererChambresParNum(num: String): Chambre? {
+        val urlChambres = "http://idefix.dti.crosemont.quebec:10170/chambres/${num}"
+        Log.d("HTTP-REQUEST", urlChambres)
+
+        val request = Request.Builder()
+            .url(urlChambres)
+            .addHeader("Authorization", "Bearer $token")
+            .build()
+
+        val response = client.newCall(request).execute()
+        val bodyString = response.body?.string() ?: "[]"
+        Log.d("CHAMBRES-HTTP", "Body: $bodyString")
+        response.close()
+        Log.d("CHAMBRES-HTTP", "HTTP code: ${response.code}")
+
+        if (!response.isSuccessful) {
+            throw IOException("Erreur HTTP : ${response.code}")
+        }
+
+        return decodeurJSON.decodeChambreParNumero(bodyString, num)
     }
 
 

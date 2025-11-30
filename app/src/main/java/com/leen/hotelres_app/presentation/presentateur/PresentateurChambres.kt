@@ -43,7 +43,7 @@ class PresentateurChambres(
 
         CoroutineScope(Dispatchers.IO).launch {
             model.enregristrerFiltre(filtre)
-            chambresDisponibles= model.recupererListeChambres(filtre)
+            chambresDisponibles= model.recupererListeChambres(filtre) as ArrayList<Chambre>
             CoroutineScope(Dispatchers.Main).launch {
                 vue.afficherChambres(
                     chambresDisponibles

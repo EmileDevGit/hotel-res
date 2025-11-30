@@ -43,24 +43,24 @@ class DécodeurJson {
         for (i in 0 until arr.length()) {
             val obj = arr.getJSONObject(i)
 
-            val numero = obj.optString("numero", "101")
-            val nombreLits = obj.optInt("nombreLits", 2)
-            val nombrePersonnes = obj.optInt("nombrePersonnes", 2)
-            val inclusions = obj.optString("inclusions", "")
+            val numero = obj.optString("numero_appart", "N/A")
+            val nombreLits = obj.optInt("nbre_lits", 0)
             val description = obj.optString("description", "")
-            val suite = obj.optString("suite", "")
-            val prix = obj.optDouble("prix", 0.0).toFloat()
+            val suite = obj.optString("type", "")
+            val prix = obj.optDouble("prix_par_nuit", 0.0).toFloat()
+            val nombrePersonnes = obj.optInt("nbre_personnes", 0)
+            val inclusions = ""
 
-            val imagesJson = obj.optJSONArray("images")
-            val images = if (imagesJson != null) {
-                Array(imagesJson.length()) { idx -> imagesJson.getString(idx) }
+            val sourcesJson = obj.optJSONArray("sources")
+            val images = if (sourcesJson != null && sourcesJson.length() > 0) {
+                Array(sourcesJson.length()) { idx ->
+                    sourcesJson.getJSONObject(idx).optString("source", "")
+                }.filter { it.isNotBlank() }.toTypedArray()
             } else {
                 arrayOf(
                     "https://picsum.photos/800/400?image=10",
                     "https://picsum.photos/800/400?image=20",
-                    "https://picsum.photos/800/400?image=30",
-                    "https://picsum.photos/800/400?image=40",
-                    "https://picsum.photos/800/400?image=50"
+                    "https://picsum.photos/800/400?image=30"
                 )
             }
 
@@ -79,5 +79,48 @@ class DécodeurJson {
         }
 
         return list
+    }
+
+    fun decodeChambreParNumero(json: String, numeroRecherche: String): Chambre? {
+        val arr = JSONArray(json)
+
+        for (i in 0 until arr.length()) {
+            val obj = arr.getJSONObject(i)
+            val numero = obj.optString("numero_appart", "N/A")
+
+            if (numero == numeroRecherche) {
+                val nombreLits = obj.optInt("nbre_lits", 0)
+                val description = obj.optString("description", "")
+                val suite = obj.optString("type", "")
+                val prix = obj.optDouble("prix_par_nuit", 0.0).toFloat()
+                val nombrePersonnes = obj.optInt("nbre_personnes", 0)
+                val inclusions = ""
+
+                val sourcesJson = obj.optJSONArray("sources")
+                val images = if (sourcesJson != null && sourcesJson.length() > 0) {
+                    Array(sourcesJson.length()) { idx ->
+                        sourcesJson.getJSONObject(idx).optString("source", "")
+                    }
+                } else {
+                    arrayOf(
+                        "https://picsum.photos/800/400?image=10",
+                        "https://picsum.photos/800/400?image=20",
+                        "https://picsum.photos/800/400?image=30"
+                    )
+                }
+
+                return Chambre(
+                    numero = numero,
+                    nombreLits = nombreLits,
+                    nombrePersonnes = nombrePersonnes,
+                    inclusions = inclusions,
+                    description = description,
+                    images = images,
+                    suite = suite,
+                    prix = prix
+                )
+            }
+        }
+        return null
     }
 }

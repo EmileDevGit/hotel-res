@@ -29,7 +29,7 @@ object ModelHotelRes {
         return historiqueService.recupererHistoriqueReservation()
     }
 
-    fun recupererListeChambres(filtre: ChambreFiltre): ArrayList<Chambre>{
+    fun recupererListeChambres(filtre: ChambreFiltre): List<Chambre>{
         return chambreService.recupérerChambres(filtre)
     }
 
