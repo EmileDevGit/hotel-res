@@ -44,18 +44,20 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
 
     fun recupererChambres(filtre: ChambreFiltre): List<Chambre> {
 
-        val urlChambres = HttpUrl.Builder()
+        val urlChambresBuilder = HttpUrl.Builder()
             .scheme("http")
             .host("idefix.dti.crosemont.quebec")
             .port(10170)
             .addPathSegments("chambres/disponibilite")
             .addQueryParameter("dateDebut", filtre.dateDebut.toString())
             .addQueryParameter("dateFin", filtre.dateFin.toString())
-            .addQueryParameter("prix", filtre.prix.toString())
-            .build()
+
+        if(filtre.prix !=  null){
+            urlChambresBuilder.addQueryParameter("prix", filtre.prix.toString())
+        }
 
         val request = Request.Builder()
-            .url(urlChambres)
+            .url(urlChambresBuilder.build())
             .addHeader("Authorization", "Bearer $token")
             .build()
 
