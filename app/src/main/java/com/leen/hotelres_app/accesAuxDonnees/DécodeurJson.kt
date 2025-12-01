@@ -50,7 +50,7 @@ class DécodeurJson {
             val suite = obj.optString("type", "")
             val prix = obj.optDouble("prix_par_nuit", 0.0).toFloat()
             val nombrePersonnes = obj.optInt("nbre_lits", 0)
-            val inclusions = ""
+            // val inclusions = obj.optString("")
 
             val sourcesJson = obj.optJSONArray("sources")
             val images = if (sourcesJson != null && sourcesJson.length() > 0) {
@@ -63,6 +63,15 @@ class DécodeurJson {
                     "https://picsum.photos/800/400?image=20",
                     "https://picsum.photos/800/400?image=30"
                 )
+            }
+
+            val inclusionsJson = obj.optJSONArray("inclusions")
+            val inclusions = if(inclusionsJson != null && inclusionsJson.length() > 0){
+                Array(inclusionsJson.length()) { idx ->
+                    inclusionsJson.getJSONObject(idx).optString("nom", "")
+                }.filter { it.isNotBlank() }.joinToString(", ")
+            }else {
+                "Non repertoriés"
             }
 
             list.add(
