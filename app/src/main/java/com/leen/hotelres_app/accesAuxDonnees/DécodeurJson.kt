@@ -12,7 +12,7 @@ class DécodeurJson {
     fun decodeHistorique(json: String): List<Reservation> {
         val arr = JSONArray(json)
         val list = mutableListOf<Reservation>()
-        val sdf = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.US)
+        //val sdf = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.US)
 
         for (i in 0 until arr.length()) {
             val obj = arr.getJSONObject(i)
@@ -28,7 +28,7 @@ class DécodeurJson {
                     dateFin = dateFin,
                     dateReservation = obj.optString("date_reservation", ""),
                     prix = prix,
-                    nbPersonnes = null
+                    nbPersonnes = 0
                 )
             )
         }
@@ -49,7 +49,7 @@ class DécodeurJson {
             val description = obj.optString("description", "")
             val suite = obj.optString("type", "")
             val prix = obj.optDouble("prix_par_nuit", 0.0).toFloat()
-            val nombrePersonnes = obj.optInt("nbre_personnes", 0)
+            val nombrePersonnes = obj.optInt("nbre_lits", 0)
             val inclusions = ""
 
             val sourcesJson = obj.optJSONArray("sources")

@@ -4,6 +4,7 @@ import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentate
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurFormulaireReservation.IPresentateurFormulaireReservations
 import com.leen.hotelres_app.accesAuxDonnees.SourceDeDonneesException
 import com.leen.hotelres_app.presentation.model.ModelHotelRes
+import com.leen.hotelres_app.presentation.model.entities.AjustementReservation
 import com.leen.hotelres_app.presentation.vue.FormulaireReservationsFragment
 import kotlinx.coroutines.*
 
@@ -18,7 +19,8 @@ class FormulaireReservationsPresentateur(
             reservation.numero,
             reservation.dateDébut,
             reservation.dateFin,
-            reservation.nbPersonnes
+            reservation.nbPersonnes,
+            reservation.prix
         )
     }
 
@@ -38,5 +40,10 @@ class FormulaireReservationsPresentateur(
             }
 
         }
+    }
+
+    override fun ajusterReservation() {
+        val ajustement: AjustementReservation = vue.recupererAjustementsReservation()
+        modele.ajusterReservation(ajustement)
     }
 }
