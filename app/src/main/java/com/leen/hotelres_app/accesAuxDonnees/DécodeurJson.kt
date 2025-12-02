@@ -28,7 +28,7 @@ class DécodeurJson {
                     dateFin = dateFin,
                     dateReservation = obj.optString("date_reservation", ""),
                     prix = prix,
-                    nbPersonnes = 0
+                    nbPersonnes = obj.optInt("nb_personnes", 0)
                 )
             )
         }
@@ -50,7 +50,6 @@ class DécodeurJson {
             val suite = obj.optString("type", "")
             val prix = obj.optDouble("prix_par_nuit", 0.0).toFloat()
             val nombrePersonnes = obj.optInt("nbre_lits", 0)
-            // val inclusions = obj.optString("")
 
             val sourcesJson = obj.optJSONArray("sources")
             val images = if (sourcesJson != null && sourcesJson.length() > 0) {

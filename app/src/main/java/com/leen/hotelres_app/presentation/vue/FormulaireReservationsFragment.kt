@@ -218,6 +218,7 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
                 } else {
                     tvPrixSelonNbPersonnes.text = getString(R.string.aucun_changement_au_prix)
                 }
+                ajustementNbrePersonnes = personnesSelectionné
 
                 presentateur.ajusterReservation()
             }

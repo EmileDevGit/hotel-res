@@ -114,7 +114,6 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
             put("date_fin", reservation.dateFin.toBackendDate())
             put("dateDebut", reservation.dateDébut.toBackendDate())
             put("dateFin", reservation.dateFin.toBackendDate())
-            put("prix", reservation.prix.toDouble())
             put("nb_personnes", reservation.nbPersonnes ?: 1)
             put("status", "EnAttente")
             put("locataire_id", "4")
