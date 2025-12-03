@@ -1,8 +1,6 @@
 package com.leen.hotelres_app.accesAuxDonnees
 
 import android.content.Context
-import android.util.Log
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import java.io.File

@@ -4,13 +4,11 @@ import com.leen.hotelres_app.presentation.model.entities.AjustementReservation
 import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import com.leen.hotelres_app.presentation.model.entities.Reservation
-import com.leen.hotelres_app.presentation.utils.viewUtils
 import com.leen.hotelres_app.services.ChambresService
 import com.leen.hotelres_app.services.FormulaireReservationService
 import com.leen.hotelres_app.services.HistoriqueReservationService
 import org.koin.java.KoinJavaComponent.inject
 import java.time.LocalDate
-import java.time.ZoneId
 
 object ModelHotelRes {
     private val historiqueService = HistoriqueReservationService()

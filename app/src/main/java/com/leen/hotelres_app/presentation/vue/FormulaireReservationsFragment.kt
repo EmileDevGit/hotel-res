@@ -26,12 +26,6 @@ import com.leen.hotelres_app.R
 import com.leen.hotelres_app.presentation.model.ModelHotelRes
 import com.leen.hotelres_app.presentation.model.entities.AjustementReservation
 import com.leen.hotelres_app.presentation.utils.viewUtils
-import org.w3c.dom.Text
-import java.sql.Time
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import java.util.TimeZone
 
 class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservations {
 

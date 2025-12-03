@@ -1,6 +1,5 @@
 package com.leen.hotelres_app.presentation.presentateur
 
-import android.util.Log
 import com.leen.hotelres_app.presentation.model.ModelHotelRes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

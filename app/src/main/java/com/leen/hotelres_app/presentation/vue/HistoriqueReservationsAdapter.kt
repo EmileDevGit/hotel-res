@@ -8,13 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.leen.hotelres_app.R
 import com.leen.hotelres_app.presentation.model.entities.Reservation
 import com.leen.hotelres_app.presentation.utils.viewUtils
-import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.LocalDate
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
-import java.util.Locale
 
 class HistoriqueReservationsAdapter(
     private var reservations: List<Reservation>
