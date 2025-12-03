@@ -4,6 +4,7 @@ import android.util.Log
 import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import com.leen.hotelres_app.presentation.model.entities.Reservation
+import com.leen.hotelres_app.presentation.utils.NoInternetException
 import okhttp3.HttpUrl
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.io.IOException
@@ -22,6 +23,7 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
     // Valide pour 30 jours
     private val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0Iiwicm9sZSI6IkNMSUVOVCIsImFsZyI6IkhTMjU2IiwiZXhwIjoxNzY2OTgzMTgxfQ.mXzYjhKpn-qEmJEwKooNFLhsc-ko-cMDe6Iw18Dav40"
 
+
     fun recupererHistoriqueReservation(): List<Reservation> {
         val urlHistorique = "http://idefix.dti.crosemont.quebec:10170/reservations/"
         Log.d("HTTP-REQUEST", urlHistorique)
@@ -31,16 +33,22 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
             .addHeader("Authorization", "Bearer $token")
             .build()
 
-        val response = client.newCall(request).execute()
-        val bodyString = response.body?.string() ?: "[]"
-        response.close()
+        try{
+            val response = client.newCall(request).execute()
+            val bodyString = response.body?.string() ?: "[]"
+            response.close()
 
-        if (!response.isSuccessful) {
-            throw IOException("Erreur HTTP : ${response.code}")
+            if (!response.isSuccessful) {
+                throw IOException("Erreur HTTP : ${response.code}")
+            }
+
+            return decodeurJSON.decodeHistorique(bodyString)
+
+        } catch (e: IOException){
+            throw NoInternetException()
         }
-
-        return decodeurJSON.decodeHistorique(bodyString)
     }
+
 
     fun recupererChambres(filtre: ChambreFiltre): List<Chambre> {
 
@@ -56,23 +64,29 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
             urlChambresBuilder.addQueryParameter("prix", filtre.prix.toString())
         }
 
-        val request = Request.Builder()
-            .url(urlChambresBuilder.build())
-            .addHeader("Authorization", "Bearer $token")
-            .build()
+        try{
+            val request = Request.Builder()
+                .url(urlChambresBuilder.build())
+                .addHeader("Authorization", "Bearer $token")
+                .build()
 
-        val response = client.newCall(request).execute()
-        val bodyString = response.body?.string() ?: "[]"
-        Log.d("CHAMBRES-HTTP", "Body: $bodyString")
-        response.close()
-        Log.d("CHAMBRES-HTTP", "HTTP code: ${response.code}")
+            val response = client.newCall(request).execute()
+            val bodyString = response.body?.string() ?: "[]"
+            Log.d("CHAMBRES-HTTP", "Body: $bodyString")
+            response.close()
+            Log.d("CHAMBRES-HTTP", "HTTP code: ${response.code}")
 
-        if (!response.isSuccessful) {
-            throw IOException("Erreur HTTP : ${response.code}")
+            if (!response.isSuccessful) {
+                throw IOException("Erreur HTTP : ${response.code}")
+            }
+
+            return decodeurJSON.decodeChambres(bodyString)
+
+        } catch (e: IOException){
+            throw NoInternetException()
         }
-
-        return decodeurJSON.decodeChambres(bodyString)
     }
+
 
     fun recupererChambresParNum(num: String): Chambre? {
         val urlChambres = "http://idefix.dti.crosemont.quebec:10170/chambres/${num}"
@@ -83,24 +97,31 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
             .addHeader("Authorization", "Bearer $token")
             .build()
 
-        val response = client.newCall(request).execute()
-        val bodyString = response.body?.string() ?: "[]"
-        Log.d("CHAMBRES-HTTP", "Body: $bodyString")
-        response.close()
-        Log.d("CHAMBRES-HTTP", "HTTP code: ${response.code}")
+        try{
+            val response = client.newCall(request).execute()
+            val bodyString = response.body?.string() ?: "[]"
+            Log.d("CHAMBRES-HTTP", "Body: $bodyString")
+            response.close()
+            Log.d("CHAMBRES-HTTP", "HTTP code: ${response.code}")
 
-        if (!response.isSuccessful) {
-            throw IOException("Erreur HTTP : ${response.code}")
+            if (!response.isSuccessful) {
+                throw IOException("Erreur HTTP : ${response.code}")
+            }
+
+            return decodeurJSON.decodeChambreParNumero(bodyString, num)
+
+        } catch (e: IOException){
+            throw NoInternetException()
         }
-
-        return decodeurJSON.decodeChambreParNumero(bodyString, num)
     }
+
 
     // Conversion des dates Long en Date
     fun Long.toBackendDate(): String {
         val sdf = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.US)
         return sdf.format(java.util.Date(this))
     }
+
 
     fun creerReservation(reservation: Reservation, chambre : Chambre): Boolean {
         val urlReservation = "http://idefix.dti.crosemont.quebec:10170/reservations"

@@ -1,5 +1,6 @@
 package com.leen.hotelres_app.presentation.vue
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -149,6 +150,14 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
 
     override fun afficherNotification(texte: String) {
         Toast.makeText(context, texte, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun afficherAlerte(message: String) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Pas d'Internet")
+            .setMessage(message)
+            .setPositiveButton("OK", null)
+            .show()
     }
 
     override fun obtenirFiltres(): ChambreFiltre {

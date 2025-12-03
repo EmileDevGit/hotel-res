@@ -3,6 +3,7 @@ package com.leen.hotelres_app.presentation.presentateur
 import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import com.leen.hotelres_app.presentation.model.ModelHotelRes
+import com.leen.hotelres_app.presentation.utils.NoInternetException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -38,12 +39,19 @@ class PresentateurChambres(
         }
 
         CoroutineScope(Dispatchers.IO).launch {
-            model.enregristrerFiltre(filtre)
-            chambresDisponibles= model.recupererListeChambres(filtre) as ArrayList<Chambre>
-            CoroutineScope(Dispatchers.Main).launch {
-                vue.afficherChambres(
-                    chambresDisponibles
-                )
+            try{
+                model.enregristrerFiltre(filtre)
+                chambresDisponibles= model.recupererListeChambres(filtre) as ArrayList<Chambre>
+                CoroutineScope(Dispatchers.Main).launch {
+                    vue.afficherChambres(
+                        chambresDisponibles
+                    )
+                }
+
+            } catch (e: NoInternetException) {
+                CoroutineScope(Dispatchers.Main).launch {
+                    vue.afficherAlerte("Veuillez vérifier votre connexion Internet.")
+                }
             }
         }
     }
