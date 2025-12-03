@@ -149,7 +149,9 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
 
         prixinitial = prix
 
-        title.text = titre
+        title.text = getString(
+            R.string.reservation_pour, titre
+        )
 
         dateDébutVar = dateDébut
         dateFinVar = dateFin

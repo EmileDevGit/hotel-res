@@ -17,7 +17,7 @@
 
         <ImageButton
             android:id="@+id/btnRetour"
-            android:layout_width="32dp"
+            android:layout_width="28dp"
             android:layout_height="match_parent"
             android:backgroundTint="@color/primary"
             android:src="@drawable/previous_icon"
@@ -31,7 +31,7 @@
             android:background="@color/primary"
             android:gravity="center"
             android:orientation="horizontal"
-            android:text="@string/formulaire_de_reservation"
+            android:text="@string/reservation_pour"
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
