@@ -24,13 +24,8 @@ import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentate
 import com.leen.hotelres_app.presentation.presentateur.FormulaireReservationsPresentateur
 import com.leen.hotelres_app.R
 import com.leen.hotelres_app.presentation.model.ModelHotelRes
+import com.leen.hotelres_app.presentation.model.entities.AjustementReservation
 import com.leen.hotelres_app.presentation.utils.viewUtils
-import org.w3c.dom.Text
-import java.sql.Time
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import java.util.TimeZone
 
 class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservations {
 
@@ -49,6 +44,11 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
     private lateinit var iconeHistorique: ImageView
     private var dateDébutVar: Long = 0L
     private var dateFinVar: Long = 0L
+    private var ajustementPrix: Float = 0f
+    private var ajustementDateDebut: Long = 0L
+    private var ajustementDateFin: Long = 0L
+    private var ajustementNbrePersonnes: Int = 0
+    private var prixinitial: Float = 0f
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
         val vue = inflater.inflate(R.layout.fragment_formulaire_reservation, container, false)
@@ -101,8 +101,6 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
         }
     }
 
-
-
     fun ajouterEvenementAuCalendrier(startMillis: Long, endMillis: Long) {
         val intent = Intent(Intent.ACTION_INSERT).apply {
             data = CalendarContract.Events.CONTENT_URI
@@ -137,9 +135,17 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
         }
     }
 
-    override fun chargerInfoReservation(titre: String, dateDébut: Long, dateFin: Long, nbPersonnes: Int?) {
+    override fun chargerInfoReservation(titre: String, dateDébut: Long, dateFin: Long, nbPersonnes: Int, prix: Float) {
 
-        title.text = titre
+        ajustementNbrePersonnes = nbPersonnes
+        ajustementDateDebut = dateDébut
+        ajustementDateFin = dateFin
+
+        prixinitial = prix
+
+        title.text = getString(
+            R.string.reservation_pour, titre
+        )
 
         dateDébutVar = dateDébut
         dateFinVar = dateFin
@@ -168,8 +174,13 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
                 dateDébutVar = it.first
                 dateFinVar = it.second
 
+                ajustementDateDebut = dateDébutVar
+                ajustementDateFin = dateFinVar
+
                 val dateDébutString = viewUtils.convertirEpochEnDateFormattee(it.first)
                 val dateFinString = viewUtils.convertirEpochEnDateFormattee(it.second)
+
+                presentateur.ajusterReservation()
 
                 tvDatesChoisi.text = tvDatesChoisi.context.getString(
                     R.string.dates_reservationForm,
@@ -183,8 +194,8 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
             }
         }
 
-        val nbPersonnesSpinner = nbPersonnes ?: 1
-        val nbPersonnesList = (nbPersonnesSpinner - 2 ..nbPersonnesSpinner + 2).toList()
+        val nbPersonnesSpinner = 1
+        val nbPersonnesList = (nbPersonnesSpinner ..nbPersonnes + 3).toList()
 
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, nbPersonnesList)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -194,19 +205,32 @@ class FormulaireReservationsFragment : Fragment(), IFragmentFormulaireReservatio
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val personnesSelectionné = nbPersonnesList[position]
-
-                if(personnesSelectionné == 4){
+                if (personnesSelectionné == nbPersonnes + 2) {
+                    ajustementPrix = 30f
                     tvPrixSelonNbPersonnes.text = "Le prix augmente de 30$"
-                } else if(personnesSelectionné == 5) {
+                } else if (personnesSelectionné == nbPersonnes + 3) {
+                    ajustementPrix = 60f
                     tvPrixSelonNbPersonnes.text = "Le prix augmente de 60$"
                 } else {
                     tvPrixSelonNbPersonnes.text = getString(R.string.aucun_changement_au_prix)
                 }
+                ajustementNbrePersonnes = personnesSelectionné
+
+                presentateur.ajusterReservation()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
+                //
             }
         }
+    }
+
+    override fun recupererAjustementsReservation(): AjustementReservation {
+        return AjustementReservation(
+            prix = prixinitial + ajustementPrix,
+            dateDebut = ajustementDateDebut,
+            dateFin = ajustementDateFin,
+            nbrePersonnes = ajustementNbrePersonnes
+        )
     }
 }

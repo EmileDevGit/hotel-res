@@ -5,6 +5,6 @@ data class Reservation(
     var dateDébut: Long,
     var dateFin: Long,
     val dateReservation: String,
-    val prix: Float,
-    val nbPersonnes : Int?
+    var prix: Float,
+    var nbPersonnes : Int
 )

@@ -8,16 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.leen.hotelres_app.R
 import com.leen.hotelres_app.presentation.model.entities.Reservation
 import com.leen.hotelres_app.presentation.utils.viewUtils
-import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.LocalDate
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
-import java.util.Locale
 
 class HistoriqueReservationsAdapter(
-    private val reservations: List<Reservation>
+    private var reservations: List<Reservation>
 ) : RecyclerView.Adapter<HistoriqueReservationsAdapter.ReservationViewHolder>() {
 
     class ReservationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -49,9 +42,15 @@ class HistoriqueReservationsAdapter(
             reservation.numero
         )
         holder.tvDates.text = dateRange
-        holder.tvNbrPersonnes.text = holder.itemView.context.getString(
-            R.string.nombre_de_personnes, reservation.nbPersonnes
-        )
+        if(reservation.nbPersonnes == null){
+            holder.tvNbrPersonnes.text = holder.itemView.context.getString(
+                R.string.nombre_de_personnes, 0
+            )
+        } else {
+            holder.tvNbrPersonnes.text = holder.itemView.context.getString(
+                R.string.nombre_de_personnes, reservation.nbPersonnes
+            )
+        }
         holder.tvDateReservation.text = holder.itemView.context.getString(
             R.string.date_de_reservation, reservation.dateReservation
         )
@@ -60,5 +59,8 @@ class HistoriqueReservationsAdapter(
         )
     }
 
-
+    fun updateData(newReservations: List<Reservation>) {
+        reservations = newReservations
+        notifyDataSetChanged()
+    }
 }

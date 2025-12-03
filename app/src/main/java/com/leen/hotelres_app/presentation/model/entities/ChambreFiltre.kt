@@ -1,8 +1,5 @@
 package com.leen.hotelres_app.presentation.model.entities
 
-import android.R
-import java.time.LocalDate
-import java.util.Date
 import kotlin.time.Duration.Companion.days
 import kotlin.time.DurationUnit
 

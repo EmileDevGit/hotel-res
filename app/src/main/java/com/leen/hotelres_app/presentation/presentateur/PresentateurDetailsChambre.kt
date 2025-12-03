@@ -4,9 +4,6 @@ import com.leen.hotelres_app.presentation.model.ModelHotelRes
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurDetailsChambre.IPresentateurDetailsChambre
 import com.leen.hotelres_app.presentation.presentateur.ContratFragmentPresentateurDetailsChambre.IFragmentDetailsChambre
 import com.leen.hotelres_app.presentation.vue.DetailChambreFragment
-import kotlinx.coroutines.*
-import java.util.Locale
-
 
 class PresentateurDetailsChambre (
     var vue : IFragmentDetailsChambre = DetailChambreFragment(),

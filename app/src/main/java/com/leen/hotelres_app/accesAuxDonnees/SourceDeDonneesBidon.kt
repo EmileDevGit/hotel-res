@@ -4,7 +4,7 @@ import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import com.leen.hotelres_app.presentation.model.entities.Reservation
 
 class SourceDeDonneesException(message : String) : Exception( message ) {}
-
+/*
 class SourceDeDonneesBidon() : ISourceDeDonnees {
     // Variables contenant les données factices
     companion object{
@@ -241,4 +241,4 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             throw Exception("Chambre non trouvée")
         }
     }
-}
+}*/
