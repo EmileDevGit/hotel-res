@@ -37,11 +37,6 @@ L'objectif est simple, une solution mobile assurant le suivi des réservation po
   3. Compiler et lancer l’application depuis Android Studio
 
 
-** Documentation
-
-[ Insérer lien vers répertoire de documentaiton ICI ]
-
-
 ** Contribution
 
 - Leen Al Harash
