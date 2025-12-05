@@ -5,6 +5,7 @@
 HotelRes est une application intuitive et efficace, permettant à vos clients de réserver leur séjour sans tracas.
 L'objectif est simple, une solution mobile assurant le suivi des réservation pour l'entreprise d'hotellerie et la clientèle.
 
+
 **** Fonctionnalitées
 
 - Sélection de chambres libres
@@ -29,17 +30,17 @@ L'objectif est simple, une solution mobile assurant le suivi des réservation po
   - Confidentialité des réservations
   - Potentiel d'offres avantageuses ciblées
 
-** Prérequis
-
-À venir!
 
 ** Installation
+  1. Générer un token **[ici](http://idefix.dti.crosemont.quebec:10170/auth/login)**
+  2. Insérer le token dans les préférences de l’application
+  3. Compiler et lancer l’application depuis Android Studio
 
-À venir!
 
 ** Documentation
 
 [ Insérer lien vers répertoire de documentaiton ICI ]
+
 
 ** Contribution
 
@@ -48,11 +49,9 @@ L'objectif est simple, une solution mobile assurant le suivi des réservation po
 - Joël Bertrand Tsafack
 - Émile Girard
 
-** État du projet et plans futurs
-
-=> Développement de la maquette figma et production de la documentation d'analyse
 
 ...
 
 ** Licence
-Aucune licence accordée à ce projet
+Licence pour la dépendance Gson : https://github.com/google/gson/blob/main/gson/LICENSE
+Ce projet n'accorde aucune licence spécifique.
