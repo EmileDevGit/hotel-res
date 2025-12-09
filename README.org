@@ -8,7 +8,7 @@
 HotelRes est une application intuitive et performante qui permet à vos clients de réserver facilement leur séjour.
 L'objectif est simple : une solution mobile qui assure le suivi des réservations, tant pour l'hôtel que pour ses clients.
 
-*** Fonctionnalitées
+*** Fonctionnalités
 
 - Sélection et filtrage des chambres
   - Sélection de chambres en temps réel
