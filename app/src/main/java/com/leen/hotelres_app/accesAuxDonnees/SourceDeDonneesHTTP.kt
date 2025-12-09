@@ -21,7 +21,7 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
         .build()
 
     // Valide pour 30 jours
-    private val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0Iiwicm9sZSI6IkNMSUVOVCIsImFsZyI6IkhTMjU2IiwiZXhwIjoxNzY2OTgzMTgxfQ.mXzYjhKpn-qEmJEwKooNFLhsc-ko-cMDe6Iw18Dav40"
+    private val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0Iiwicm9sZSI6IkNMSUVOVCIsImFsZyI6IkhTMjU2IiwidHlwIjoiYmVhcmVyIiwiZXhwIjoxNzY3ODQwNjUyfQ.3N2uphdtfvs8pZUmd2NMPfWXprx7D-9Njwv0CTrqnQI"
 
 
     fun recupererHistoriqueReservation(): List<Reservation> {
