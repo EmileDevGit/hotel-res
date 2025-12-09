@@ -54,6 +54,7 @@ class HistoriqueReservationsFragment : Fragment(),
         loadHistoriqueReservation = view.findViewById(R.id.loadHistoriqueReservation)
         presenter = HistoriqueReservationsPresentateur(this)
 
+        afficherLoader()
         presenter.chargerReservations()
     }
 
@@ -70,8 +71,6 @@ class HistoriqueReservationsFragment : Fragment(),
     }
 
     override fun erreurDeAffichage(message: String) {
-        cacherLoader()
-
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Erreur")
             .setMessage(message)
