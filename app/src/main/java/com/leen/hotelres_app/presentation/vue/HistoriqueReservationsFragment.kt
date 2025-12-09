@@ -48,30 +48,29 @@ class HistoriqueReservationsFragment : Fragment(),
         recyclerView = view.findViewById(R.id.recyclerReservations)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        adapter = HistoriqueReservationsAdapter(emptyList()) // Attach immediately
+        adapter = HistoriqueReservationsAdapter(emptyList())
         recyclerView.adapter = adapter
 
         loadHistoriqueReservation = view.findViewById(R.id.loadHistoriqueReservation)
         presenter = HistoriqueReservationsPresentateur(this)
 
-        showLoader()
         presenter.chargerReservations()
     }
 
     override fun afficherReservations(reservations: List<Reservation>) {
-        stopLoader()
+        cacherLoader()
         adapter.updateData(reservations)
     }
 
     override fun aucuneHistorique() {
-        stopLoader()
+        cacherLoader()
 
         Toast.makeText(requireContext(),
             getString(R.string.aucune_historique_afficher), Toast.LENGTH_SHORT).show()
     }
 
     override fun erreurDeAffichage(message: String) {
-        stopLoader()
+        cacherLoader()
 
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle("Erreur")
@@ -81,18 +80,18 @@ class HistoriqueReservationsFragment : Fragment(),
         builder.show()
     }
 
-    private fun showLoader() {
+    override fun afficherLoader() {
         isLoading = true
         loadHistoriqueReservation.visibility = View.VISIBLE
 
         loadHistoriqueReservation.animate()
             .rotationBy(360f)
             .setDuration(700)
-            .withEndAction { if (isLoading) showLoader() }
+            .withEndAction { if (isLoading) afficherLoader() }
             .start()
     }
 
-    private fun stopLoader() {
+    override fun cacherLoader() {
         isLoading = false
         loadHistoriqueReservation.clearAnimation()
         loadHistoriqueReservation.visibility = View.GONE

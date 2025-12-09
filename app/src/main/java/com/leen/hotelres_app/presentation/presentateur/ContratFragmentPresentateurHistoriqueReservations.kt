@@ -8,6 +8,9 @@ interface ContratFragmentPresentateurHistoriqueReservations {
         fun afficherReservations(reservations: List<Reservation>)
         fun aucuneHistorique()
         fun erreurDeAffichage(message: String)
+
+        fun afficherLoader()
+        fun cacherLoader()
     }
 
 

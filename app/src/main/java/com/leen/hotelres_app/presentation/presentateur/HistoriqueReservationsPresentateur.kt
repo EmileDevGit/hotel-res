@@ -12,6 +12,8 @@ class HistoriqueReservationsPresentateur(
     ContratFragmentPresentateurHistoriqueReservations.IPresentateurHistoriqueReservations {
 
     override fun chargerReservations() {
+        view.afficherLoader()
+
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 //Thread.sleep(2000)
