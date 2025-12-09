@@ -21,6 +21,8 @@ interface ContratFragmentPresentateurChambres {
         // permet d'afficher les filtres à l'ecran
         fun afficherFiltres(filtre: ChambreFiltre)
 
+        fun afficherLoader()
+        fun cacherLoader()
     }
 
     interface IPresentateurChambres{

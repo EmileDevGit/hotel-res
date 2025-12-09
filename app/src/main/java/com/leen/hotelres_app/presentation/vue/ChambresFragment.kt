@@ -83,7 +83,7 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
 
         attacherEvenements()
 
-        showLoader()
+        afficherLoader()
         presentateurChambres.initialiserVue()
         presentateurChambres.traiterFiltrer()
     }
@@ -104,39 +104,20 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
 
         etMontantMaximum.setOnFocusChangeListener { _, focus ->
             if (!focus) {
-                showLoader()
+                afficherLoader()
                 presentateurChambres.traiterFiltrer()
             }
         }
 
         btnRefresh.setOnClickListener {
             etMontantMaximum.text.clear()
-            showLoader()
+            afficherLoader()
             presentateurChambres.traiterFiltrer()
         }
     }
 
-    private fun showLoader() {
-        isLoading = true
-        loadChambresAccueil.visibility = View.VISIBLE
-        chambresRecyclerView.visibility = View.INVISIBLE
-
-        loadChambresAccueil.animate()
-            .rotationBy(360f)
-            .setDuration(700)
-            .withEndAction { if (isLoading) showLoader() }
-            .start()
-    }
-
-    private fun hideLoader() {
-        isLoading = false
-        loadChambresAccueil.clearAnimation()
-        loadChambresAccueil.visibility = View.GONE
-        chambresRecyclerView.visibility = View.VISIBLE
-    }
-
     override fun afficherChambres(chambres: ArrayList<Chambre>) {
-        hideLoader()
+        cacherLoader()
         chambresAdaptater.updateData(chambres)
     }
 
@@ -175,6 +156,25 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
         btnDateFin.text = viewUtils.convertirEpochEnDateFormattee(filtre.dateFin)
         btnDateDebut.text = viewUtils.convertirEpochEnDateFormattee(filtre.dateDebut)
         etMontantMaximum.setText(filtre.prix?.toString() ?: "")
+    }
+
+    override fun afficherLoader() {
+        isLoading = true
+        loadChambresAccueil.visibility = View.VISIBLE
+        chambresRecyclerView.visibility = View.INVISIBLE
+
+        loadChambresAccueil.animate()
+            .rotationBy(360f)
+            .setDuration(700)
+            .withEndAction { if (isLoading) afficherLoader() }
+            .start()
+    }
+
+    override fun cacherLoader() {
+        isLoading = false
+        loadChambresAccueil.clearAnimation()
+        loadChambresAccueil.visibility = View.GONE
+        chambresRecyclerView.visibility = View.VISIBLE
     }
 
     private fun selectionnerDate(){
