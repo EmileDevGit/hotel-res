@@ -20,3 +20,27 @@
 | Participation au développement      (33%) | ×    | A    | A    | A       | A     |                                                                                            |
 |-------------------------------------------+------+------+------+---------+-------+--------------------------------------------------------------------------------------------|
 | Total                                     |      | 10   | 9,3  | 10      | 10    | Excellent! Dans vos commits, indiquez votre vrai nom; je suppose que jo17-dev, c'est Joël? |
+
+* Sprint 3
+|                                           | Note | Leen | Mariyam | Joël | Émile | Commentaires                                                      |
+| Qualité du produit :                      | A    |      |         |      |       |                                                                   |
+|                                           |      |      |         |      |       |                                                                   |
+| Présentation :                            | A    |      |         |      |       |                                                                   |
+|                                           |      |      |         |      |       |                                                                   |
+| Évaluation du travail par les pairs (33%) | ×    | A    | A       | A    | A     |                                                                   |
+| Participation à la présentation     (33%) | ×    | A    | A       | A    | A     |                                                                   |
+| Participation au développement      (33%) | ×    | A    | A       | A    | A     |                                                                   |
+|-------------------------------------------+------+------+---------+------+-------+-------------------------------------------------------------------|
+| Total                                     |      | 10   | 10      | 10   | 10    | Très bien! Vous semblez avoir une bonne collaboration sur Gitlab. |
+
+* Sprint 4
+|                                           | Note | Leen | Joël               | Émile | Mariyam | Commentaires |
+| Qualité du produit :                      | A    |      |                    |       |         |              |
+|                                           |      |      |                    |       |         |              |
+| Présentation :                            | A    |      |                    |       |         |              |
+|                                           |      |      |                    |       |         |              |
+| Évaluation du travail par les pairs (33%) | ×    | A    | (pas d'évaluation) | A     | A       |              |
+| Participation à la présentation     (33%) | ×    | A    | A                  | A     | A       |              |
+| Participation au développement      (33%) | ×    | A    | A                  | A     | A       |              |
+|-------------------------------------------+------+------+--------------------+-------+---------+--------------|
+| Total                                     |      | 10   | 6,7                | 10    | 10      |              |
