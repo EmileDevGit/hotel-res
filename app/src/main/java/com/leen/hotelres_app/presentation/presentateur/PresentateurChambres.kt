@@ -50,7 +50,7 @@ class PresentateurChambres(
 
             } catch (e: NoInternetException) {
                 CoroutineScope(Dispatchers.Main).launch {
-                    vue.afficherAlerte("Veuillez vérifier votre connexion Internet.")
+                    vue.afficherAlerte("Pas d'internet frero", "Veuillez vérifier votre connexion Internet.")
                 }
             }
         }

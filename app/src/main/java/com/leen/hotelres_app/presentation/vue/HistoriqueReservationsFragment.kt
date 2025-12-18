@@ -70,11 +70,11 @@ class HistoriqueReservationsFragment : Fragment(),
             getString(R.string.aucune_historique_afficher), Toast.LENGTH_SHORT).show()
     }
 
-    override fun erreurDeAffichage(message: String) {
+    override fun erreurDeAffichage(messageTitre: String, message: String) {
         stopLoader()
 
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Erreur")
+        builder.setTitle(messageTitre)
             .setMessage(message)
             .setPositiveButton("OK", null)
 
