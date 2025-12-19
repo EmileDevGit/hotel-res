@@ -4,16 +4,20 @@ import com.leen.hotelres_app.presentation.model.entities.Chambre
 import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import com.leen.hotelres_app.presentation.model.ModelHotelRes
 import com.leen.hotelres_app.presentation.utils.NoInternetException
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class PresentateurChambres(
     private val vue: ContratFragmentPresentateurChambres.IVueChambres,
-    private val model: ModelHotelRes = ModelHotelRes
+    private val model: ModelHotelRes = ModelHotelRes,
+    private val secondaryDispatcher: CoroutineDispatcher = Dispatchers.IO,
+    private val mainDispatcher: CoroutineDispatcher = Dispatchers.Main
 ) : ContratFragmentPresentateurChambres.IPresentateurChambres {
 
-    private lateinit var chambresDisponibles: ArrayList<Chambre>
+    private var chambresDisponibles: ArrayList<Chambre> = ArrayList<Chambre>()
+
 
 
     override fun initialiserVue() {
@@ -23,9 +27,16 @@ class PresentateurChambres(
     }
 
     override fun traiterNaviguerVersDetails(numero: String) {
-        val chambre = chambresDisponibles.first { it.numero == numero }
-        model.selectionnerChambre(chambre)
-        vue.naviguerVersDetails()
+        try {
+            val chambre = chambresDisponibles.first() { it.numero == numero }
+            model.selectionnerChambre(chambre)
+            vue.naviguerVersDetails()
+        }catch (ex: NoSuchElementException){
+            vue.afficherAlerte(
+                "impossible de voir les détails",
+                "Impossible de voir les détails de la chambre. Elle n'existe peut-être plus")
+        }
+
     }
 
     override fun traiterFiltrer() {
@@ -38,18 +49,18 @@ class PresentateurChambres(
             }
         }
 
-        CoroutineScope(Dispatchers.IO).launch {
+        CoroutineScope(secondaryDispatcher).launch {
             try{
                 model.enregristrerFiltre(filtre)
                 chambresDisponibles= model.recupererListeChambres(filtre) as ArrayList<Chambre>
-                CoroutineScope(Dispatchers.Main).launch {
+                CoroutineScope(mainDispatcher).launch {
                     vue.afficherChambres(
                         chambresDisponibles
                     )
                 }
 
             } catch (e: NoInternetException) {
-                CoroutineScope(Dispatchers.Main).launch {
+                CoroutineScope(mainDispatcher).launch {
                     vue.afficherAlerte("Pas d'internet frero", "Veuillez vérifier votre connexion Internet.")
                 }
             }
