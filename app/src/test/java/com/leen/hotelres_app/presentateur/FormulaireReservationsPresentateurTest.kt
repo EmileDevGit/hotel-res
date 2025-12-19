@@ -47,7 +47,7 @@ class FormulaireReservationsPresentateurTest {
             sdf.parse("10 nov. 2025")?.time ?: 0L,
             sdf.parse("27 nov. 2025")?.time ?: 0L,
             "10 oct. 2025",
-            "130$/par nuit",
+            130.0f,
             3
         )
 
@@ -55,6 +55,12 @@ class FormulaireReservationsPresentateurTest {
         presentateur.initialiserVue()
         Thread.sleep(1100)
 
-        Mockito.verify(mockVue).chargerInfoReservation(mockReservation.dateDébut, mockReservation.dateFin, mockReservation.nbPersonnes)
+        Mockito.verify(mockVue).chargerInfoReservation(
+            title = mockReservation.numero,
+            dateFin = mockReservation.dateFin,
+            nbPersonnes = mockReservation.nbPersonnes,
+            prix = mockReservation.prix,
+            dateDébut = mockReservation.dateDébut,
+        )
     }
 }
