@@ -133,9 +133,9 @@ class ChambresFragment : Fragment(), ContratFragmentPresentateurChambres.IVueCha
         Toast.makeText(context, texte, Toast.LENGTH_SHORT).show()
     }
 
-    override fun afficherAlerte(message: String) {
+    override fun afficherAlerte(messageTitre: String, message: String) {
         AlertDialog.Builder(requireContext())
-            .setTitle("Pas d'Internet")
+            .setTitle(messageTitre)
             .setMessage(message)
             .setPositiveButton("OK", null)
             .show()

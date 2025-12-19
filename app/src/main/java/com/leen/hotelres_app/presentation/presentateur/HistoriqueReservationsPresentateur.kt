@@ -25,7 +25,7 @@ class HistoriqueReservationsPresentateur(
                 }
             } catch (e: Exception) {
                 CoroutineScope(Dispatchers.Main).launch {
-                    view.erreurDeAffichage("Erreur lors du chargement des réservations.")
+                    view.erreurDeAffichage("Erreur", "Erreur lors du chargement des réservations.")
                 }
             }
         }

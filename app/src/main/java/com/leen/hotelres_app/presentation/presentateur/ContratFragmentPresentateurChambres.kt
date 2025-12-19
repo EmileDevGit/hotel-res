@@ -13,7 +13,7 @@ interface ContratFragmentPresentateurChambres {
 
         // faire une notification
         fun afficherNotification(texte: String)
-        fun afficherAlerte(message: String,)
+        fun afficherAlerte(messageTitre: String,  message: String)
 
         // permet de recupérer les filtres à l'écran
         fun obtenirFiltres(): ChambreFiltre
