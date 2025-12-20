@@ -15,6 +15,7 @@ class DetailsChambrePresentateurTest {
         val mockModel = Mockito.mock(ModelHotelRes::class.java)
 
         val chambre = Chambre(
+            id = 1,
             numero = "B260",
             nombreLits = 2,
             prix = 125f,
@@ -37,7 +38,7 @@ class DetailsChambrePresentateurTest {
             chambre.description,
             chambre.inclusions,
             chambre.nombrePersonnes,
-            chambre.prix,
+            String.format("%.2f", chambre.prix),
             chambre.images
         )
     }

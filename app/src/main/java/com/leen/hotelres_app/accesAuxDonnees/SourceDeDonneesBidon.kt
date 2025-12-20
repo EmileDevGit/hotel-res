@@ -4,7 +4,7 @@ import com.leen.hotelres_app.presentation.model.entities.ChambreFiltre
 import com.leen.hotelres_app.presentation.model.entities.Reservation
 
 class SourceDeDonneesException(message : String) : Exception( message ) {}
-/*
+
 class SourceDeDonneesBidon() : ISourceDeDonnees {
     // Variables contenant les données factices
     companion object{
@@ -63,6 +63,7 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
 
     private val listeChambres: ArrayList<Chambre> = arrayListOf(
         Chambre(
+            id = 0,
             numero = "101",
             nombreLits = 1,
             prix = 480F,
@@ -72,6 +73,7 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             nombrePersonnes = 2
         ),
         Chambre(
+            id = 0,
             numero = "102",
             nombreLits = 2,
             prix = 480F,
@@ -81,6 +83,7 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             nombrePersonnes = 2
         ),
         Chambre(
+            id = 0,
             numero = "103",
             nombreLits = 2,
             prix = 650F,
@@ -90,6 +93,7 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             nombrePersonnes = 2
         ),
         Chambre(
+            id = 0,
             numero = "202",
             nombreLits = 2,
             prix = 680F,
@@ -99,6 +103,7 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             nombrePersonnes = 2
         ),
         Chambre(
+            id = 0,
             numero = "203",
             nombreLits = 2,
             prix = 720F,
@@ -109,6 +114,7 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
         ),
 
         Chambre(
+            id = 0,
             numero = "301",
             nombreLits = 3,
             prix = 850F,
@@ -118,6 +124,7 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             nombrePersonnes = 3
         ),
         Chambre(
+            id = 0,
             numero = "302",
             nombreLits = 3,
             prix = 890F,
@@ -127,6 +134,7 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             nombrePersonnes = 3
         ),
         Chambre(
+            id = 0,
             numero = "401",
             nombreLits = 4,
             prix = 1200F,
@@ -136,6 +144,7 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             nombrePersonnes = 4
         ),
         Chambre(
+            id = 0,
             numero = "402",
             nombreLits = 4,
             prix = 1250F,
@@ -146,6 +155,7 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
         ),
 
         Chambre(
+            id = 0,
             numero = "501",
             nombreLits = 2,
             prix = 750F,
@@ -155,6 +165,7 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             nombrePersonnes = 2
         ),
         Chambre(
+            id = 0,
             numero = "502",
             nombreLits = 1,
             prix = 520F,
@@ -164,6 +175,7 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             nombrePersonnes = 1
         ),
         Chambre(
+            id = 0,
             numero = "601",
             nombreLits = 3,
             prix = 920F,
@@ -173,6 +185,7 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             nombrePersonnes = 3
         ),
         Chambre(
+            id = 0,
             numero = "602",
             nombreLits = 2,
             prix = 700F,
@@ -183,6 +196,7 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
         ),
 
         Chambre(
+            id = 0,
             numero = "701",
             nombreLits = 2,
             prix = 950F,
@@ -192,6 +206,7 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             nombrePersonnes = 2
         ),
         Chambre(
+            id = 0,
             numero = "702",
             nombreLits = 1,
             prix = 600F,
@@ -241,4 +256,4 @@ class SourceDeDonneesBidon() : ISourceDeDonnees {
             throw Exception("Chambre non trouvée")
         }
     }
-}*/
+}

@@ -71,7 +71,7 @@ class HistoriqueReservationsFragment : Fragment(),
     }
 
     override fun erreurDeAffichage(messageTitre: String, message: String) {
-        stopLoader()
+        cacherLoader()
 
         val builder = AlertDialog.Builder(requireContext())
         builder.setTitle(messageTitre)

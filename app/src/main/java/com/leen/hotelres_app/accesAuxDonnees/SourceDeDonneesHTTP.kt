@@ -23,7 +23,6 @@ class SourceDeDonneesHTTP(private val decodeurJSON: DécodeurJson= DécodeurJson
     // Valide pour 30 jours
     private val token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0Iiwicm9sZSI6IkNMSUVOVCIsImFsZyI6IkhTMjU2IiwidHlwIjoiYmVhcmVyIiwiZXhwIjoxNzY3ODQwNjUyfQ.3N2uphdtfvs8pZUmd2NMPfWXprx7D-9Njwv0CTrqnQI"
 
-
     fun recupererHistoriqueReservation(): List<Reservation> {
         val urlHistorique = "http://idefix.dti.crosemont.quebec:10170/reservations/"
         Log.d("HTTP-REQUEST", urlHistorique)
