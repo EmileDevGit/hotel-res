@@ -1,5 +1,5 @@
 package com.leen.hotelres_app.presentation.utils
 
-interface IRessouceAccessor {
+interface IRessourceAccessor {
     fun getString(ressourceId: Int): String
 }

@@ -36,4 +36,8 @@
     <string name="enter_password_hint">Mot de passe</string>
     <string name="login">Se connecter</string>
     <string name="forgot_password">Mot de passe oublié ?</string>
+
+    <!-- partie des messages -->
+    <string name="bad_credentials_error_title">Erreur de connexion</string>
+    <string name="bad_credentials_error_body">Nous n\'avons pas pu vous connecter. vos identifiants </string>
 </resources>

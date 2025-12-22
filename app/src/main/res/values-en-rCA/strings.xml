@@ -36,4 +36,8 @@
     <string name="enter_password_hint">Password</string>
     <string name="login">Login</string>
     <string name="forgot_password">Forgot password ?</string>
+
+    <!-- partie des messages -->
+    <string name="bad_credentials_error_title">Connexion error</string>
+    <string name="bad_credentials_error_body"> The credentials are not valid </string>
 </resources>
