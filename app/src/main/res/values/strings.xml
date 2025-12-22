@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">HotelRes_App</string>
+    <string name="app_name" translatable="false">Hotel Res</string>
     <string name="nombre_de_personnes">Nombre de personnes: %1$d</string>
     <string name="date_de_reservation">Date de réservation: %1$s</string>
     <string name="prix_nuit">Prix: %1$s$</string>
