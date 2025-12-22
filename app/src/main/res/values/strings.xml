@@ -31,4 +31,9 @@
     <string name="details_chambre_inclusion">Inclus: %1$s</string>
     <string name="historique_reservation_titre">Réservation de la chambre %1$s</string>
     <string name="reservation_erreur">Erreur lors de l\'enregistrement de la réservation</string>
+    <string name="welcome_message">Bienvenue !</string>
+    <string name="enter_email_hint">Email</string>
+    <string name="enter_password_hint">Mot de passe</string>
+    <string name="login">Se connecter</string>
+    <string name="forgot_password">Mot de passe oublié ?</string>
 </resources>
