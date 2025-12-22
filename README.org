@@ -1,58 +1,46 @@
-* HotelRes
+* Application HotelRes
+---------------------
+---------------------
 
 ** Description
+---------------------
 
-HotelRes est une application intuitive et efficace, permettant à vos clients de réserver leur séjour sans tracas.
-L'objectif est simple, une solution mobile assurant le suivi des réservation pour l'entreprise d'hotellerie et la clientèle.
+HotelRes est une application intuitive et performante qui permet à vos clients de réserver facilement leur séjour.
+L'objectif est simple : une solution mobile qui assure le suivi des réservations, tant pour l'hôtel que pour ses clients.
 
-**** Fonctionnalitées
+*** Fonctionnalités
 
-- Sélection de chambres libres
-  - L'information est mise à jour en temps réel
-  - Réservation journalière ou par période 
+- Sélection et filtrage des chambres
+  - Sélection de chambres en temps réel
+  - Affichage des détails de la chambre choisie
+  - Filtrer des chambres en fonction des prix
 
+- Réservation
+  - Réservation journalière ou par période
+  - Confirmation de réservation
+  - Synchronisation du calendrier
 
-- Confirmation de réservation.
-  - Enregistrement local au format PDF
-  - Sauvegarde sur le serveur distant
-  - Historique des réservations
-
-
-- Synchronisation du calendrier.
-  - Intégration au préférences client
-  - Organisation efficace
-
-
-- Authentification.
-  - Sécuritaire
+- Historique et confidentialité
   - Conservation de l'historique de réservation
   - Confidentialité des réservations
-  - Potentiel d'offres avantageuses ciblées
 
-** Prérequis
-
-À venir!
 
 ** Installation
+---------------------
+  1. Générer un token ici: <http://idefix.dti.crosemont.quebec:10170/auth/login>
+  2. Insérer le token dans les préférences de l’application
+  3. Compiler et lancer l’application depuis Android Studio
 
-À venir!
-
-** Documentation
-
-[ Insérer lien vers répertoire de documentaiton ICI ]
 
 ** Contribution
-
+---------------------
 - Leen Al Harash
 - Mariyam Hanfaoui
 - Joël Bertrand Tsafack
 - Émile Girard
 
-** État du projet et plans futurs
-
-=> Développement de la maquette figma et production de la documentation d'analyse
-
-...
 
 ** Licence
-Aucune licence accordée à ce projet
+---------------------
+- Licence pour la dépendance Gson : <https://github.com/google/gson/blob/main/gson/LICENSE>
+- Ce projet n'accorde aucune licence spécifique.
